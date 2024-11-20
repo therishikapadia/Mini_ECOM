@@ -1,49 +1,73 @@
 const express = require('express');
 const router = express.Router();
 
-const {restrictTo} = require('../middlewares/auth')
+const { restrictTo } = require('../middlewares/auth');
+const {
+    handleGetAllOrders,
+    handleUpdateOrder,
+    handleDeleteOrder
+} = require('../controllers/order');
 
-const {handleGetAllOrders,handleUpdateOrder,handleDeleteOrder} = require('../controllers/order')
+const {
+    handleAddCustomer,
+    handleDeleteCustomer,
+    handleGetAllCustomers,
+    handleUpdateCustomer
+} = require('../controllers/admin/customerController');
 
-const {handleAddCustomer, handleDeleteCustomer, handleGetAllCustomers, handleUpdateCustomer } = require('../controllers/admin/customerController');
+const {
+    handleAddNewProduct,
+    handleDeleteNewProduct,
+    handleUpdateNewProduct,
+    handleGetNewProduct
+} = require('../controllers/admin/categoryController');
 
-const { handleAddNewProduct,handleDeleteNewProduct,handleUpdateNewProduct,handleGetNewProduct}=require('../controllers/admin/categoryController')
+const {
+    handleAddInventory,
+    handleDeleteInventory,
+    handleGetInventory,
+    handleUpdateInventory
+} = require('../controllers/admin/inventoryController');
 
-const {handleAddInventory,handleDeleteInventory,handleGetInventory,handleUpdateInventory} = require('../controllers/admin/inventoryController')
+const {
+    handleAddDeliveryAgent,
+    handleDeleteDeliveryAgent,
+    handleGetAllDeliveryAgents,
+    handleUpdateDeliveryAgent
+} = require('../controllers/admin/deliveryController');
 
-const {handleAddDeliveryAgent,handleDeleteDeliveryAgent,handleGetAllDeliveryAgents,handleUpdateDeliveryAgent}=require('../controllers/admin/deliveryController')
+// Inventory routes
+router.route('/inventory')
+    .post(handleAddInventory)
+    .get(handleGetInventory)
+    .patch(handleUpdateInventory)
+    .delete(handleDeleteInventory);
 
-const {}=require('../controllers/admin/orderController')
+// Categories routes
+router.route('/categories')
+    .post(handleAddNewProduct)
+    .delete(handleDeleteNewProduct)
+    .patch(handleUpdateNewProduct)
+    .get(handleGetNewProduct);
 
-//add new products to inventory
-router.post('/inventory', handleAddInventory);
-router.get('/inventory', handleGetInventory);
-router.patch('/inventory', handleUpdateInventory);
-router.delete('/inventory', handleDeleteInventory);
+// Customer routes
+router.route('/customer')
+    .post(handleAddCustomer)
+    .patch(handleUpdateCustomer)
+    .delete(handleDeleteCustomer)
+    .get(handleGetAllCustomers);
 
-//add new type of products which you want to manage
-router.post('/categories', handleAddNewProduct);
-router.delete('/categories', handleDeleteNewProduct)
-router.patch('/categories', handleUpdateNewProduct)
-router.get('/categories', handleGetNewProduct)
+// Delivery Agent routes
+router.route('/delivery-agent')
+    .post(handleAddDeliveryAgent)
+    .patch(handleUpdateDeliveryAgent)
+    .delete(handleDeleteDeliveryAgent)
+    .get(handleGetAllDeliveryAgents);
 
-//manage customer
-router.post('/customer', handleAddCustomer);
-router.patch('/customer', handleUpdateCustomer);
-router.delete('/customer', handleDeleteCustomer);
-router.get('/customer', handleGetAllCustomers);
-
-//manage delivery agent
-router.post('/delivery-agent', handleAddDeliveryAgent);
-router.patch('/delivery-agent', handleUpdateDeliveryAgent);
-router.delete('/delivery-agent', handleDeleteDeliveryAgent);
-router.get('/delivery-agent', handleGetAllDeliveryAgents);
-
-//manage orders
-//add restrictTO after API testing
-router.get('/orders',handleGetAllOrders);
-router.patch('/orders',handleUpdateOrder);
-router.delete('/orders', handleDeleteOrder);
-
+// Orders routes
+router.route('/orders')
+    .get(handleGetAllOrders)
+    .patch(handleUpdateOrder)
+    .delete(handleDeleteOrder);
 
 module.exports = router;

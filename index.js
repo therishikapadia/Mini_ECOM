@@ -40,6 +40,6 @@ app.use('/',staticRouter)
 app.use('/user',userRoute)
 app.use('/customer',customerRoute)
 app.use('/admin',adminRoute)
-app.use('/order',restrictTo(["ADMIN","CUSTOMER"]),orderRoute)
+
 
 app.listen(port,()=>console.log("Server running on port",port))

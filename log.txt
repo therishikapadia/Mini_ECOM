@@ -280,3 +280,47 @@
 1732117614261:::1 PATCH: /admin/categories
 
 1732117623475:::1 PATCH: /admin/categories
+
+1732127941565:::1 POST: /admin/inventory
+
+1732127988370:::1 POST: /admin/inventory
+
+1732128041704:::1 POST: /admin/inventory
+
+1732128060227:::1 POST: /admin/inventory
+
+1732128207882:::1 POST: /admin/inventory
+
+1732128213812:::1 POST: /admin/inventory
+
+1732128438813:::1 POST: /admin/inventory
+
+1732128527830:::1 POST: /admin/inventory
+
+1732128532655:::1 POST: /admin/inventory
+
+1732128545826:::1 POST: /admin/inventory
+
+1732128556313:::1 POST: /admin/inventory
+
+1732128578620:::1 POST: /admin/inventory
+
+1732128631426:::1 GET: /admin/inventory
+
+1732128667973:::1 POST: /admin/inventory
+
+1732128672825:::1 POST: /admin/inventory
+
+1732128760439:::1 PATCH: /admin/inventory
+
+1732128782726:::1 PATCH: /admin/inventory
+
+1732128815335:::1 PATCH: /admin/inventory
+
+1732128898460:::1 DELETE: /admin/inventory
+
+1732129013544:::1 DELETE: /admin/inventory
+
+1732129019426:::1 POST: /admin/inventory
+
+1732129022318:::1 GET: /admin/inventory

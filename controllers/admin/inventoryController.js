@@ -4,7 +4,7 @@ const { validateAttributes } = require("../../utils/validateAttributes");
 
 //Add new products
 const handleAddInventory = async (req, res) => {
-  const { category, attributes } = req.body;
+  const { category, attributes, quantity } = req.body;
 
   try {
     // Fetch category rules from the database
@@ -21,14 +21,32 @@ const handleAddInventory = async (req, res) => {
         .json({ error: "Invalid attributes for the given category" });
     }
 
-    // Save the product
-    const product = new Inventory({ category, attributes });
-    await product.save();
-    res.status(201).json({ message: "Product added successfully", product });
+    // Check if a product with the same category and attributes exists
+    const existingProduct = await Inventory.findOne({ category, attributes });
+
+    if (existingProduct) {
+      // Update the quantity if the product already exists
+      existingProduct.attributes.quantity += quantity;
+      await existingProduct.save();
+      return res.status(200).json({
+        message: "Product quantity updated successfully",
+        product: existingProduct,
+      }); 
+    } else {
+      // Create a new product if no existing product is found
+      const product = new Inventory({ category, attributes, quantity });
+      await product.save();
+      return res.status(201).json({
+        message: "Product added successfully",
+        product,
+      });
+    }
   } catch (error) {
-    res.status(500).json({ error: "Failed to add product" });
+    console.error(error);
+    res.status(500).json({ error: "Failed to add or update product" });
   }
 };
+
 
 const handleGetInventory = async (req, res) => {
   const { category } = req.query;

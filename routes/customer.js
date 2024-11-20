@@ -1,8 +1,18 @@
-const express=require('express')
-const router=express.Router()
-const {handlePlaceOrder} = require('../controllers/customer/placeOrderController')
+const express = require("express");
+const router = express.Router();
 
-router.post('/placeOrder',handlePlaceOrder)
+const { restrictTo } = require("../middlewares/auth");
 
+const {
+  handleAddOrder,
+  handleGetCustomerOrders,
+  handleUpdateCustomerOrder,
+} = require("../controllers/order");
 
-module.exports=router
+//Manage orders
+router.route("/order")
+    .post(handleAddOrder)
+    .get(handleGetCustomerOrders)
+    .patch(handleUpdateCustomerOrder);
+
+module.exports = router;

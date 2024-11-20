@@ -129,24 +129,83 @@ const handleAddOrder = async (req, res) => {
 };
 
 const handleGetCustomerOrders = async (req, res) => {
-  try {
-    const customerId = req.user._id; // Customer ID from authenticated user
-
-    const orders = await Order.find({ customer: customerId })
-      .populate("product")
-      .populate("customer");
-
-    res.status(200).json({ orders });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to fetch orders" });
-  }
-};
+    try {
+      // Ensure the user is authenticated
+      if (!req.user) {
+        return res.status(401).json({ error: 'Unauthorized. Please log in.' });
+      }
+  
+      const customerId = req.user._id; // Get the customer's ID from the authenticated user
+  
+      // Find all orders for the authenticated customer
+      const orders = await Order.find({ customer: customerId })
+        .populate('product') // Populate product details
+        .sort({ createdAt: -1 }); // Sort orders by the latest first
+  
+      if (!orders.length) {
+        return res.status(404).json({ message: 'No orders found for this customer.' });
+      }
+  
+      res.status(200).json({ orders });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch customer orders' });
+    }
+  };
+  
+  const handleUpdateCustomerOrder = async (req, res) => {
+    const { orderId, quantity } = req.body;
+  
+    if (!orderId || !quantity || quantity < 1) {
+      return res.status(400).json({ error: 'Order ID and a valid quantity are required.' });
+    }
+  
+    try {
+      // Ensure the user is authenticated
+      if (!req.user) {
+        return res.status(401).json({ error: 'Unauthorized. Please log in.' });
+      }
+  
+      // Find the order by ID and ensure it belongs to the customer
+      const order = await Order.findOne({ _id: orderId, customer: req.user._id }).populate('product');
+      if (!order) {
+        return res.status(404).json({ error: 'Order not found or does not belong to the user.' });
+      }
+  
+      // Ensure the order is still in Pending state
+      if (order.orderStatus !== 'Pending') {
+        return res.status(400).json({ error: 'Only orders in Pending state can be updated.' });
+      }
+  
+      // Check if the requested quantity change is valid
+      const product = await Product.findById(order.product._id);
+      const quantityDifference = quantity - order.quantity;
+  
+      if (product.attributes.quantity < quantityDifference) {
+        return res.status(400).json({ error: 'Insufficient stock available.' });
+      }
+  
+      // Update the inventory stock
+      product.attributes.quantity -= quantityDifference; // Adjust the inventory based on the quantity difference
+      await product.save();
+  
+      // Update the order
+      order.quantity = quantity;
+      await order.save();
+  
+      res.status(200).json({ message: 'Order updated successfully.', order });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to update the order.' });
+    }
+  };
+  
 
 module.exports = {
   handleAddOrder,
   handleGetAllOrders,
   handleGetCustomerOrders,
   handleUpdateOrder,
-  handleDeleteOrder
+  handleDeleteOrder,
+  handleUpdateCustomerOrder
 };
