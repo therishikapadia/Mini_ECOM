@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+</head>
+<body>
+    <h1>Login Form</h1>
+    <form action="/user/login" method="POST">
+        <label> Enter email</label>
+        <input type="text" name="email" required>
+        <label> Enter password</label>
+        <input type="text" name="password" required>
+        <button type="submit">Submit</button>
+    </form>
+    <script src="../public/js/pwdhash.js"></script>
+</body>
+</html>

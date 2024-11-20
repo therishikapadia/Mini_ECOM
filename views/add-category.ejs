@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Category</title>
+  <style>
+    /* Add some basic styles */
+    .attribute-section { margin-bottom: 20px; }
+    label { display: block; margin-top: 10px; }
+    input, select { width: 100%; padding: 5px; }
+    button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; margin-top: 10px; }
+    button:hover { background-color: #45a049; }
+  </style>
+</head>
+<body>
+
+  <h1>Add New Category</h1>
+  
+  <form id="category-form">
+    <!-- Category Name -->
+    <label for="category-name">Category Name:</label>
+    <input type="text" id="category-name" name="category-name" required>
+
+    <div id="attributes-container">
+      <h2>Attributes</h2>
+      <!-- Dynamically added attributes will appear here -->
+    </div>
+
+    <button type="button" id="add-attribute-btn">Add Attribute</button>
+    <br><br>
+    <button type="submit">Save Category</button>
+  </form>
+
+  <!-- Include the JavaScript file at the end of body -->
+  <script src="../public/js/add-category.js"></script>
+</body>
+</html>

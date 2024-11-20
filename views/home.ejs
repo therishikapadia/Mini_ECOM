@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Traders</title>
+</head>
+<body>
+    <h1>Place Order</h1>
+    <form method="POST" action="/url">
+        <label>Enter Your Original URL</label>
+        <input type="text" name="url" placeholder="https://example.com">
+        <button type="submit">Generate</button>
+        <% if (locals.id) { %>
+
+            <p> Order Placed : <%= id %></p>
+       
+        <% } %>
+        <% if (locals.order) { %>
+         
+       
+            <table border="2px" rules="all">
+                <thead>
+                <th>Sr no.</th>
+                <th>Short_ID</th>
+                <th>Redirect_URL</th>
+                <th>Visit_History</th>
+            </thead>
+                <tbody>
+                    <% order.forEach((url,index) => { %>
+                    <tr>
+                         <td><%= index+1 %></td>
+                         <td><%= url.shortId %></td>
+                         <td><%= url.redirectURL %></td>
+                         <td><%= url.visitHistory.length %></td>
+                         
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+            <% } %>
+</form>
+</body>
+</html>

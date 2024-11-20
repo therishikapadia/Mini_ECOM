@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Form</title>
+    <script>
+        function confirmSubmission(event) {
+        // Get selected category
+        const category = document.getElementById("category").value;
+
+        // Initialize a variable to store the dynamic details
+        let details = "";
+
+        // Collect additional attributes based on the selected category
+        if (category === "POF shrink film") {
+            const micron = document.getElementById("micron").value;
+            const inch = document.getElementById("inch").value;
+            const quantity = document.getElementById("quantity").value;
+            details = `Micron: ${micron}, Inch: ${inch}, Quantity: ${quantity}`;
+        } else if (category === "BOPP Self Adhesive Tape") {
+            const mm = document.getElementById("mm").value;
+            const meter = document.getElementById("meter").value;
+            const color = document.getElementById("color").value;
+            const quantity = document.getElementById("quantity").value;
+            details = `MM: ${mm}, Meter: ${meter}, Color: ${color}, Quantity: ${quantity}`;
+        } else if (category === "Box strapping Role") {
+            const type = document.getElementById("type").value;
+            const kg = document.getElementById("kg").value;
+            const quantity = document.getElementById("quantity").value;
+            details = `Type: ${type}, KG: ${kg}, Quantity: ${quantity}`;
+        }
+
+        // Construct the confirmation message
+        const message = `Are you sure you want to order ${category} with the following details?\n${details}`;
+
+        // Show a confirmation dialog
+        const userConfirmed = confirm(message);
+
+        // If the user clicks "Cancel", prevent the form submission
+        if (!userConfirmed) {
+            event.preventDefault();
+        }
+    }
+        // Function to dynamically update the form based on category selection
+        function updateForm() {
+            const category = document.getElementById("category").value;
+            const attributesDiv = document.getElementById("attributes");
+
+            // Clear the previous attributes inputs
+            attributesDiv.innerHTML = "";
+
+            if (category === "POF shrink film") {
+                attributesDiv.innerHTML = `
+                    <label for="micron">Micron (Select from 15, 19, or 25):</label>
+                    <select id="micron" name="micron" required>
+                        <option value="">Select Micron</option>
+                        <option value="15">15</option>
+                        <option value="19">19</option>
+                        <option value="25">25</option>
+                    </select>
+                    <br><br>
+                    <label for="inch">Inch (Between 6 and 30):</label>
+                    <input type="text" id="inch" name="inch" placeholder="e.g. 6,8,12" required><br><br>
+                    <label for="quantity">Based on inch</label>
+                    <input type="quantity" id="quantity" name="quantity" placeholder="" required><br><br>
+                `;
+            } else if (category === "BOPP Self Adhesive Tape") {
+                attributesDiv.innerHTML = `
+                <label for="mm">MM (Number):</label>
+                    <select id="mm" name="mm" required>
+                        <option value="">Select MM</option>
+                        <option value="72">72</option>
+                        <option value="48">48</option>
+                        <option value="24">24</option>
+                    </select><br><br>
+                    <label for="meter">Meter (Number):</label>
+                    <select id="meter" name="meter" required>
+                        <option value="">Select meter</option>
+                        <option value="65">65</option>
+                        <option value="110">110</option>
+                    </select>
+                   <br><br>
+                    <label for="color">Color (brown, transparent, printing):</label>
+                    <select id="color" name="color" required>
+                        <option value="">Select color</option>
+                        <option value="brown">Brown</option>
+                        <option value="transparent">Transparent</option>
+                        <option value="printing">Printing</option>
+                    </select><br><br>
+                    <label for="quantity">Based on Cartoon</label>
+                    <input type="quantity" id="quantity" name="quantity" placeholder="" required><br><br>
+                `;
+            } else if (category === "Box strapping Role") {
+                attributesDiv.innerHTML = `
+                    <label for="type">Type</label>
+                    <select id="type" name="type" required>
+                        <option value="">Select Type</option>
+                        <option value="Virgin">Virgin</option>
+                        <option value="NV">NV</option>
+                        <option value="Rajkotwala">Rajkot wala</option>
+                    </select><br><br>
+                    
+                    <label for="kg">KG</label>
+                    <select id="kg" name="kg" required>
+                        <option value="">Select KG</option>
+                        <option value="4">4</option>
+                        <option value="7">7</option>
+                        <option value="9">9</option>
+                    </select><br><br>
+                    <label for="quantity">Based on Roll</label>
+                    <input type="quantity" id="quantity" name="quantity" placeholder="" required><br><br>
+                `;
+            }
+        }
+
+        // Trigger form update on page load
+        window.onload = updateForm;
+    </script>
+</head>
+
+<body>
+    <h1>Product Input Form</h1>
+    <form action="/submit-product" method="POST" onsubmit="confirmSubmission(event)">
+        <label for="category">Category:</label>
+        <select id="category" name="category" onchange="updateForm()" required>
+            <option value="">Select Category</option>
+            <option value="POF shrink film">POF shrink film</option>
+            <option value="BOPP Self Adhesive Tape">BOPP Self Adhesive Tape</option>
+            <option value="Box strapping Role">Box strapping Role</option>
+        </select><br /><br />
+
+        <div id="attributes">
+            <!-- The attributes form fields will appear here based on category selection -->
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
