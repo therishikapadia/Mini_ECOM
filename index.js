@@ -11,6 +11,7 @@ const staticRouter=require('./routes/staticRouter')
 const userRoute=require('./routes/user')
 const customerRoute=require('./routes/customer')
 const adminRoute=require('./routes/admin')
+const orderRoute=require('./controllers/order')
 
 const app=express()
 const port=8000
@@ -39,5 +40,6 @@ app.use('/',staticRouter)
 app.use('/user',userRoute)
 app.use('/customer',customerRoute)
 app.use('/admin',adminRoute)
+app.use('/order',restrictTo(["ADMIN","CUSTOMER"]),orderRoute)
 
 app.listen(port,()=>console.log("Server running on port",port))

@@ -1,79 +1,120 @@
-const Product = require('../../models/inventory')
-const Category = require('../../models/category')
-
+const Inventory = require("../../models/inventory");
+const Category = require("../../models/category");
+const { validateAttributes } = require("../../utils/validateAttributes");
 
 //Add new products
- const handleInventory =async (req, res) => {
-    const { category, attributes } = req.body;
-  
-    try {
-        // Fetch category rules from the database
-      const categoryData = await Category.findOne({ name: category });
-      if (!categoryData) {
-        return res.status(400).json({ error: 'Invalid category' });
-      }
-  
-       // Validate attributes against category rules
-      const isValid = validateAttributes(attributes, categoryData.attributes);
-      if (!isValid) {
-        return res.status(400).json({ error: 'Invalid attributes for the given category' });
-      }
-  
-      // Save the product
-      const product = new Product({ category, attributes });
-      await product.save();
-      res.status(201).json({ message: 'Product added successfully', product });
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to add product' });
-    }
-  };
+const handleAddInventory = async (req, res) => {
+  const { category, attributes } = req.body;
 
-  // Helper function to validate attributes
-function validateAttributes(attributes, rules) {
-    for (const key in rules) {
-      const rule = rules[key];
-      const value = attributes[key];
-  
-      if (rule.required && value === undefined) return false;
-  
-      if (rule.type === 'array') {
-        if (!Array.isArray(value)) return false;
-        if (rule.allowedValues && !value.every((v) => rule.allowedValues.includes(v))) {
-          return false;
-        }
-        if (rule.min !== undefined || rule.max !== undefined) {
-          if (!value.every((v) => v >= rule.min && v <= rule.max)) return false;
-        }
-      }
-  
-      if (rule.type === 'number') {
-        if (typeof value !== 'number') return false;
-      }
-    }
-  
-    return true;
-  }
-
-
-const handleAddNewProduct = async (req, res) => {
-  const { name, attributes } = req.body;
-
-  if (!name || !attributes) {
-    return res.status(400).json({ error: 'Category name and attributes are required' });
-  }
   try {
-    const category = await Category.findOneAndUpdate(
-      { name },
-      { attributes },
-      { new: true, upsert: true } // Update if exists, create if not
-    );
-    res.status(200).json({ message: 'Category added/updated successfully', category });
+    // Fetch category rules from the database
+    const categoryData = await Category.findOne({ name: category });
+    if (!categoryData) {
+      return res.status(400).json({ error: "Invalid category" });
+    }
+
+    // Validate attributes against category rules
+    const isValid = validateAttributes(attributes, categoryData.attributes);
+    if (!isValid) {
+      return res
+        .status(400)
+        .json({ error: "Invalid attributes for the given category" });
+    }
+
+    // Save the product
+    const product = new Inventory({ category, attributes });
+    await product.save();
+    res.status(201).json({ message: "Product added successfully", product });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to add/update category' });
+    res.status(500).json({ error: "Failed to add product" });
   }
 };
 
+const handleGetInventory = async (req, res) => {
+  const { category } = req.query;
 
+  try {
+    if (category) {
+      const products = await Inventory.find({ category });
+      if (!products.length) {
+        return res
+          .status(404)
+          .json({ error: "No products found for the given category" });
+      }
+      return res.status(200).json({ products });
+    }
 
-module.exports={handleInventory,handleAddNewProduct}
+    const allProducts = await Inventory.find();
+    res.status(200).json({ products: allProducts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to retrieve inventory" });
+  }
+};
 
+const handleUpdateInventory = async (req, res) => {
+  const { oldName, newName, attributes } = req.body;
+
+  if (!oldName || !newName) {
+    return res.status(400).json({ error: "Both oldName and newName are required" });
+  }
+
+  try {
+    // Fetch the category data based on the old name
+    const categoryData = await Category.findOne({ name: oldName });
+
+    if (!categoryData) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    // Validate the attributes if provided
+    if (attributes) {
+      const isValid = validateAttributes(attributes, categoryData.attributes);
+      if (!isValid) {
+        return res
+          .status(400)
+          .json({ error: "Invalid attributes for the given category" });
+      }
+    }
+
+    // Update the category name and attributes
+    const updatedCategory = await Category.findOneAndUpdate(
+      { name: oldName },
+      { name: newName, attributes: attributes || undefined },
+      { new: true }
+    );
+
+    res.status(200).json({
+      message: "Category updated successfully",
+      updatedCategory,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to update category" });
+  }
+};
+
+const handleDeleteInventory = async (req, res) => {
+  const { productId } = req.body;
+
+  if (!productId) {
+    return res.status(400).json({ error: "Product ID is required" });
+  }
+
+  try {
+    const deletedProduct = await Inventory.findByIdAndDelete(productId);
+
+    if (!deletedProduct) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Product deleted successfully", deletedProduct });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to delete product" });
+  }
+};
+
+module.exports = { handleAddInventory ,handleDeleteInventory,handleGetInventory,handleUpdateInventory};

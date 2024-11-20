@@ -218,3 +218,65 @@
 1732040994922:::1 DELETE: /admin/delivery-agent
 
 1732041001688:::1 POST: /admin/delivery-agent
+
+1732077868178:::1 POST: /admin/add-categories
+
+1732077886202:::1 POST: /admin/add-categories
+
+1732078079956:::1 POST: /admin/add-categories
+
+1732078193144:::1 POST: /admin/add-categories
+
+1732102702991:::1 GET: /admin/addNewProduct
+
+1732102720326:::1 POST: /admin/addNewProduct
+
+1732102739382:::1 POST: /admin/addNewProduct
+
+1732104714773:::1 POST: /admin/add-categories
+
+1732104974139:::1 GET: /admin/add-categories
+
+1732105066198:::1 PATCH: /admin/add-categories
+
+1732105116782:::1 PATCH: /admin/add-categories
+
+1732105124147:::1 GET: /admin/add-categories
+
+1732105174432:::1 DELETE: /admin/add-categories
+
+1732105178372:::1 GET: /admin/add-categories
+
+1732105349145:::1 GET: /admin/categories
+
+1732105803366:::1 POST: /admin/inventory
+
+1732116294315:::1 POST: /admin/inventory
+
+1732116307070:::1 GET: /admin/categories
+
+1732116332921:::1 PATCH: /admin/categories
+
+1732116340904:::1 PATCH: /admin/categories
+
+1732116352102:::1 PATCH: /admin/categories
+
+1732116856884:::1 PATCH: /admin/categories
+
+1732116900689:::1 PATCH: /admin/categories
+
+1732116980689:::1 PATCH: /admin/categories
+
+1732117000471:::1 PATCH: /admin/categories
+
+1732117383674:::1 PATCH: /admin/categories
+
+1732117410933:::1 PATCH: /admin/categories
+
+1732117512424:::1 PATCH: /admin/categories
+
+1732117530171:::1 PATCH: /admin/categories
+
+1732117614261:::1 PATCH: /admin/categories
+
+1732117623475:::1 PATCH: /admin/categories

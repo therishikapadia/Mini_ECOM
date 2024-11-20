@@ -1,31 +1,27 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
-  productId: {
+  product: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Product", // Reference to the Product model in the Inventory
+    ref: "Product",
     required: true,
   },
-  category: {
-    type: String,
+  quantity: {
+    type: Number,
     required: true,
-    enum: ["POF shrink film", "BOPP Self Adhesive Tape", "Box strapping Role"], // List all possible categories
+    min: 1,
   },
-  attributes: {
-    type: Object,
-    required: true,
-    
-        },
-  orderedBy:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
+  customer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
   },
   orderStatus: {
     type: String,
     enum: ["Approved", "Shipped", "Delivered", "Cancelled", "Pending"],
     default: "Pending",
   },
-});
+},{timestamps:true});
 
 const Order = mongoose.model("Order", orderSchema);
 

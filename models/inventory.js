@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const productSchema = new mongoose.Schema({
+const inventorySchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
@@ -8,9 +8,12 @@ const productSchema = new mongoose.Schema({
   attributes: {
     type: Object,
     required: true,
+    default: {
+      quantity: 0, // Add quantity as part of attributes
+    },
   },
 });
 
-const Product = mongoose.model("Product", productSchema);
+const Inventory = mongoose.model("Inventory", inventorySchema);
 
-module.exports = Product;
+module.exports = Inventory;
