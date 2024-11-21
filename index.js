@@ -1,6 +1,7 @@
 require('dotenv').config();
-const express=require('express')
-const path = require('path')
+const express = require('express');
+const path = require('path');
+const http = require('http');
 
 const {logReqRes}=require('./middlewares')
 const {restrictTo,checkForAuthentication}=require('./middlewares/auth')
@@ -12,10 +13,16 @@ const staticRouter=require('./routes/staticRouter')
 const userRoute=require('./routes/user')
 const customerRoute=require('./routes/customer')
 const adminRoute=require('./routes/admin')
-const orderRoute=require('./controllers/order')
+// const orderRoute=require('./routes/order')
+// const deliveryRoute=require('./routes/delivery')
 
-const app=express()
-const port=8000
+const app = express();
+const server = http.createServer(app);
+const port = process.env.PORT || 8000;
+
+// Initialize Socket.io
+const { initializeSocket } = require('./services/socketService');
+const io = initializeSocket(server);
 
 // Added proper error handling for MongoDB connection
 connectMongoDB('mongodb://127.0.0.1:27017/omtraders')
@@ -37,10 +44,17 @@ app.set('view engine','ejs')
 app.set('views',path.resolve('./views'))
 
 //routes
-app.use('/',staticRouter)
-app.use('/user',userRoute)
-app.use('/customer',customerRoute)
-app.use('/admin',adminRoute)
+const viewsRouter = require('./routes/viewsRouter');
+
+app.use('/', viewsRouter)  // Mount views router at root
+app.use('/static', staticRouter)  // Move static routes under /static path
+app.use('/user', userRoute)
+app.use('/customer', customerRoute)
+app.use('/admin', adminRoute)
+// app.use('/delivery', deliveryRoute)
+
+// Initialize Socket.io event handlers
+require('./services/socketService').initializeSocketEvents(io);
 
 
-app.listen(port,()=>console.log("Server running on port",port))
+server.listen(port, () => console.log("Server running on port", port));

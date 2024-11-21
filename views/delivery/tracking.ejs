@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delivery Tracking</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATwAQvAmj3kqExYa5-SVUAnkIEZlHxR-c"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="tracking-container">
+            <h1>Track Your Delivery</h1>
+            <div id="delivery-status" class="status-container">
+                <div class="status-info">
+                    <h3>Delivery Status: <span id="status-text">Loading...</span></h3>
+                    <p>Order ID: <span id="delivery-id"></span></p>
+                    <p>Estimated Arrival: <span id="estimated-arrival">Calculating...</span></p>
+                </div>
+            </div>
+            
+            <div id="map" style="height: 400px; width: 100%; margin: 20px 0;"></div>
+            
+            <div class="delivery-details">
+                <h3>Delivery Details</h3>
+                <div id="delivery-info">
+                    <p>Delivery Agent: <span id="agent-name">Loading...</span></p>
+                    <p>Current Location: <span id="current-location">Updating...</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/delivery-tracking.js"></script>
+</body>
+</html>

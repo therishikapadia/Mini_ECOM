@@ -324,3 +324,311 @@
 1732129019426:::1 POST: /admin/inventory
 
 1732129022318:::1 GET: /admin/inventory
+
+1732189887989:::1 GET: /
+
+1732189888039:::1 GET: /favicon.ico
+
+1732189900888:::1 GET: /
+
+1732189900895:::1 GET: /login
+
+1732189900913:::1 GET: /public/js/pwdhash.js
+
+1732189905385:::1 POST: /user/login
+
+1732189905418:::1 GET: /public/js/pwdhash.js
+
+1732189934089:::1 POST: /user/login
+
+1732189934181:::1 GET: /public/js/pwdhash.js
+
+1732189941013:::1 GET: /
+
+1732189941020:::1 GET: /login
+
+1732189941037:::1 GET: /public/js/pwdhash.js
+
+1732189945950:::1 GET: /signup
+
+1732194094472:::1 POST: /
+
+1732194145686:::1 POST: /
+
+1732194157559:::1 GET: /signup
+
+1732194157866:::1 GET: /signup
+
+1732194170770:::1 POST: /signup
+
+1732194324389:::1 POST: /signup
+
+1732194366161:::1 GET: /signup
+
+1732194394802:::1 POST: /
+
+1732194497153:::1 GET: /signup
+
+1732194509569:::1 POST: /
+
+1732194509577:::1 GET: /login
+
+1732194509594:::1 GET: /public/js/pwdhash.js
+
+1732194517339:::1 POST: /user/login
+
+1732194517389:::1 GET: /public/js/pwdhash.js
+
+1732194689828:::1 GET: /user/signup
+
+1732194702785:::1 POST: /
+
+1732194705883:::1 GET: /signup
+
+1732194712119:::1 POST: /user/signup
+
+1732195515545:::1 GET: /signup
+
+1732195527451:::1 POST: /user/signup
+
+1732195555432:::1 GET: /signup
+
+1732195555629:::1 GET: /signup
+
+1732195555812:::1 GET: /signup
+
+1732195555994:::1 GET: /signup
+
+1732195593267:::1 POST: /user/signup
+
+1732195597862:::1 GET: /
+
+1732195597868:::1 GET: /login
+
+1732195597893:::1 GET: /public/js/pwdhash.js
+
+1732195620938:::1 POST: /user/login
+
+1732195621048:::1 GET: /
+
+1732195650587:::1 GET: /user/forgot-password
+
+1732195653700:::1 POST: /user/forgot-password
+
+1732195684539:::1 GET: /reset-password/468b4e9c30c097aac7014ca5c38159a890a5335e8d8401e6e37ae7e914073a11
+
+1732196192841:::1 GET: /login
+
+1732196192879:::1 GET: /public/js/pwdhash.js
+
+1732196194714:::1 GET: /user/forgot-password
+
+1732196197032:::1 GET: /login
+
+1732196197055:::1 GET: /public/js/pwdhash.js
+
+1732196200516:::1 GET: /user/forgot-password
+
+1732196205562:::1 POST: /user/forgot-password
+
+1732196234830:::1 GET: /reset-password/887f2e1aca8e5911909bcd9658e34168db8021a66a9cab1cb67b5380769827cd
+
+1732197949311:::1 POST: /user/forgot-password
+
+1732198113422:::1 GET: /reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198507300:::1 GET: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198520852:::1 POST: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198748138:::1 POST: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198803035:::1 POST: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198806503:::1 GET: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198806520:::1 GET: /css/styles.css
+
+1732198806525:::1 GET: /js/signup-validation.js
+
+1732198809132:::1 GET: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198809145:::1 GET: /css/styles.css
+
+1732198809145:::1 GET: /js/signup-validation.js
+
+1732198818926:::1 GET: /reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198828906:::1 POST: /user/forgot-password
+
+1732198836219:::1 GET: /reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198852246:::1 GET: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732198852267:::1 GET: /css/styles.css
+
+1732198852268:::1 GET: /js/signup-validation.js
+
+1732198869789:::1 POST: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732199236638:::1 GET: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732199236655:::1 GET: /css/styles.css
+
+1732199236656:::1 GET: /js/signup-validation.js
+
+1732199237887:::1 GET: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732199237900:::1 GET: /css/styles.css
+
+1732199237901:::1 GET: /js/signup-validation.js
+
+1732199238153:::1 GET: /user/reset-password/d1b31ff69f960fad1ba3b6b5e8ec89eb9583fb88fb89e5f3dd8fc18cdd44fdc5
+
+1732199238168:::1 GET: /css/styles.css
+
+1732199238168:::1 GET: /js/signup-validation.js
+
+1732199245966:::1 POST: /user/forgot-password
+
+1732199256537:::1 POST: /user/forgot-password
+
+1732199273396:::1 GET: /user/reset-password/ae762825bf503d50d261b9145192ae9fb10847a0d9546f438e210abe17041487
+
+1732199273416:::1 GET: /css/styles.css
+
+1732199273416:::1 GET: /js/signup-validation.js
+
+1732199295205:::1 POST: /user/reset-password/ae762825bf503d50d261b9145192ae9fb10847a0d9546f438e210abe17041487
+
+1732199295222:::1 GET: /css/styles.css
+
+1732199295223:::1 GET: /js/signup-validation.js
+
+1732199328723:::1 POST: /user/reset-password/
+
+1732199381462:::1 GET: /user/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzNmMzUwOWYxYzgyZDEwMjIyMTk3MjAiLCJlbWFpbCI6InByaW1lZXZlZWRpb0BnbWFpbC5jb20iLCJyb2xlIjoiQ1VTVE9NRVIiLCJpYXQiOjE3MzIxOTU2MjEsImV4cCI6MTczMjI4MjAyMX0.JANZnghhpIrRLauvPLveGv5OQ8AQf3XkIZd8Vj_o4CA
+
+1732199381486:::1 GET: /css/styles.css
+
+1732199381486:::1 GET: /js/signup-validation.js
+
+1732199446750:::1 GET: /user/reset-password/ae762825bf503d50d261b9145192ae9fb10847a0d9546f438e210abe17041487
+
+1732199453511:::1 POST: /user/forgot-password
+
+1732199468313:::1 POST: /user/forgot-password
+
+1732199476315:::1 POST: /user/forgot-password
+
+1732199490792:::1 GET: /user/reset-password/c87dcd9d89c7d323708b1f28f42366232ae2dff229ff1dcb4f08aa4dc9357701
+
+1732199999036:::1 GET: /user/forgot-password
+
+1732200005277:::1 GET: /
+
+1732200018277:::1 GET: /
+
+1732200028853:::1 GET: /
+
+1732200028859:::1 GET: /login
+
+1732200028877:::1 GET: /public/js/pwdhash.js
+
+1732200031902:::1 GET: /user/forgot-password
+
+1732200091484:::1 GET: /user/forgot-password
+
+1732200109269:::1 GET: /login
+
+1732200109295:::1 GET: /public/js/pwdhash.js
+
+1732200110147:::1 GET: /login
+
+1732200110160:::1 GET: /public/js/pwdhash.js
+
+1732200111984:::1 GET: /user/forgot-password
+
+1732200116882:::1 POST: /user/forgot-password
+
+1732200391770:::1 GET: /login
+
+1732200391799:::1 GET: /public/js/pwdhash.js
+
+1732200392129:::1 GET: /login
+
+1732200392142:::1 GET: /public/js/pwdhash.js
+
+1732200392377:::1 GET: /login
+
+1732200392391:::1 GET: /public/js/pwdhash.js
+
+1732200392580:::1 GET: /login
+
+1732200392592:::1 GET: /public/js/pwdhash.js
+
+1732200392779:::1 GET: /login
+
+1732200392794:::1 GET: /public/js/pwdhash.js
+
+1732200398681:::1 POST: /user/login
+
+1732200398762:::1 GET: /
+
+1732200413335:::1 GET: /user/forgot-password
+
+1732200417852:::1 POST: /user/forgot-password
+
+1732200546885:::1 POST: /user/forgot-password
+
+1732200612711:::1 POST: /user/forgot-password
+
+1732200621827:::1 POST: /user/forgot-password
+
+1732200643763:::1 GET: /user/reset-password/eeaec4752ed259601c841aa27a46be7cfe636e8719afb7d6349f139b37b45700
+
+1732200643775:::1 GET: /css/styles.css
+
+1732200643776:::1 GET: /js/signup-validation.js
+
+1732200668336:::1 POST: /user/reset-password/eeaec4752ed259601c841aa27a46be7cfe636e8719afb7d6349f139b37b45700
+
+1732200668358:::1 GET: /css/styles.css
+
+1732200668358:::1 GET: /js/signup-validation.js
+
+1732201328440:::1 POST: /user/forgot-password
+
+1732201341416:::1 GET: /user/reset-password/776128b537f0abf15572adc8849fe2092330e1c8ba94f04deae5c9a4712eb5fa
+
+1732201341429:::1 GET: /css/styles.css
+
+1732201341430:::1 GET: /js/signup-validation.js
+
+1732201363282:::1 POST: /user/reset-password/776128b537f0abf15572adc8849fe2092330e1c8ba94f04deae5c9a4712eb5fa
+
+1732201363299:::1 GET: /css/styles.css
+
+1732201363299:::1 GET: /js/signup-validation.js
+
+1732201417866:::1 GET: /user/reset-password/776128b537f0abf15572adc8849fe2092330e1c8ba94f04deae5c9a4712eb5fa
+
+1732201417878:::1 GET: /css/styles.css
+
+1732201417879:::1 GET: /js/signup-validation.js
+
+1732201487097:::1 GET: /user/forgot-password
+
+1732201496394:::1 POST: /user/login
+
+1732201496476:::1 GET: /public/js/pwdhash.js
+
+1732201525900:::1 POST: /user/reset-password/776128b537f0abf15572adc8849fe2092330e1c8ba94f04deae5c9a4712eb5fa
+
+1732201525986:::1 GET: /login
+
+1732201525998:::1 GET: /public/js/pwdhash.js
+
+1732201540864:::1 POST: /user/login
+
+1732201540944:::1 GET: /

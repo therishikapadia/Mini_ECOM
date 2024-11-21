@@ -1,29 +1,9 @@
-const express=require('express')
-const Order = require('../models/order')
-const {restrictTo}=require("../middlewares/auth")
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-router.get('/',restrictTo(["CUSTOMER"]),async(req,res)=>{
-    const allOrders= await Order.find({orderedBy:req.user._id})
-    return res.render("home",{order:allOrders})
-})
+// Static router can be used for serving static files or other non-view routes
+router.get('/health', (req, res) => {
+    res.status(200).json({ status: 'OK' });
+});
 
-router.get('/user/all',restrictTo(["ADMIN"]),async(req,res)=>{
-    const allOrders= await Order.find({})
-    return res.render("home",{order:allOrders})
-})
-
-router.get('/signup',async (req,res) => {
-    return res.render('signup')
-})
-
-router.get('/login',async (req,res) => {
-    return res.render('login')
-})
-
-router.get('/add-category',async (req,res) => {
-    return res.render('add-category')
-})
-
-
-module.exports=router;
+module.exports = router;

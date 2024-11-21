@@ -1,8 +1,8 @@
 const User=require('../models/user')
-const {setUser}=require('../service/auth')
+const {setUser}=require('../services/auth')
 const argon2 = require('argon2');
 const crypto = require('crypto');
-const { sendWelcomeEmail, sendPasswordResetEmail } = require('../utils/emailService');
+const { sendWelcomeEmail, sendPasswordResetEmail,sendPasswordResetNotificationEmail } = require('../utils/emailService');
 const {hashPassword} = require('../utils/password')
 const {validatePassword, comparePasswords} = require('../utils/passwordValidation')
 
@@ -110,14 +110,21 @@ async function handleForgotPassword(req, res) {
             return res.render('forgot-password', { error: 'Email not found' });
         }
 
-        // Generate reset token
+        // Generate reset token and its hash
         const resetToken = crypto.randomBytes(32).toString('hex');
-        user.resetPasswordToken = resetToken;
-        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+        const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+        
+        // Set token and expiration
+        user.resetPasswordToken = hashedToken;
+        user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour from now
         await user.save();
 
-        // Send password reset email
+        // Send password reset email with unhashed token
         await sendPasswordResetEmail(user.email, resetToken);
+        
+        console.log('Reset token generated:', resetToken); // For debugging
+        console.log('Hashed token stored:', hashedToken); // For debugging
+        
         res.render('forgot-password', { message: 'Reset link sent to your email' });
     } catch (error) {
         console.error('Forgot password error:', error);
@@ -130,8 +137,17 @@ async function handleResetPassword(req, res) {
     const { password } = req.body;
 
     try {
+        // Validate password
+        if (!password || password.length < 8) {
+            return res.render('reset-password', { error: 'Password must be at least 8 characters long' });
+        }
+
+        // Hash the provided token to match stored hash
+        const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
+        // Find user by token and ensure token hasn't expired
         const user = await User.findOne({
-            resetPasswordToken: token,
+            resetPasswordToken: hashedToken,
             resetPasswordExpires: { $gt: Date.now() }
         });
 
@@ -139,13 +155,19 @@ async function handleResetPassword(req, res) {
             return res.render('reset-password', { error: 'Invalid or expired reset token' });
         }
 
-        // Update password
+        // Update password using argon2
         user.password = await hashPassword(password);
+
+        // Clear reset token fields
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
+
         await user.save();
 
-        res.redirect('/login');
+        await sendPasswordResetNotificationEmail(user.email);
+
+        // Redirect to login
+        res.redirect('/login?reset=success');
     } catch (error) {
         console.error('Reset password error:', error);
         res.render('reset-password', { error: 'Error resetting password' });

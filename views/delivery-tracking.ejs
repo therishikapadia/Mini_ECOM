@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delivery Tracking</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAPS_API_KEY %>"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        #tracking-info {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="tracking-info">
+        <h2>Delivery Status: <span id="status"></span></h2>
+        <p>Estimated Delivery Time: <span id="eta"></span></p>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        const deliveryId = '<%= deliveryId %>';
+        const socket = io();
+        let map, marker, routePath;
+
+        // Initialize Google Map
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: { lat: 20.5937, lng: 78.9629 } // Default to India
+            });
+
+            marker = new google.maps.Marker({
+                map: map,
+                icon: 'delivery-icon.png'
+            });
+
+            routePath = new google.maps.Polyline({
+                map: map,
+                strokeColor: '#FF0000',
+                strokeWeight: 2
+            });
+
+            // Load initial tracking data
+            fetchTrackingData();
+        }
+
+        // Fetch current tracking data
+        async function fetchTrackingData() {
+            try {
+                const response = await fetch(`/delivery/track/${deliveryId}`);
+                const data = await response.json();
+                updateMap(data);
+            } catch (error) {
+                console.error('Error fetching tracking data:', error);
+            }
+        }
+
+        // Update map with new location and route
+        function updateMap(data) {
+            if (data.location) {
+                const position = {
+                    lat: data.location.coordinates[1],
+                    lng: data.location.coordinates[0]
+                };
+                marker.setPosition(position);
+                map.panTo(position);
+            }
+
+            if (data.route) {
+                const path = data.route.path.map(coord => ({
+                    lat: coord[1],
+                    lng: coord[0]
+                }));
+                routePath.setPath(path);
+            }
+        }
+
+        // Listen for real-time updates
+        socket.emit('track-delivery', deliveryId);
+        socket.on('location-update', (data) => {
+            if (data.deliveryId === deliveryId) {
+                updateMap({ location: data.location });
+            }
+        });
+
+        // Initialize map when page loads
+        initMap();
+    </script>
+</body>
+</html>

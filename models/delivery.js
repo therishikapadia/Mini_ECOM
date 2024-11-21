@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const orderSchema = new Schema({
+const deliverySchema = new Schema({
   order_id: {
     type: String,
     required: true,
@@ -51,20 +51,52 @@ const orderSchema = new Schema({
         }
       }
     ],
+    pickup_address: {
+      type: String,
+      required: true,
+      coordinates: {
+        type: [Number],  // [longitude, latitude]
+        index: '2dsphere'
+      }
+    },
     delivery_address: {
       type: String,
-      required: true
+      required: true,
+      coordinates: {
+        type: [Number],  // [longitude, latitude]
+        index: '2dsphere'
+      }
     },
     delivery_status: {
       type: String,
       required: true,
-      enum: ['assigned', 'in-transit', 'delivered'],
-      default: 'assigned'
+      enum: ['pending', 'assigned', 'picked-up', 'in-transit', 'delivered', 'failed'],
+      default: 'pending'
     },
     estimated_delivery_time: {
       type: Date,
       required: true
     }
+  },
+  current_location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      default: 'Point'
+    },
+    coordinates: {
+      type: [Number],  // [longitude, latitude]
+      index: '2dsphere'
+    },
+    last_updated: {
+      type: Date,
+      default: Date.now
+    }
+  },
+  route: {
+    path: [[Number]],  // Array of [longitude, latitude] pairs
+    distance: Number,  // Total distance in meters
+    duration: Number   // Estimated duration in seconds
   },
   timestamp: {
     type: Date,
@@ -73,6 +105,6 @@ const orderSchema = new Schema({
 });
 
 // Model for the Order schema
-const DeliveryDetails = mongoose.model('Order', orderSchema);
+const DeliveryDetails = mongoose.model('Delivery', deliverySchema);
 
 module.exports = DeliveryDetails;
