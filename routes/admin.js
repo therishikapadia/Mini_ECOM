@@ -36,6 +36,10 @@ const {
     handleUpdateDeliveryAgent
 } = require('../controllers/admin/deliveryController');
 
+const {
+    handleAssignDeliveryAgent
+} = require('../controllers/admin/orderAssignmentController');
+
 // Inventory routes
 router.route('/inventory')
     .post(handleAddInventory)
@@ -69,5 +73,8 @@ router.route('/orders')
     .get(handleGetAllOrders)
     .patch(handleUpdateOrder)
     .delete(handleDeleteOrder);
+
+// Order assignment route
+router.post('/orders/assign', handleAssignDeliveryAgent);
 
 module.exports = router;
