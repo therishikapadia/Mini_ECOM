@@ -86,6 +86,9 @@ const handleAddOrder = async (req, res) => {
   const { product, quantity } = req.body;
 
   const customer = req.user?._id; // Retrieve the authenticated user ID
+  // console.log("Authenticated user:", req.user);
+  // console.log("Authorization header:", req.headers.authorization);
+
 
   if (!product || !quantity) {
     return res.status(400).json({ error: "Product and quantity are required" });
@@ -134,6 +137,7 @@ const handleGetCustomerOrders = async (req, res) => {
       if (!req.user) {
         return res.status(401).json({ error: 'Unauthorized. Please log in.' });
       }
+      // const customerId=req.params.id
   
       const customerId = req.user._id; // Get the customer's ID from the authenticated user
   
@@ -145,7 +149,6 @@ const handleGetCustomerOrders = async (req, res) => {
       if (!orders.length) {
         return res.status(404).json({ message: 'No orders found for this customer.' });
       }
-  
       res.status(200).json({ orders });
     } catch (error) {
       console.error(error);
@@ -159,7 +162,6 @@ const handleGetCustomerOrders = async (req, res) => {
     if (!orderId || !quantity || quantity < 1) {
       return res.status(400).json({ error: 'Order ID and a valid quantity are required.' });
     }
-  
     try {
       // Ensure the user is authenticated
       if (!req.user) {
@@ -178,7 +180,7 @@ const handleGetCustomerOrders = async (req, res) => {
       }
   
       // Check if the requested quantity change is valid
-      const product = await Product.findById(order.product._id);
+      const product = await Inventory.findById(order.product._id);
       const quantityDifference = quantity - order.quantity;
   
       if (product.attributes.quantity < quantityDifference) {

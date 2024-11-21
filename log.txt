@@ -632,3 +632,51 @@
 1732201540864:::1 POST: /user/login
 
 1732201540944:::1 GET: /
+
+1732210735198:::1 GET: /
+
+1732211027779:::1 POST: /customer/order
+
+1732211132886:::1 POST: /customer/order
+
+1732211143538:::1 POST: /customer/order
+
+1732211151833:::1 POST: /customer/order
+
+1732211231706:::1 POST: /customer/order
+
+1732211376556:::1 POST: /customer/order
+
+1732211541550:::1 POST: /customer/order
+
+1732211555982:::1 POST: /customer/order
+
+1732212011364:::1 POST: /customer/order
+
+1732212233917:::1 GET: /customer/order
+
+1732212250870:::1 GET: /customer/order
+
+1732212478520:::1 GET: /customer/order/673f3509f1c82d1022219720
+
+1732212574643:::1 GET: /customer/order/673f3509f1c82d1022219720
+
+1732212904496:::1 POST: /customer/order
+
+1732212910756:::1 GET: /customer/order/673f3509f1c82d1022219720
+
+1732213006365:::1 GET: /customer/order/673f3509f1c82d1022219720
+
+1732213403568:::1 GET: /customer/order
+
+1732213414363:::1 GET: /customer/order
+
+1732213451887:::1 GET: /customer/order
+
+1732213546344:::1 PATCH: /customer/order
+
+1732213550764:::1 PATCH: /customer/order
+
+1732213576115:::1 PATCH: /customer/order
+
+1732213770460:::1 PATCH: /customer/order
