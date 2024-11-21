@@ -1,27 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .password-requirements {
+            font-size: 0.9em;
+            color: #666;
+            margin: 10px 0;
+        }
+        .requirement {
+            margin: 5px 0;
+        }
+        .valid {
+            color: green;
+        }
+        .invalid {
+            color: red;
+        }
+        .error-message {
+            color: red;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Signup Form</h1>
-    <form action="/" method="POST">
-        <label> Enter Name</label>
-        <input type="text" name="name"  required>
-        <label> Enter email</label>
-        <input type="text" name="email" required>
-        <label> Enter password</label>
-        <input type="text" name="password" required>
+    <form action="/" method="POST" id="signupForm">
+        <div class="form-group">
+            <label for="name">Enter Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Enter Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Enter Password</label>
+            <input type="password" id="password" name="password" required>
+            <div class="password-requirements">
+                <div class="requirement" id="length">At least 8 characters</div>
+                <div class="requirement" id="uppercase">At least one uppercase letter</div>
+                <div class="requirement" id="lowercase">At least one lowercase letter</div>
+                <div class="requirement" id="number">At least one number</div>
+                <div class="requirement" id="special">At least one special character</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <div class="error-message" id="passwordMismatch">Passwords do not match</div>
+        </div>
+
         <button type="submit">Submit</button>
     </form>
-    </body>
-    Already a user? <a href="#">Log in</a>
+    <p>Already a user? <a href="/login">Log in</a></p>
+
+    <script>
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const requirements = {
+            length: /.{8,}/,
+            uppercase: /[A-Z]/,
+            lowercase: /[a-z]/,
+            number: /[0-9]/,
+            special: /[!@#$%^&*(),.?":{}|<>]/
+        };
+
+        function validatePassword() {
+            const pwd = password.value;
+            for (let req in requirements) {
+                const element = document.getElementById(req);
+                if (requirements[req].test(pwd)) {
+                    element.classList.add('valid');
+                    element.classList.remove('invalid');
+                } else {
+                    element.classList.add('invalid');
+                    element.classList.remove('valid');
+                }
+            }
+        }
+
+        function checkPasswordMatch() {
+            const mismatchDiv = document.getElementById('passwordMismatch');
+            if (password.value !== confirmPassword.value) {
+                mismatchDiv.style.display = 'block';
+            } else {
+                mismatchDiv.style.display = 'none';
+            }
+        }
+
+        password.addEventListener('input', validatePassword);
+        confirmPassword.addEventListener('input', checkPasswordMatch);
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            const pwd = password.value;
+            let isValid = true;
+
+            for (let req in requirements) {
+                if (!requirements[req].test(pwd)) {
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if (!isValid || password.value !== confirmPassword.value) {
+                e.preventDefault();
+                alert('Please ensure all password requirements are met and passwords match.');
+            }
+        });
+    </script>
 </body>
 </html>
