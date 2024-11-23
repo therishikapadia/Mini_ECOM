@@ -94,7 +94,9 @@ async function handleUserLogin(req, res) {
             sameSite: 'strict',
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
         });  
-        return res.redirect('/');
+        console.log(user);
+        if(req.user.role=="CUSTOMER") return res.redirect('/');
+        if(req.user.role=="ADMIN") return res.redirect('/admin/orders');
     } catch (error) {
         console.error('Login error:', error);
         return res.render('login', { err: "An error occurred during login" });

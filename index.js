@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const http = require('http');
+const redis = require('redis');
+
 
 const {logReqRes}=require('./middlewares')
 const {restrictTo,checkForAuthentication}=require('./middlewares/auth')
@@ -14,15 +16,12 @@ const userRoute=require('./routes/user')
 const customerRoute=require('./routes/customer')
 const adminRoute=require('./routes/admin')
 // const orderRoute=require('./routes/order')
-// const deliveryRoute=require('./routes/delivery')
+const deliveryRoute=require('./routes/delivery')
+const geoRoute=require('./routes/geoRoutes')
 
 const app = express();
 const server = http.createServer(app);
-const port = process.env.PORT || 8000;
-
-// Initialize Socket.io
-const { initializeSocket } = require('./services/socketService');
-const io = initializeSocket(server);
+const port = process.env.PORT;
 
 // Added proper error handling for MongoDB connection
 connectMongoDB('mongodb://127.0.0.1:27017/omtraders')
@@ -38,6 +37,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(logReqRes("log.txt"))
 app.use(checkForAuthentication)
+app.use(express.static('public'));
 
 //views
 app.set('view engine','ejs')
@@ -51,10 +51,7 @@ app.use('/static', staticRouter)  // Move static routes under /static path
 app.use('/user', userRoute)
 app.use('/customer', customerRoute)
 app.use('/admin', adminRoute)
-// app.use('/delivery', deliveryRoute)
+app.use('/delivery', deliveryRoute)
 
-// Initialize Socket.io event handlers
-require('./services/socketService').initializeSocketEvents(io);
-
-
+app.use('/add-geo', geoRoute);
 server.listen(port, () => console.log("Server running on port", port));

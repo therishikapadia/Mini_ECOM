@@ -680,3 +680,595 @@
 1732213576115:::1 PATCH: /customer/order
 
 1732213770460:::1 PATCH: /customer/order
+
+1732280015227:::1 GET: /favicon.ico
+
+1732282924745:::1 GET: /admin/order
+
+1732282936787:::1 GET: /admin/orders
+
+1732283064515:::1 GET: /admin/orders
+
+1732283064531:::1 GET: /login
+
+1732283130720:::1 GET: /
+
+1732283142733:::1 POST: /url
+
+1732283149595:::1 GET: /
+
+1732283149603:::1 GET: /login
+
+1732283149617:::1 GET: /public/js/pwdhash.js
+
+1732283158200:::1 POST: /user/login
+
+1732283158289:::1 GET: /public/js/pwdhash.js
+
+1732283164498:::1 POST: /user/login
+
+1732283164575:::1 GET: /public/js/pwdhash.js
+
+1732283171097:::1 POST: /user/login
+
+1732283171176:::1 GET: /public/js/pwdhash.js
+
+1732283174866:::1 GET: /user/forgot-password
+
+1732283185542:::1 GET: /user/signup
+
+1732283189708:::1 GET: /signup
+
+1732283244400:::1 GET: /admin/orders
+
+1732283244409:::1 GET: /login
+
+1732283354084:::1 POST: /user/login
+
+1732283354165:::1 GET: /public/js/pwdhash.js
+
+1732283358774:::1 POST: /user/login
+
+1732283358854:::1 GET: /public/js/pwdhash.js
+
+1732283363273:::1 POST: /user/login
+
+1732283363353:::1 GET: /public/js/pwdhash.js
+
+1732283368975:::1 POST: /user/login
+
+1732283369052:::1 GET: /public/js/pwdhash.js
+
+1732283373225:::1 POST: /user/login
+
+1732283373305:::1 GET: /
+
+1732283373308:::1 GET: /login
+
+1732283373315:::1 GET: /public/js/pwdhash.js
+
+1732283382389:::1 POST: /user/login
+
+1732283382466:::1 GET: /public/js/pwdhash.js
+
+1732283384210:::1 GET: /user/forgot-password
+
+1732283388207:::1 POST: /user/forgot-password
+
+1732283402897:::1 GET: /user/reset-password/5a95fdde57c7dccc00e7180c6e149413451ae4ec0c4d30f1bc5f4bb8ef4be0d3
+
+1732283402908:::1 GET: /css/styles.css
+
+1732283402908:::1 GET: /js/signup-validation.js
+
+1732283416546:::1 POST: /user/reset-password/5a95fdde57c7dccc00e7180c6e149413451ae4ec0c4d30f1bc5f4bb8ef4be0d3
+
+1732283421008:::1 GET: /login
+
+1732283421033:::1 GET: /public/js/pwdhash.js
+
+1732283432275:::1 POST: /user/login
+
+1732283432348:::1 GET: /
+
+1732283432351:::1 GET: /login
+
+1732283432358:::1 GET: /public/js/pwdhash.js
+
+1732283558708:::1 GET: /login
+
+1732283558737:::1 GET: /public/js/pwdhash.js
+
+1732283561895:::1 GET: /
+
+1732283561900:::1 GET: /login
+
+1732283561917:::1 GET: /public/js/pwdhash.js
+
+1732283564409:::1 GET: /
+
+1732283564413:::1 GET: /login
+
+1732283564425:::1 GET: /public/js/pwdhash.js
+
+1732283917935:::1 GET: /
+
+1732283924120:::1 GET: /login
+
+1732283924151:::1 GET: /public/js/pwdhash.js
+
+1732283931786:::1 POST: /user/login
+
+1732283931861:::1 GET: /
+
+1732284049096:::1 POST: /user/login
+
+1732284049178:::1 GET: /
+
+1732284473964:::1 GET: /
+
+1732284474252:::1 GET: /
+
+1732284481896:::1 GET: /
+
+1732284481901:::1 GET: /user/login
+
+1732284485234:::1 GET: /login
+
+1732284485249:::1 GET: /public/js/pwdhash.js
+
+1732284485402:::1 GET: /login
+
+1732284485417:::1 GET: /public/js/pwdhash.js
+
+1732284485532:::1 GET: /login
+
+1732284485543:::1 GET: /public/js/pwdhash.js
+
+1732284492370:::1 POST: /user/login
+
+1732284492442:::1 GET: /
+
+1732284512249:::1 GET: /
+
+1732284553221:::1 GET: /login
+
+1732284553232:::1 GET: /public/js/pwdhash.js
+
+1732284553402:::1 GET: /login
+
+1732284553417:::1 GET: /public/js/pwdhash.js
+
+1732284553587:::1 GET: /login
+
+1732284553598:::1 GET: /public/js/pwdhash.js
+
+1732284553769:::1 GET: /login
+
+1732284553783:::1 GET: /public/js/pwdhash.js
+
+1732284561004:::1 GET: /user/login
+
+1732284572107:::1 GET: /user/login
+
+1732284572786:::1 GET: /user/login
+
+1732284573036:::1 GET: /user/login
+
+1732284573235:::1 GET: /user/login
+
+1732284573502:::1 GET: /user/login
+
+1732284677825:::1 GET: /login
+
+1732284677852:::1 GET: /public/js/pwdhash.js
+
+1732284681704:::1 POST: /user/login
+
+1732284681779:::1 GET: /
+
+1732284993212:::1 GET: /login
+
+1732284993249:::1 GET: /public/js/pwdhash.js
+
+1732284993449:::1 GET: /login
+
+1732284993462:::1 GET: /public/js/pwdhash.js
+
+1732284993650:::1 GET: /login
+
+1732284993662:::1 GET: /public/js/pwdhash.js
+
+1732284997654:::1 POST: /user/login
+
+1732284997784:::1 GET: /
+
+1732285048854:::1 GET: /user/all
+
+1732285106572:::1 GET: /user/all
+
+1732285107400:::1 GET: /user/all
+
+1732285107601:::1 GET: /user/all
+
+1732285107782:::1 GET: /user/all
+
+1732285107951:::1 GET: /user/all
+
+1732285116237:::1 GET: /login
+
+1732285116261:::1 GET: /public/js/pwdhash.js
+
+1732285116819:::1 GET: /login
+
+1732285116832:::1 GET: /public/js/pwdhash.js
+
+1732285130271:::1 POST: /user/login
+
+1732285130348:::1 GET: /
+
+1732285189840:::1 GET: /login
+
+1732285189868:::1 GET: /public/js/pwdhash.js
+
+1732285190068:::1 GET: /login
+
+1732285190080:::1 GET: /public/js/pwdhash.js
+
+1732285194602:::1 POST: /user/login
+
+1732285194676:::1 GET: /
+
+1732285281208:::1 GET: /login
+
+1732285281239:::1 GET: /public/js/pwdhash.js
+
+1732285281485:::1 GET: /login
+
+1732285281498:::1 GET: /public/js/pwdhash.js
+
+1732285281682:::1 GET: /login
+
+1732285281695:::1 GET: /public/js/pwdhash.js
+
+1732285285517:::1 POST: /user/login
+
+1732285285594:::1 GET: /
+
+1732285352023:::1 GET: /login
+
+1732285352051:::1 GET: /public/js/pwdhash.js
+
+1732285352350:::1 GET: /login
+
+1732285352364:::1 GET: /public/js/pwdhash.js
+
+1732285352550:::1 GET: /login
+
+1732285352562:::1 GET: /public/js/pwdhash.js
+
+1732285357401:::1 POST: /user/login
+
+1732285357477:::1 GET: /
+
+1732287731438:::1 GET: /admin/orders
+
+1732287731452:::1 GET: /login
+
+1732287768800:::1 GET: /admin/orders
+
+1732287995984:::1 GET: /admin/orders
+
+1732288121996:::1 GET: /admin/orders
+
+1732288381096:::1 GET: /categories/new
+
+1732288935335:::1 PATCH: /admin/orders
+
+1732288998256:::1 PATCH: /admin/orders
+
+1732289057973:::1 PATCH: /admin/orders
+
+1732289139805:::1 PATCH: /admin/orders
+
+1732289189013:::1 PATCH: /admin/orders
+
+1732289205836:::1 PATCH: /admin/orders
+
+1732289268067:::1 PATCH: /admin/orders
+
+1732289336352:::1 PATCH: /admin/orders
+
+1732289373635:::1 PATCH: /admin/orders
+
+1732289829445:::1 PATCH: /admin/orders
+
+1732289960566:::1 PATCH: /admin/orders
+
+1732293441443:::1 PATCH: /admin/orders
+
+1732293565291:::1 PATCH: /admin/orders
+
+1732293709589:::1 PATCH: /admin/orders
+
+1732293829743:::1 GET: /
+
+1732293870730:::1 GET: /
+
+1732293871527:::1 GET: /
+
+1732293871946:::1 GET: /
+
+1732293872179:::1 GET: /
+
+1732293872479:::1 GET: /
+
+1732293872679:::1 GET: /
+
+1732293878746:::1 GET: /admin/orders
+
+1732294169146:::1 PATCH: /admin/orders
+
+1732294200342:::1 PATCH: /admin/orders
+
+1732294484747:::1 PATCH: /admin/orders
+
+1732294627637:::1 PATCH: /admin/orders
+
+1732294643874:::1 PATCH: /admin/orders
+
+1732294645389:::1 PATCH: /admin/orders
+
+1732294646104:::1 PATCH: /admin/orders
+
+1732294646679:::1 PATCH: /admin/orders
+
+1732294647274:::1 PATCH: /admin/orders
+
+1732294729288:::1 PATCH: /admin/orders
+
+1732294895710:::1 PATCH: /admin/orders
+
+1732294907642:::1 PATCH: /admin/orders
+
+1732294937281:::1 PATCH: /admin/orders
+
+1732294951368:::1 PATCH: /admin/orders
+
+1732295000550:::1 PATCH: /admin/orders
+
+1732295353195:::1 PATCH: /admin/orders
+
+1732295360576:::1 PATCH: /admin/orders
+
+1732295371128:::1 PATCH: /admin/orders
+
+1732298498775:::1 PATCH: /admin/orders
+
+1732298523188:::1 PATCH: /admin/orders
+
+1732298573652:::1 PATCH: /admin/orders
+
+1732298629248:::1 PATCH: /admin/orders
+
+1732298646326:::1 PATCH: /admin/orders
+
+1732298664320:::1 PATCH: /admin/orders
+
+1732298712072:::1 PATCH: /admin/orders
+
+1732298720308:::1 PATCH: /admin/orders
+
+1732298730602:::1 PATCH: /admin/orders
+
+1732298737839:::1 PATCH: /admin/orders
+
+1732298858476:::1 PATCH: /admin/orders
+
+1732298871030:::1 PATCH: /admin/orders
+
+1732298879868:::1 PATCH: /admin/orders
+
+1732298896305:::1 PATCH: /admin/orders
+
+1732298906773:::1 PATCH: /admin/orders
+
+1732298913507:::1 PATCH: /admin/orders
+
+1732298921550:::1 PATCH: /admin/orders
+
+1732298931129:::1 PATCH: /admin/orders
+
+1732298949522:::1 PATCH: /admin/orders
+
+1732299079452:::1 PATCH: /admin/orders
+
+1732299086628:::1 PATCH: /admin/orders
+
+1732299100523:::1 PATCH: /admin/orders
+
+1732299112726:::1 PATCH: /admin/orders
+
+1732299126426:::1 PATCH: /admin/orders
+
+1732299142783:::1 PATCH: /admin/orders
+
+1732299215557:::1 PATCH: /admin/orders
+
+1732299233822:::1 PATCH: /admin/orders
+
+1732299542278:::1 PATCH: /admin/orders
+
+1732299710436:::1 POST: /admin/orders/assign
+
+1732299775730:::1 GET: /
+
+1732299783115:::1 GET: /
+
+1732299783123:::1 GET: /login
+
+1732299783183:::1 GET: /public/js/pwdhash.js
+
+1732299783219:::1 GET: /favicon.ico
+
+1732299791801:::1 POST: /user/login
+
+1732299791819:::1 GET: /public/js/pwdhash.js
+
+1732299823683:::1 GET: /user/signup
+
+1732299840125:::1 GET: /signup
+
+1732299859857:::1 POST: /user/signup
+
+1732299863955:::1 GET: /
+
+1732299863961:::1 GET: /login
+
+1732299863984:::1 GET: /public/js/pwdhash.js
+
+1732299876787:::1 POST: /user/login
+
+1732299876869:::1 GET: /public/js/pwdhash.js
+
+1732299885885:::1 POST: /user/login
+
+1732299885958:::1 GET: /
+
+1732299937548:::1 GET: /
+
+1732299937963:::1 GET: /
+
+1732299938147:::1 GET: /
+
+1732299983132:::1 POST: /admin/orders/assign
+
+1732300015639:::1 GET: /location
+
+1732300035585:::1 GET: /dashborad
+
+1732300044444:::1 GET: /dashboard
+
+1732300053998:::1 GET: /dashboard
+
+1732300080066:::1 GET: /orders/assign/dashboard
+
+1732300245557:::1 GET: /delivery/dashboard
+
+1732300245597:::1 GET: /css/styles.css
+
+1732300245621:::1 GET: /js/admin-dashboard.js
+
+1732300297847:::1 GET: /track/6740cccf47a046429d7fd495
+
+1732300309088:::1 GET: /track/6740cccf47a046429d7fd495
+
+1732300324227:::1 GET: /delivery/track/6740cccf47a046429d7fd495
+
+1732300368036:::1 GET: /delivery/track/6740cccf47a046429d7fd495
+
+1732300369615:::1 GET: /delivery/track/6740cccf47a046429d7fd495
+
+1732300369982:::1 GET: /delivery/track/6740cccf47a046429d7fd495
+
+1732300370247:::1 GET: /delivery/track/6740cccf47a046429d7fd495
+
+1732300427172:::1 GET: /delivery/location
+
+1732300766147:::1 POST: /delivery/6740cccf47a046429d7fd495
+
+1732300786088:::1 POST: /delivery/location/6740cccf47a046429d7fd495
+
+1732300802823:::1 POST: /delivery/location
+
+1732300857508:::1 POST: /delivery/location
+
+1732300869320:::1 GET: /delivery/dashboard
+
+1732300869355:::1 GET: /css/styles.css
+
+1732300869355:::1 GET: /js/admin-dashboard.js
+
+1732300892082:::1 GET: /delivery/track/6740cccf47a046429d7fd495
+
+1732357798278:::1 GET: /
+
+1732357798808:::1 GET: /
+
+1732357824729:::1 GET: /
+
+1732357829280:::1 GET: /map
+
+1732357968266:::1 GET: /map
+
+1732357969158:::1 GET: /map
+
+1732357969828:::1 GET: /map
+
+1732357979585:::1 GET: /map
+
+1732358020011:::1 GET: /map
+
+1732358075079:::1 GET: /map
+
+1732358076180:::1 GET: /map
+
+1732358076466:::1 GET: /map
+
+1732358076682:::1 GET: /map
+
+1732358076881:::1 GET: /map
+
+1732358077207:::1 GET: /map
+
+1732358077495:::1 GET: /map
+
+1732358077683:::1 GET: /map
+
+1732358077917:::1 GET: /map
+
+1732358078132:::1 GET: /map
+
+1732358089226:::1 GET: /map
+
+1732358120170:::1 GET: /map
+
+1732358129373:::1 GET: /map
+
+1732358129399:::1 GET: /styles.css
+
+1732358129403:::1 GET: /script.js
+
+1732358187439:::1 GET: /map
+
+1732358187458:::1 GET: /css/styles.css
+
+1732358187459:::1 GET: /js/script.js
+
+1732358264000:::1 GET: /map
+
+1732358264014:::1 GET: /css/styles.css
+
+1732358264015:::1 GET: /js/script.js
+
+1732358264396:::1 GET: /map
+
+1732358264408:::1 GET: /css/styles.css
+
+1732358264410:::1 GET: /js/script.js
+
+1732358306531:::1 GET: /css/styles.css
+
+1732358336526:::1 GET: /map
+
+1732358336562:::1 GET: /css/styles.css
+
+1732358336566:::1 GET: /js/script.js
+
+1732358347158:::1 GET: /css/styles.css
+
+1732358505099:::1 GET: /map
+
+1732358505140:::1 GET: /css/styles.css
+
+1732358505141:::1 GET: /js/script.js
