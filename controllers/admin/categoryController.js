@@ -1,20 +1,33 @@
-const Category = require('../../models/category')
+const Category = require("../../models/category");
 
 const handleAddNewProduct = async (req, res) => {
-  const { name, attributes } = req.body;
+  const { name, attributes, categoryType } = req.body; // Extract name, attributes, and categoryType from the request body
 
-  if (!name || !attributes) {
-    return res.status(400).json({ error: 'Category name and attributes are required' });
+  if (!name || !attributes || !categoryType) {
+    return res
+      .status(400)
+      .json({
+        error:
+          "Product name, attributes, and category type (categoryType) are required",
+      });
   }
+
   try {
-    const category = await Category.findOneAndUpdate(
-      { name },
-      { attributes },
-      { new: true, upsert: true } // Update if exists, create if not
-    );
-    res.status(200).json({ message: 'Category added successfully', category });
+    // Create a new product
+    const newProduct = new Product({
+      name,
+      attributes,
+      categoryType, // Assuming categoryType is part of your Product schema
+    });
+
+    // Save the product to the database
+    await newProduct.save();
+
+    res
+      .status(200)
+      .json({ message: "Product added successfully", product: newProduct });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to add category' });
+    res.status(500).json({ error: "Failed to add product" });
   }
 };
 
@@ -30,7 +43,9 @@ const handleDeleteNewProduct = async (req, res) => {
     if (!deletedCategory) {
       return res.status(404).json({ error: "Category not found" });
     }
-    res.status(200).json({ message: "Category deleted successfully", deletedCategory });
+    res
+      .status(200)
+      .json({ message: "Category deleted successfully", deletedCategory });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to delete category" });
@@ -41,7 +56,9 @@ const handleUpdateNewProduct = async (req, res) => {
   const { oldName, newName, attributes } = req.body;
 
   if (!oldName || !newName) {
-    return res.status(400).json({ error: "Both oldName and newName are required" });
+    return res
+      .status(400)
+      .json({ error: "Both oldName and newName are required" });
   }
 
   try {
@@ -55,7 +72,9 @@ const handleUpdateNewProduct = async (req, res) => {
       return res.status(404).json({ error: "Category not found" });
     }
 
-    res.status(200).json({ message: "Category updated successfully", updatedCategory });
+    res
+      .status(200)
+      .json({ message: "Category updated successfully", updatedCategory });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to update category" });
@@ -82,7 +101,9 @@ const handleGetNewProduct = async (req, res) => {
   }
 };
 
-
-
-module.exports={handleAddNewProduct,handleDeleteNewProduct,handleGetNewProduct,handleUpdateNewProduct}
-
+module.exports = {
+  handleAddNewProduct,
+  handleDeleteNewProduct,
+  handleGetNewProduct,
+  handleUpdateNewProduct,
+};

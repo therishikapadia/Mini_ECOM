@@ -1272,3 +1272,1873 @@
 1732358505140:::1 GET: /css/styles.css
 
 1732358505141:::1 GET: /js/script.js
+
+1733326274766:::1 GET: /
+
+1733326274823:::1 GET: /login
+
+1733326274965:::1 GET: /public/js/pwdhash.js
+
+1733326275081:::1 GET: /favicon.ico
+
+1733326710031:::1 GET: /controllers/admin/categoryController/categories
+
+1733328429521:::1 GET: /controllers/admin/categoryController/categories
+
+1733328429543:::1 GET: /controllers/admin/categoryController/categories
+
+1733362951277:::1 GET: /
+
+1733362951300:::1 GET: /login
+
+1733362951346:::1 GET: /public/js/pwdhash.js
+
+1733362951403:::1 GET: /favicon.ico
+
+1733363342473:::ffff:127.0.0.1 GET: /login
+
+1733363906788:::ffff:127.0.0.1 GET: /login/user/login/controllers/user
+
+1733363915154:::ffff:127.0.0.1 GET: /user/login/controllers/user
+
+1733364150318:::ffff:127.0.0.1 GET: /user/
+
+1733364159309:::ffff:127.0.0.1 GET: /
+
+1733364159315:::ffff:127.0.0.1 GET: /login
+
+1733364211100:::ffff:127.0.0.1 POST: /user/
+
+1733364329062:::ffff:127.0.0.1 POST: /user/login
+
+1733364562096:::ffff:127.0.0.1 POST: /user/login
+
+1733364615448:::1 OPTIONS: /user/login
+
+1733364616658:::1 OPTIONS: /user/login
+
+1733364616957:::1 OPTIONS: /user/login
+
+1733364617143:::1 OPTIONS: /user/login
+
+1733364617363:::1 OPTIONS: /user/login
+
+1733364832726:::1 OPTIONS: /user/login
+
+1733365324117:::1 POST: /user/login
+
+1733365327087:::1 POST: /user/login
+
+1733365339414:::ffff:127.0.0.1 POST: /user/login
+
+1733365636176:::1 POST: /user/login
+
+1733365859358:::1 POST: /user/login
+
+1733367340449:::1 POST: /user/login
+
+1733367419981:::ffff:127.0.0.1 POST: /user/login
+
+1733367727956:::1 GET: /
+
+1733367727970:::1 GET: /login
+
+1733367728005:::1 GET: /public/js/pwdhash.js
+
+1733367728042:::1 GET: /favicon.ico
+
+1733367735091:::1 POST: /user/login
+
+1733367735117:::1 GET: /public/js/pwdhash.js
+
+1733367744593:::1 POST: /user/login
+
+1733367744612:::1 GET: /public/js/pwdhash.js
+
+1733367773509:::1 POST: /user/login
+
+1733367773526:::1 GET: /public/js/pwdhash.js
+
+1733367810185:::ffff:127.0.0.1 POST: /user/login
+
+1733368181617:::1 POST: /user/login
+
+1733368231513:::1 POST: /user/login
+
+1733369210588:::1 POST: /user/login
+
+1733369411924:::1 GET: /controllers/admin/categoryController/categories
+
+1733369411941:::1 GET: /controllers/admin/categoryController/categories
+
+1733369448317:::1 POST: /user/login
+
+1733369590645:::1 POST: /user/login
+
+1733369602078:::1 GET: /controllers/admin/categoryController/categories
+
+1733369602083:::1 GET: /controllers/admin/categoryController/categories
+
+1733369722330:::ffff:127.0.0.1 POST: /controllers/admin/categoryController/categories
+
+1733369987310:::ffff:127.0.0.1 POST: /admin/categories
+
+1733370088355:::ffff:127.0.0.1 GET: /admin/categories
+
+1733370455468:::ffff:127.0.0.1 GET: /admin/categories
+
+1733370520338:::ffff:127.0.0.1 GET: /admin/categories
+
+1733370527221:::1 GET: /admin/categories
+
+1733370534618:::1 GET: /admin/categories
+
+1733370534627:::1 GET: /admin/categories
+
+1733371160520:::1 GET: /admin/categories
+
+1733371229869:::1 GET: /admin/categories
+
+1733371286351:::1 PATCH: /admin/categories
+
+1733371286370:::1 GET: /admin/categories
+
+1733371790612:::1 GET: /admin/categories
+
+1733371790619:::1 GET: /admin/categories
+
+1733371823632:::1 POST: /admin/categories
+
+1733371823642:::1 GET: /admin/categories
+
+1733371850199:::1 DELETE: /admin/categories
+
+1733371850210:::1 GET: /admin/categories
+
+1733372461157:::1 GET: /admin/categories
+
+1733372859180:::1 GET: /admin/categories
+
+1733374077179:::1 GET: /admin/categories
+
+1733374077188:::1 GET: /admin/categories
+
+1733374081904:::1 GET: /admin/categories
+
+1733374081913:::1 GET: /admin/categories
+
+1733374124368:::1 PATCH: /admin/categories
+
+1733374124379:::1 GET: /admin/categories
+
+1733374154109:::1 PATCH: /admin/categories
+
+1733374154117:::1 GET: /admin/categories
+
+1733374207234:::1 GET: /admin/categories
+
+1733374218059:::1 GET: /admin/categories
+
+1733374256568:::1 POST: /admin/categories
+
+1733374256579:::1 GET: /admin/categories
+
+1733374297856:::1 GET: /admin/categories
+
+1733374297863:::1 GET: /admin/categories
+
+1733380919188:::1 POST: /user/login
+
+1733380929548:::1 POST: /user/login
+
+1733381665822:::1 POST: /user/login
+
+1733381947454:::1 POST: /user/login
+
+1733381947548:::1 GET: /public/js/pwdhash.js
+
+1733381961644:::1 POST: /user/login
+
+1733381961728:::1 GET: /public/js/pwdhash.js
+
+1733381971276:::1 POST: /user/login
+
+1733381971367:::1 GET: /public/js/pwdhash.js
+
+1733382779124:::1 POST: /user/login
+
+1733382782655:::1 POST: /user/login
+
+1733382855596:::1 POST: /user/login
+
+1733382884259:::1 POST: /user/login
+
+1733382936895:::1 POST: /user/login
+
+1733383366936:::ffff:127.0.0.1 POST: /user/login
+
+1733384140371:::ffff:127.0.0.1 POST: /user/login/login
+
+1733384187427:::ffff:127.0.0.1 POST: /user/login
+
+1733384452054:::ffff:127.0.0.1 POST: /user/login
+
+1733384515014:::ffff:127.0.0.1 POST: /user
+
+1733384584067:::ffff:127.0.0.1 POST: /user
+
+1733384591467:::ffff:127.0.0.1 POST: /user/login
+
+1733384628231:::1 POST: /user/login
+
+1733385243942:::1 POST: /user/signup
+
+1733385330113:::1 POST: /user/signup
+
+1733385330360:::1 POST: /user/signup
+
+1733385330559:::1 POST: /user/signup
+
+1733385330735:::1 POST: /user/signup
+
+1733385360966:::1 POST: /user/signup
+
+1733385440091:::1 POST: /user/signup
+
+1733385508793:::1 POST: /user/login
+
+1733385557397:::1 POST: /user/login
+
+1733385605119:::1 POST: /user/signup
+
+1733386758059:::1 POST: /user/signup
+
+1733386791086:::1 POST: /user/login
+
+1733386939399:::1 POST: /user/login
+
+1733386975711:::1 POST: /user/login
+
+1733386983717:::1 POST: /user/login
+
+1733386999408:::1 POST: /user/login
+
+1733387062137:::ffff:127.0.0.1 POST: /user/login
+
+1733388203981:::1 GET: /api/admin/users
+
+1733388607880:::1 POST: /user/login
+
+1733389381124:::1 POST: /user/signup
+
+1733389462124:::1 POST: /user/signup
+
+1733389527282:::ffff:127.0.0.1 POST: /user/signup
+
+1733389730337:::ffff:127.0.0.1 POST: /user/signup
+
+1733389771781:::ffff:127.0.0.1 POST: /user/signup
+
+1733389790251:::ffff:127.0.0.1 POST: /user/signup
+
+1733389879431:::1 POST: /user/signup
+
+1733389926686:::ffff:127.0.0.1 POST: /user/signup
+
+1733389985011:::ffff:127.0.0.1 POST: /user/signup
+
+1733389985458:::ffff:127.0.0.1 POST: /user/signup
+
+1733389985612:::ffff:127.0.0.1 POST: /user/signup
+
+1733389985748:::ffff:127.0.0.1 POST: /user/signup
+
+1733389985884:::ffff:127.0.0.1 POST: /user/signup
+
+1733390045501:::ffff:127.0.0.1 POST: /user/signup
+
+1733390045692:::ffff:127.0.0.1 POST: /user/signup
+
+1733390045827:::ffff:127.0.0.1 POST: /user/signup
+
+1733390045964:::ffff:127.0.0.1 POST: /user/signup
+
+1733390057884:::ffff:127.0.0.1 POST: /user/signup
+
+1733390058682:::ffff:127.0.0.1 POST: /user/signup
+
+1733390058848:::ffff:127.0.0.1 POST: /user/signup
+
+1733390058983:::ffff:127.0.0.1 POST: /user/signup
+
+1733390059127:::ffff:127.0.0.1 POST: /user/signup
+
+1733390059295:::ffff:127.0.0.1 POST: /user/signup
+
+1733390059446:::ffff:127.0.0.1 POST: /user/signup
+
+1733390059611:::ffff:127.0.0.1 POST: /user/signup
+
+1733390060460:::ffff:127.0.0.1 POST: /user/signup
+
+1733390061155:::ffff:127.0.0.1 POST: /user/signup
+
+1733390077519:::1 GET: /
+
+1733390077532:::1 GET: /login
+
+1733390077570:::1 GET: /public/js/pwdhash.js
+
+1733390084886:::1 GET: /signup
+
+1733390177940:::ffff:127.0.0.1 POST: /user/signup
+
+1733390178755:::ffff:127.0.0.1 POST: /user/signup
+
+1733390178915:::ffff:127.0.0.1 POST: /user/signup
+
+1733390179067:::ffff:127.0.0.1 POST: /user/signup
+
+1733390179379:::ffff:127.0.0.1 POST: /user/signup
+
+1733390179516:::ffff:127.0.0.1 POST: /user/signup
+
+1733390179686:::ffff:127.0.0.1 POST: /user/signup
+
+1733390179819:::ffff:127.0.0.1 POST: /user/signup
+
+1733390180107:::ffff:127.0.0.1 POST: /user/signup
+
+1733390197411:::1 POST: /user/signup
+
+1733390200751:::1 GET: /
+
+1733390200756:::1 GET: /login
+
+1733390200792:::1 GET: /public/js/pwdhash.js
+
+1733390241197:::1 POST: /user/login
+
+1733390314190:::1 POST: /user/login
+
+1733390452403:::1 POST: /user/login
+
+1733390452490:::1 GET: /public/js/pwdhash.js
+
+1733390469314:::1 POST: /user/login
+
+1733390469406:::1 GET: /public/js/pwdhash.js
+
+1733390544270:::ffff:127.0.0.1 POST: /user/login
+
+1733390826893:::1 POST: /user/login
+
+1733390856027:::1 POST: /user/login
+
+1733390856120:::1 GET: /public/js/pwdhash.js
+
+1733390927689:::1 GET: /
+
+1733391149365:::1 GET: /signup
+
+1733392054187:::1 POST: /user/signup
+
+1733392080157:::1 POST: /user/signup
+
+1733393279737:::1 POST: /signup
+
+1733393286932:::1 GET: /
+
+1733393290402:::1 GET: /signup
+
+1733393302460:::1 GET: /user/signup
+
+1733393350297:::ffff:127.0.0.1 POST: /signup
+
+1733393355978:::ffff:127.0.0.1 GET: /signup
+
+1733393371445:::ffff:127.0.0.1 POST: /user/signup
+
+1733393474046:::ffff:127.0.0.1 POST: /user/signup
+
+1733393790751:::1 GET: /user/signup
+
+1733393849398:::1 POST: /user/signup
+
+1733394156644:::1 POST: /user/signup
+
+1733394156837:::1 POST: /user/signup
+
+1733394272801:::1 POST: /user/signup
+
+1733394344063:::1 POST: /user/signup
+
+1733394485701:::1 POST: /user/signup
+
+1733394664879:::ffff:127.0.0.1 POST: /user/signup
+
+1733394676208:::ffff:127.0.0.1 POST: /user/signup
+
+1733394814642:::ffff:127.0.0.1 POST: /user/signup
+
+1733394816331:::ffff:127.0.0.1 POST: /user/signup
+
+1733395152886:::1 POST: /user/signup
+
+1733395156588:::1 GET: /
+
+1733395156607:::1 GET: /login
+
+1733395178287:::1 POST: /user/signup
+
+1733395178919:::1 POST: /user/signup
+
+1733395243545:::1 POST: /user/signup
+
+1733395475263:::1 POST: /user/login
+
+1733395527776:::1 GET: /
+
+1733395528664:::1 GET: /favicon.ico
+
+1733395594781:::1 GET: /
+
+1733396343143:::1 POST: /user/login
+
+1733396421380:::1 POST: /user/login
+
+1733396493626:::ffff:127.0.0.1 POST: /user/login
+
+1733396523687:::ffff:127.0.0.1 POST: /user/login
+
+1733396579341:::ffff:127.0.0.1 POST: /user/login
+
+1733396980692:::1 POST: /user/login
+
+1733397003978:::1 POST: /user/login
+
+1733397050497:::1 POST: /user/login
+
+1733397078272:::1 POST: /user/login
+
+1733397997800:::1 POST: /user/login
+
+1733398157615:::1 POST: /user/login
+
+1733398160069:::1 POST: /user/login
+
+1733398160805:::1 POST: /user/login
+
+1733398161371:::1 POST: /user/login
+
+1733398161525:::1 POST: /user/login
+
+1733398161675:::1 POST: /user/login
+
+1733398197008:::1 POST: /user/login
+
+1733399032202:::1 POST: /user/login
+
+1733399046885:::1 POST: /user/login
+
+1733399098450:::1 POST: /user/login
+
+1733399199346:::1 POST: /user/login
+
+1733399240349:::1 POST: /user/login
+
+1733399298258:::1 POST: /user/login
+
+1733399313628:::1 POST: /user/login
+
+1733399540647:::1 POST: /user/login
+
+1733399548909:::1 POST: /user/login
+
+1733399574504:::1 POST: /user/login
+
+1733399651383:::1 GET: /admin/categories
+
+1733399651398:::1 GET: /admin/categories
+
+1733399655039:::1 GET: /api/admin/users
+
+1733399655046:::1 GET: /api/admin/users
+
+1733399708084:::1 GET: /api/admin/users
+
+1733399710768:::1 GET: /api/admin/users
+
+1733399710772:::1 GET: /api/admin/users
+
+1733400311755:::1 GET: /admin/categories
+
+1733400311804:::1 GET: /admin/categories
+
+1733400315621:::1 GET: /api/admin/users
+
+1733400315631:::1 GET: /api/admin/users
+
+1733400751355:::1 POST: /user/signup
+
+1733400754496:::1 GET: /
+
+1733400754544:::1 GET: /login
+
+1733401463402:::1 POST: /user/signup
+
+1733406263450:::1 POST: /user/login
+
+1733406578162:::1 POST: /user/login
+
+1733406994943:::1 POST: /user/login
+
+1733407024910:::1 POST: /user/login
+
+1733407078378:::1 POST: /user/login
+
+1733407101050:::1 POST: /user/login
+
+1733407116825:::1 POST: /user/login
+
+1733407162953:::1 POST: /user/login
+
+1733407189120:::1 POST: /user/login
+
+1733407796112:::1 POST: /user/login
+
+1733408181593:::1 GET: /api/admin/users
+
+1733408181605:::1 GET: /api/admin/users
+
+1733408313293:::1 GET: /admin/customer
+
+1733408338677:::1 GET: /admin/customer
+
+1733408338690:::1 GET: /admin/customer
+
+1733408352817:::1 GET: /admin/customer
+
+1733408352828:::1 GET: /admin/customer
+
+1733408367930:::1 GET: /api/admin/users
+
+1733408367936:::1 GET: /api/admin/users
+
+1733408370608:::1 GET: /api/admin/users
+
+1733408370615:::1 GET: /api/admin/users
+
+1733408387629:::1 GET: /admin/customer
+
+1733408451403:::1 GET: /admin/customer
+
+1733408669554:::1 GET: /admin/customer
+
+1733408672961:::1 GET: /admin/customer
+
+1733408672971:::1 GET: /admin/customer
+
+1733409361317:::1 GET: /admin/customer
+
+1733409361388:::1 GET: /admin/customer
+
+1733409368559:::1 GET: /admin/customer
+
+1733409368574:::1 GET: /admin/customer
+
+1733409407844:::1 GET: /admin/customer
+
+1733409480305:::1 GET: /admin/customer
+
+1733409508308:::1 GET: /admin/customer
+
+1733409561717:::1 GET: /admin/customer
+
+1733409566782:::1 GET: /admin/categories
+
+1733409566796:::1 GET: /admin/categories
+
+1733409571169:::1 GET: /admin/categories
+
+1733409571179:::1 GET: /admin/categories
+
+1733409572745:::1 GET: /admin/categories
+
+1733409572756:::1 GET: /admin/categories
+
+1733409574211:::1 GET: /admin/categories
+
+1733409574223:::1 GET: /admin/categories
+
+1733409575677:::1 GET: /admin/customer
+
+1733409575686:::1 GET: /admin/customer
+
+1733409597111:::1 GET: /admin/customer
+
+1733409639820:::1 GET: /admin/categories
+
+1733409639828:::1 GET: /admin/categories
+
+1733409641548:::1 GET: /admin/categories
+
+1733409641557:::1 GET: /admin/categories
+
+1733409642681:::1 GET: /admin/customer
+
+1733409642690:::1 GET: /admin/customer
+
+1733409644968:::1 GET: /admin/categories
+
+1733409644977:::1 GET: /admin/categories
+
+1733409739540:::1 GET: /admin/customer
+
+1733409739548:::1 GET: /admin/customer
+
+1733409802600:::1 DELETE: /admin/customer
+
+1733409873310:::1 GET: /admin/customer
+
+1733409885302:::1 GET: /admin/customer
+
+1733410424463:::1 GET: /admin/customer
+
+1733410424500:::1 GET: /admin/customer
+
+1733410752439:::1 GET: /admin/customer
+
+1733410752521:::1 GET: /admin/customer
+
+1733410839803:::1 GET: /admin/customer
+
+1733410839819:::1 GET: /admin/customer
+
+1733410889386:::1 GET: /admin/customer
+
+1733410889429:::1 GET: /admin/customer
+
+1733410908364:::1 GET: /admin/customer
+
+1733410908444:::1 GET: /admin/customer
+
+1733410945748:::1 POST: /user/signup
+
+1733410948496:::1 GET: /admin/customer
+
+1733410948516:::1 GET: /admin/customer
+
+1733410978354:::1 POST: /user/signup
+
+1733410987588:::1 GET: /admin/customer
+
+1733410987603:::1 GET: /admin/customer
+
+1733411034504:::1 POST: /user/signup
+
+1733411038352:::1 GET: /admin/customer
+
+1733411038363:::1 GET: /admin/customer
+
+1733411062218:::1 GET: /admin/customer
+
+1733411062229:::1 GET: /admin/customer
+
+1733411064453:::1 GET: /admin/categories
+
+1733411064464:::1 GET: /admin/categories
+
+1733411065665:::1 GET: /admin/customer
+
+1733411065675:::1 GET: /admin/customer
+
+1733411279453:::1 GET: /admin/categories
+
+1733411279462:::1 GET: /admin/categories
+
+1733411324063:::1 GET: /admin/customer
+
+1733411324072:::1 GET: /admin/customer
+
+1733411325671:::1 GET: /admin/categories
+
+1733411326209:::1 GET: /admin/categories
+
+1733411329136:::1 GET: /admin/customer
+
+1733411329142:::1 GET: /admin/customer
+
+1733411330571:::1 GET: /admin/categories
+
+1733411330578:::1 GET: /admin/categories
+
+1733411331437:::1 GET: /admin/customer
+
+1733411331445:::1 GET: /admin/customer
+
+1733411332848:::1 GET: /admin/customer
+
+1733411332857:::1 GET: /admin/customer
+
+1733411333721:::1 GET: /admin/categories
+
+1733411333730:::1 GET: /admin/categories
+
+1733411334453:::1 GET: /admin/customer
+
+1733411334462:::1 GET: /admin/customer
+
+1733411335137:::1 GET: /admin/categories
+
+1733411335144:::1 GET: /admin/categories
+
+1733411335926:::1 GET: /admin/customer
+
+1733411335933:::1 GET: /admin/customer
+
+1733411337224:::1 GET: /admin/categories
+
+1733411337231:::1 GET: /admin/categories
+
+1733411363962:::1 GET: /admin/categories
+
+1733411363971:::1 GET: /admin/categories
+
+1733411365469:::1 GET: /admin/customer
+
+1733411365474:::1 GET: /admin/customer
+
+1733411369058:::1 GET: /admin/categories
+
+1733411369066:::1 GET: /admin/categories
+
+1733411369613:::1 GET: /admin/customer
+
+1733411369619:::1 GET: /admin/customer
+
+1733411370218:::1 GET: /admin/categories
+
+1733411370226:::1 GET: /admin/categories
+
+1733411370717:::1 GET: /admin/customer
+
+1733411370723:::1 GET: /admin/customer
+
+1733411371198:::1 GET: /admin/categories
+
+1733411371206:::1 GET: /admin/categories
+
+1733414137481:::1 POST: /user/login
+
+1733414165692:::1 POST: /user/login
+
+1733414174268:::1 POST: /user/login
+
+1733414195175:::1 GET: /
+
+1733414195187:::1 GET: /login
+
+1733414195212:::1 GET: /public/js/pwdhash.js
+
+1733414285832:::1 POST: /user/login
+
+1733414295494:::1 POST: /user/login
+
+1733414301100:::1 POST: /user/login
+
+1733414407521:::1 POST: /user/login
+
+1733414444652:::1 POST: /user/login
+
+1733414497409:::1 POST: /user/login
+
+1733414519436:::1 POST: /user/login
+
+1733414582446:::1 POST: /user/login
+
+1733414731113:::1 POST: /user/login
+
+1733414863121:::1 POST: /user/login
+
+1733463044764:::1 GET: /admin/categories
+
+1733463044830:::1 GET: /admin/categories
+
+1733463073637:::1 GET: /admin/customer
+
+1733463073671:::1 GET: /admin/customer
+
+1733463227142:::1 GET: /admin/customer
+
+1733463227166:::1 GET: /admin/customer
+
+1733463228753:::1 GET: /admin/categories
+
+1733463228774:::1 GET: /admin/categories
+
+1733463232268:::1 GET: /admin/categories
+
+1733463232296:::1 GET: /admin/categories
+
+1733463276753:::1 POST: /user/login
+
+1733463277617:::1 POST: /user/login
+
+1733463297695:::1 POST: /user/login
+
+1733463334812:::1 POST: /user/login
+
+1733463485745:::1 POST: /user/login
+
+1733463861758:::1 POST: /user/login
+
+1733463932856:::1 GET: /admin/categories
+
+1733463932876:::1 GET: /admin/categories
+
+1733463934459:::1 GET: /admin/customer
+
+1733463934482:::1 GET: /admin/customer
+
+1733463940371:::1 GET: /admin/customer
+
+1733463940386:::1 GET: /admin/customer
+
+1733463981638:::1 GET: /admin/categories
+
+1733463981664:::1 GET: /admin/categories
+
+1733464317173:::1 GET: /admin/categories
+
+1733464317193:::1 GET: /admin/categories
+
+1733464318146:::1 GET: /admin/customer
+
+1733464318166:::1 GET: /admin/customer
+
+1733464321765:::1 GET: /admin/customer
+
+1733464321785:::1 GET: /admin/customer
+
+1733464346903:::1 GET: /admin/customer
+
+1733464346914:::1 GET: /admin/customer
+
+1733464469635:::1 DELETE: /admin/customer
+
+1733481683670:::1 POST: /user/login
+
+1733481694038:::1 POST: /user/login
+
+1733481714828:::1 POST: /user/login
+
+1733481802290:::1 POST: /user/login
+
+1733482558844:::1 POST: /user/login
+
+1733482935927:::1 POST: /user/login
+
+1733484472845:::1 POST: /user/login
+
+1733484623662:::1 POST: /user/logout
+
+1733484991193:::1 POST: /user/logout
+
+1733485088044:::1 GET: /user/logout
+
+1733485566790:::1 POST: /user/login
+
+1733485592774:::1 GET: /user/logout
+
+1733485637064:::1 POST: /user/login
+
+1733485641082:::1 GET: /user/logout
+
+1733485658944:::1 POST: /user/login
+
+1733485663857:::1 GET: /user/logout
+
+1733485734976:::1 POST: /user/login
+
+1733485739154:::1 GET: /user/logout
+
+1733485780959:::1 POST: /user/login
+
+1733485788585:::1 GET: /user/logout
+
+1733485807214:::1 POST: /user/login
+
+1733485811024:::1 GET: /user/logout
+
+1733485866703:::1 POST: /user/login
+
+1733485883715:::1 GET: /user/logout
+
+1733485904356:::1 POST: /user/login
+
+1733485910109:::1 GET: /admin/categories
+
+1733485911801:::1 GET: /admin/customer
+
+1733485913913:::1 GET: /admin/customer
+
+1733485915371:::1 GET: /admin/customer
+
+1733485916330:::1 GET: /admin/customer
+
+1733485917215:::1 GET: /admin/customer
+
+1733485918083:::1 GET: /admin/categories
+
+1733485918778:::1 GET: /admin/customer
+
+1733485922001:::1 GET: /admin/customer
+
+1733485922415:::1 GET: /admin/customer
+
+1733485922873:::1 GET: /admin/customer
+
+1733485923301:::1 GET: /admin/categories
+
+1733485923810:::1 GET: /admin/categories
+
+1733485924219:::1 GET: /admin/categories
+
+1733485928423:::1 GET: /admin/categories
+
+1733485929361:::1 GET: /admin/categories
+
+1733485929824:::1 GET: /admin/categories
+
+1733485930159:::1 GET: /admin/categories
+
+1733485930424:::1 GET: /admin/categories
+
+1733485930680:::1 GET: /admin/categories
+
+1733485930929:::1 GET: /admin/categories
+
+1733485931173:::1 GET: /admin/categories
+
+1733485931420:::1 GET: /admin/categories
+
+1733485931666:::1 GET: /admin/categories
+
+1733485931924:::1 GET: /admin/categories
+
+1733485932154:::1 GET: /admin/categories
+
+1733485932403:::1 GET: /admin/categories
+
+1733485932641:::1 GET: /admin/categories
+
+1733485932874:::1 GET: /admin/categories
+
+1733485933120:::1 GET: /admin/categories
+
+1733485933371:::1 GET: /admin/categories
+
+1733485933572:::1 GET: /admin/categories
+
+1733485933793:::1 GET: /admin/categories
+
+1733485934010:::1 GET: /admin/categories
+
+1733486271796:::1 GET: /admin/categories
+
+1733486272683:::1 GET: /admin/categories
+
+1733486273329:::1 GET: /admin/customer
+
+1733486273732:::1 GET: /admin/categories
+
+1733486274351:::1 GET: /admin/customer
+
+1733486275380:::1 GET: /admin/customer
+
+1733486275829:::1 GET: /admin/customer
+
+1733486276229:::1 GET: /admin/customer
+
+1733486276563:::1 GET: /admin/customer
+
+1733486276891:::1 GET: /admin/customer
+
+1733486277178:::1 GET: /admin/customer
+
+1733486277407:::1 GET: /admin/customer
+
+1733486277803:::1 GET: /admin/customer
+
+1733486278009:::1 GET: /admin/customer
+
+1733486278165:::1 GET: /admin/customer
+
+1733486278350:::1 GET: /admin/customer
+
+1733486278529:::1 GET: /admin/customer
+
+1733486278708:::1 GET: /admin/customer
+
+1733486278866:::1 GET: /admin/customer
+
+1733486279045:::1 GET: /admin/customer
+
+1733486279210:::1 GET: /admin/customer
+
+1733486279388:::1 GET: /admin/customer
+
+1733486279539:::1 GET: /admin/customer
+
+1733486279698:::1 GET: /admin/customer
+
+1733486279862:::1 GET: /admin/customer
+
+1733486280043:::1 GET: /admin/customer
+
+1733486280197:::1 GET: /admin/customer
+
+1733486295648:::1 GET: /admin/categories
+
+1733486297067:::1 GET: /admin/customer
+
+1733486301323:::1 GET: /admin/customer
+
+1733486301745:::1 GET: /admin/categories
+
+1733486311949:::1 GET: /user/logout
+
+1733486315394:::1 GET: /user/logout
+
+1733486321378:::1 GET: /user/logout
+
+1733486337041:::1 POST: /user/login
+
+1733486340599:::1 GET: /admin/categories
+
+1733486341296:::1 GET: /admin/customer
+
+1733486341796:::1 GET: /admin/categories
+
+1733486342242:::1 GET: /admin/categories
+
+1733486342644:::1 GET: /admin/categories
+
+1733486343163:::1 GET: /admin/categories
+
+1733486343461:::1 GET: /admin/categories
+
+1733486343780:::1 GET: /admin/categories
+
+1733486344114:::1 GET: /admin/customer
+
+1733486344401:::1 GET: /admin/categories
+
+1733486352949:::1 GET: /admin/categories
+
+1733486353383:::1 GET: /admin/customer
+
+1733486354258:::1 GET: /admin/categories
+
+1733486356346:::1 GET: /admin/customer
+
+1733486358877:::1 GET: /admin/customer
+
+1733486359330:::1 GET: /admin/categories
+
+1733486361626:::1 GET: /user/logout
+
+1733486373306:::1 GET: /user/logout
+
+1733486385001:::1 GET: /user/logout
+
+1733486554162:::1 POST: /user/login
+
+1733486612337:::1 GET: /admin/categories
+
+1733486613012:::1 GET: /admin/customer
+
+1733486618598:::1 GET: /admin/customer
+
+1733486620502:::1 GET: /admin/customer
+
+1733486621169:::1 GET: /admin/categories
+
+1733486625650:::1 GET: /user/logout
+
+1733486631699:::1 GET: /admin/customer
+
+1733486631993:::1 GET: /admin/categories
+
+1733486634106:::1 GET: /user/logout
+
+1733486646290:::1 GET: /user/logout
+
+1733486906592:::1 POST: /user/login
+
+1733486961744:::1 GET: /admin/customer
+
+1733486964003:::1 GET: /admin/categories
+
+1733486964402:::1 GET: /admin/customer
+
+1733486966891:::1 GET: /user/logout
+
+1733486971498:::1 GET: /user/logout
+
+1733486987588:::1 GET: /user/logout
+
+1733486999580:::1 POST: /user/login
+
+1733487001083:::1 POST: /user/login
+
+1733487002915:::1 POST: /user/login
+
+1733487005613:::1 POST: /user/login
+
+1733487073459:::1 POST: /user/login
+
+1733487870961:::1 GET: /admin/categories
+
+1733487871757:::1 GET: /admin/customer
+
+1733487874047:::1 GET: /admin/customer
+
+1733487874978:::1 GET: /admin/categories
+
+1733488243853:::1 GET: /admin/customer
+
+1733488244541:::1 GET: /admin/categories
+
+1733488249527:::1 GET: /admin/customer
+
+1733488250263:::1 GET: /admin/categories
+
+1733488252845:::1 GET: /admin/customer
+
+1733488354904:::1 POST: /user/login
+
+1733488370010:::1 GET: /admin/categories
+
+1733488370396:::1 GET: /admin/customer
+
+1733488371905:::1 GET: /admin/customer
+
+1733488373643:::1 GET: /admin/categories
+
+1733488374712:::1 GET: /admin/categories
+
+1733488375584:::1 GET: /admin/customer
+
+1733488378639:::1 GET: /admin/customer
+
+1733488379472:::1 GET: /admin/categories
+
+1733488998468:::1 GET: /user/logout
+
+1733489712358:::1 POST: /user/login
+
+1733489769711:::1 GET: /user/logout
+
+1733490024016:::1 GET: /user/logout
+
+1733490044839:::1 POST: /user/login
+
+1733490193663:::1 POST: /user/login
+
+1733490221946:::1 GET: /user/logout
+
+1733490237479:::1 POST: /user/login
+
+1733490264746:::1 GET: /admin/categories
+
+1733490265498:::1 GET: /admin/customer
+
+1733490267794:::1 GET: /admin/customer
+
+1733490268352:::1 GET: /admin/customer
+
+1733490268568:::1 GET: /admin/customer
+
+1733490268782:::1 GET: /admin/customer
+
+1733490297414:::1 GET: /admin/customer
+
+1733490298953:::1 GET: /admin/customer
+
+1733490299327:::1 GET: /admin/categories
+
+1733490299728:::1 GET: /admin/categories
+
+1733490300110:::1 GET: /admin/categories
+
+1733490301614:::1 GET: /admin/customer
+
+1733490363718:::1 GET: /admin/customer
+
+1733490364225:::1 GET: /admin/categories
+
+1733490364582:::1 GET: /admin/categories
+
+1733490364957:::1 GET: /admin/customer
+
+1733490365649:::1 GET: /admin/customer
+
+1733490817387:::1 GET: /admin/categories
+
+1733490818026:::1 GET: /admin/customer
+
+1733490818412:::1 GET: /admin/categories
+
+1733490819021:::1 GET: /admin/customer
+
+1733490819445:::1 GET: /admin/customer
+
+1733490819607:::1 GET: /admin/customer
+
+1733490819960:::1 GET: /admin/customer
+
+1733490820130:::1 GET: /admin/customer
+
+1733490822063:::1 GET: /admin/customer
+
+1733490824640:::1 GET: /admin/categories
+
+1733490825227:::1 GET: /admin/customer
+
+1733490829856:::1 GET: /admin/customer
+
+1733490830379:::1 GET: /admin/categories
+
+1733490830990:::1 GET: /admin/categories
+
+1733490841613:::1 GET: /admin/customer
+
+1733490843093:::1 GET: /admin/categories
+
+1733490845343:::1 GET: /admin/categories
+
+1733491127880:::1 GET: /admin/customer
+
+1733491129138:::1 GET: /admin/categories
+
+1733491129638:::1 GET: /admin/customer
+
+1733491130049:::1 GET: /admin/customer
+
+1733491130432:::1 GET: /admin/customer
+
+1733491130822:::1 GET: /admin/categories
+
+1733491131302:::1 GET: /admin/categories
+
+1733491131649:::1 GET: /admin/categories
+
+1733491131885:::1 GET: /admin/categories
+
+1733491132081:::1 GET: /admin/categories
+
+1733491132232:::1 GET: /admin/categories
+
+1733491132391:::1 GET: /admin/categories
+
+1733491132544:::1 GET: /admin/categories
+
+1733491132710:::1 GET: /admin/categories
+
+1733491132863:::1 GET: /admin/categories
+
+1733491133011:::1 GET: /admin/categories
+
+1733491133279:::1 GET: /admin/categories
+
+1733491133633:::1 GET: /admin/categories
+
+1733491133917:::1 GET: /admin/categories
+
+1733491134232:::1 GET: /admin/categories
+
+1733491134517:::1 GET: /admin/categories
+
+1733491134789:::1 GET: /admin/categories
+
+1733491135151:::1 GET: /admin/customer
+
+1733491135634:::1 GET: /admin/customer
+
+1733491136536:::1 GET: /admin/customer
+
+1733491136973:::1 GET: /admin/customer
+
+1733491137398:::1 GET: /admin/categories
+
+1733491238462:::1 GET: /admin/categories
+
+1733491238902:::1 GET: /admin/customer
+
+1733491241858:::1 GET: /admin/customer
+
+1733491242479:::1 GET: /admin/categories
+
+1733491242834:::1 GET: /admin/categories
+
+1733491243025:::1 GET: /admin/categories
+
+1733491243183:::1 GET: /admin/categories
+
+1733491243335:::1 GET: /admin/categories
+
+1733491243502:::1 GET: /admin/categories
+
+1733491243648:::1 GET: /admin/categories
+
+1733491243821:::1 GET: /admin/categories
+
+1733491243993:::1 GET: /admin/categories
+
+1733491244146:::1 GET: /admin/categories
+
+1733491244305:::1 GET: /admin/categories
+
+1733491244474:::1 GET: /admin/categories
+
+1733491244631:::1 GET: /admin/categories
+
+1733491244817:::1 GET: /admin/categories
+
+1733491244959:::1 GET: /admin/categories
+
+1733491245109:::1 GET: /admin/categories
+
+1733491245346:::1 GET: /admin/categories
+
+1733491270921:::1 GET: /admin/categories
+
+1733491271373:::1 GET: /admin/categories
+
+1733491271754:::1 GET: /admin/categories
+
+1733491271965:::1 GET: /admin/categories
+
+1733491272125:::1 GET: /admin/categories
+
+1733491272296:::1 GET: /admin/categories
+
+1733491272458:::1 GET: /admin/categories
+
+1733491273451:::1 GET: /admin/categories
+
+1733491274183:::1 GET: /admin/customer
+
+1733491274528:::1 GET: /admin/categories
+
+1733491274917:::1 GET: /admin/categories
+
+1733491276800:::1 GET: /admin/customer
+
+1733491277728:::1 GET: /admin/customer
+
+1733491278808:::1 GET: /admin/customer
+
+1733491279810:::1 GET: /admin/customer
+
+1733491281094:::1 GET: /admin/customer
+
+1733491390223:::1 GET: /admin/categories
+
+1733491390891:::1 GET: /admin/categories
+
+1733491391212:::1 GET: /admin/categories
+
+1733491391392:::1 GET: /admin/customer
+
+1733491391615:::1 GET: /admin/customer
+
+1733491391693:::1 GET: /admin/customer
+
+1733491391840:::1 GET: /admin/customer
+
+1733491391994:::1 GET: /admin/customer
+
+1733491392146:::1 GET: /admin/customer
+
+1733491392319:::1 GET: /admin/customer
+
+1733491392517:::1 GET: /admin/customer
+
+1733491392608:::1 GET: /admin/customer
+
+1733491392752:::1 GET: /admin/customer
+
+1733491392890:::1 GET: /admin/customer
+
+1733491469037:::1 GET: /admin/customer
+
+1733491469540:::1 GET: /admin/categories
+
+1733491469760:::1 GET: /admin/categories
+
+1733491469922:::1 GET: /admin/categories
+
+1733491470095:::1 GET: /admin/categories
+
+1733491665883:::1 GET: /admin/categories
+
+1733491666472:::1 GET: /admin/categories
+
+1733491666846:::1 GET: /admin/categories
+
+1733491783032:::1 GET: /admin/categories
+
+1733491783530:::1 GET: /admin/categories
+
+1733491783729:::1 GET: /admin/categories
+
+1733491783888:::1 GET: /admin/categories
+
+1733491784038:::1 GET: /admin/categories
+
+1733491784198:::1 GET: /admin/categories
+
+1733491784346:::1 GET: /admin/categories
+
+1733491784500:::1 GET: /admin/categories
+
+1733491784870:::1 GET: /admin/customer
+
+1733491785049:::1 GET: /admin/customer
+
+1733491785215:::1 GET: /admin/customer
+
+1733491785375:::1 GET: /admin/customer
+
+1733491785526:::1 GET: /admin/customer
+
+1733491785703:::1 GET: /admin/customer
+
+1733491785910:::1 GET: /admin/customer
+
+1733491786085:::1 GET: /admin/customer
+
+1733491786265:::1 GET: /admin/customer
+
+1733491786448:::1 GET: /admin/customer
+
+1733491786608:::1 GET: /admin/customer
+
+1733491786781:::1 GET: /admin/customer
+
+1733491786943:::1 GET: /admin/customer
+
+1733491787118:::1 GET: /admin/customer
+
+1733491787301:::1 GET: /admin/customer
+
+1733491787464:::1 GET: /admin/customer
+
+1733491787614:::1 GET: /admin/customer
+
+1733491796551:::1 GET: /user/logout
+
+1733491901705:::1 POST: /user/login
+
+1733491905718:::1 GET: /user/logout
+
+1733491927536:::1 POST: /user/login
+
+1733491931987:::1 GET: /admin/customer
+
+1733491932475:::1 GET: /admin/categories
+
+1733491932955:::1 GET: /admin/categories
+
+1733491933275:::1 GET: /admin/categories
+
+1733491933457:::1 GET: /admin/categories
+
+1733491933622:::1 GET: /admin/categories
+
+1733491933773:::1 GET: /admin/categories
+
+1733492088384:::1 GET: /admin/categories
+
+1733492088906:::1 GET: /admin/categories
+
+1733492089447:::1 GET: /admin/categories
+
+1733492089658:::1 GET: /admin/categories
+
+1733492089912:::1 GET: /admin/categories
+
+1733492090785:::1 GET: /admin/categories
+
+1733492091342:::1 GET: /admin/customer
+
+1733492091793:::1 GET: /admin/customer
+
+1733492093495:::1 GET: /admin/customer
+
+1733492127306:::1 GET: /admin/categories
+
+1733492127768:::1 GET: /admin/categories
+
+1733492127940:::1 GET: /admin/categories
+
+1733492128120:::1 GET: /admin/categories
+
+1733492128278:::1 GET: /admin/categories
+
+1733492128450:::1 GET: /admin/categories
+
+1733492128617:::1 GET: /admin/categories
+
+1733492128775:::1 GET: /admin/categories
+
+1733492128944:::1 GET: /admin/categories
+
+1733492129098:::1 GET: /admin/categories
+
+1733492129241:::1 GET: /admin/categories
+
+1733492143367:::1 GET: /admin/categories
+
+1733492143530:::1 GET: /admin/categories
+
+1733492143702:::1 GET: /admin/categories
+
+1733492143865:::1 GET: /admin/categories
+
+1733492154908:::1 GET: /admin/categories
+
+1733492155187:::1 GET: /admin/categories
+
+1733492155362:::1 GET: /admin/categories
+
+1733492155530:::1 GET: /admin/categories
+
+1733492155708:::1 GET: /admin/categories
+
+1733492155879:::1 GET: /admin/categories
+
+1733492158255:::1 GET: /admin/categories
+
+1733492158411:::1 GET: /admin/categories
+
+1733492158589:::1 GET: /admin/categories
+
+1733492158739:::1 GET: /admin/categories
+
+1733492158915:::1 GET: /admin/categories
+
+1733492159069:::1 GET: /admin/categories
+
+1733492159231:::1 GET: /admin/categories
+
+1733492330074:::1 GET: /admin/categories
+
+1733492330678:::1 GET: /admin/categories
+
+1733492331024:::1 GET: /admin/categories
+
+1733492331192:::1 GET: /admin/categories
+
+1733492331367:::1 GET: /admin/categories
+
+1733492331505:::1 GET: /admin/categories
+
+1733492331658:::1 GET: /admin/categories
+
+1733492331817:::1 GET: /admin/categories
+
+1733492336675:::1 GET: /admin/categories
+
+1733492336932:::1 GET: /admin/categories
+
+1733492337859:::1 GET: /admin/customer
+
+1733492338129:::1 GET: /admin/customer
+
+1733492338376:::1 GET: /admin/customer
+
+1733492338630:::1 GET: /admin/customer
+
+1733492338921:::1 GET: /admin/customer
+
+1733492339130:::1 GET: /admin/customer
+
+1733492339454:::1 GET: /admin/customer
+
+1733492340134:::1 GET: /admin/customer
+
+1733492340757:::1 GET: /admin/categories
+
+1733492341263:::1 GET: /admin/categories
+
+1733492560022:::1 GET: /admin/categories
+
+1733492560638:::1 GET: /admin/categories
+
+1733492561046:::1 GET: /admin/customer
+
+1733492561437:::1 GET: /admin/customer
+
+1733492561746:::1 GET: /admin/categories
+
+1733492561922:::1 GET: /admin/categories
+
+1733492562089:::1 GET: /admin/categories
+
+1733492562250:::1 GET: /admin/categories
+
+1733492562978:::1 GET: /admin/categories
+
+1733492563490:::1 GET: /admin/categories
+
+1733492563779:::1 GET: /admin/categories
+
+1733492569665:::1 GET: /admin/categories
+
+1733492570087:::1 GET: /admin/categories
+
+1733492570301:::1 GET: /admin/categories
+
+1733492570502:::1 GET: /admin/categories
+
+1733492570670:::1 GET: /admin/categories
+
+1733492570832:::1 GET: /admin/categories
+
+1733492571007:::1 GET: /admin/categories
+
+1733492571193:::1 GET: /admin/categories
+
+1733492571373:::1 GET: /admin/categories
+
+1733492571966:::1 GET: /admin/categories
+
+1733492572341:::1 GET: /admin/categories
+
+1733492572728:::1 GET: /admin/categories
+
+1733492573018:::1 GET: /admin/categories
+
+1733492573214:::1 GET: /admin/categories
+
+1733492573381:::1 GET: /admin/categories
+
+1733492573516:::1 GET: /admin/categories
+
+1733492573672:::1 GET: /admin/categories
+
+1733493032409:::1 GET: /admin/categories
+
+1733493032941:::1 GET: /admin/categories
+
+1733493033580:::1 GET: /admin/categories
+
+1733493034504:::1 GET: /admin/categories
+
+1733493040355:::1 GET: /admin/customer
+
+1733493040601:::1 GET: /admin/customer
+
+1733493041148:::1 GET: /admin/categories
+
+1733493041455:::1 GET: /admin/categories
+
+1733493041803:::1 GET: /admin/categories
+
+1733493042021:::1 GET: /admin/categories
+
+1733493042306:::1 GET: /admin/categories
+
+1733493043193:::1 GET: /admin/categories
+
+1733493043969:::1 GET: /admin/categories
+
+1733493044824:::1 GET: /admin/customer
+
+1733493045208:::1 GET: /admin/categories
+
+1733493098336:::1 GET: /admin/categories
+
+1733493098882:::1 GET: /admin/customer
+
+1733493099354:::1 GET: /admin/categories
+
+1733493099621:::1 GET: /admin/categories
+
+1733493099780:::1 GET: /admin/categories
+
+1733493199306:::1 GET: /admin/categories
+
+1733493200347:::1 GET: /admin/categories
+
+1733493201968:::1 GET: /admin/categories
+
+1733493202980:::1 GET: /admin/categories
+
+1733493207488:::1 GET: /admin/categories
+
+1733493208087:::1 GET: /admin/customer
+
+1733493208986:::1 GET: /admin/customer
+
+1733493209611:::1 GET: /admin/customer
+
+1733493328128:::1 GET: /admin/customer
+
+1733493339093:::1 GET: /admin/customer
+
+1733493491098:::1 GET: /admin/customer
+
+1733493541419:::1 GET: /admin/customer
+
+1733493617208:::1 GET: /admin/customer
+
+1733493622934:::1 GET: /admin/categories
+
+1733493729256:::1 GET: /admin/categories
+
+1733493732122:::1 GET: /admin/customer
+
+1733493735980:::1 GET: /admin/categories
+
+1733493737157:::1 GET: /admin/categories
+
+1733493737992:::1 GET: /admin/customer
+
+1733493866766:::1 GET: /admin/customer
+
+1733493868314:::1 GET: /admin/categories
+
+1733493873318:::1 GET: /admin/categories
+
+1733493908363:::1 GET: /admin/customer
+
+1733495346117:::1 GET: /admin/categories
+
+1733495346681:::1 GET: /admin/customer
+
+1733495348453:::1 GET: /admin/customer
+
+1733495348708:::1 GET: /admin/customer
+
+1733495360875:::1 GET: /admin/customer
+
+1733495361533:::1 GET: /admin/categories
+
+1733495362907:::1 GET: /admin/customer
+
+1733495363788:::1 GET: /admin/categories
+
+1733495743497:::1 GET: /admin/customer
+
+1733495758411:::1 GET: /admin/categories
+
+1733495759255:::1 GET: /admin/customer
+
+1733495763013:::1 GET: /admin/customer
+
+1733495765151:::1 GET: /admin/categories
+
+1733495765951:::1 GET: /admin/customer
+
+1733495767806:::1 GET: /admin/customer
+
+1733495768214:::1 GET: /admin/categories
+
+1733495787778:::1 GET: /admin/categories
+
+1733495788810:::1 GET: /admin/categories
+
+1733495790095:::1 GET: /admin/customer
+
+1733495791255:::1 GET: /admin/customer
+
+1733495800061:::1 GET: /admin/customer
+
+1733495801038:::1 GET: /admin/categories
+
+1733495802316:::1 GET: /admin/categories
+
+1733495802951:::1 GET: /admin/customer
+
+1733495812921:::1 GET: /admin/customer
+
+1733495813784:::1 GET: /admin/customer
+
+1733495814171:::1 GET: /admin/customer
+
+1733495814435:::1 GET: /admin/customer
+
+1733495814680:::1 GET: /admin/customer
+
+1733495814867:::1 GET: /admin/customer
+
+1733495815060:::1 GET: /admin/customer
+
+1733495815227:::1 GET: /admin/customer
+
+1733495815408:::1 GET: /admin/customer
+
+1733495815564:::1 GET: /admin/customer
+
+1733495895412:::1 GET: /admin/customer
+
+1733495895792:::1 GET: /admin/categories
+
+1733495896470:::1 GET: /admin/customer
+
+1733495899894:::1 GET: /admin/categories
+
+1733495900366:::1 GET: /admin/customer
+
+1733495900726:::1 GET: /admin/categories
+
+1733501531407:::1 POST: /user/login
+
+1733501552849:::1 GET: /admin/customer
+
+1733501557086:::1 GET: /admin/categories
+
+1733501558482:::1 GET: /admin/categories
+
+1733501575303:::1 GET: /admin/categories
+
+1733501576578:::1 GET: /admin/categories
+
+1733501597152:::1 GET: /admin/customer
+
+1733501597635:::1 GET: /admin/categories
+
+1733501762810:::1 GET: /admin/categories
+
+1733501763372:::1 GET: /admin/categories
+
+1733501763949:::1 GET: /admin/customer
+
+1733501764636:::1 GET: /admin/categories
+
+1733501773837:::1 GET: /admin/categories
+
+1733501774429:::1 GET: /admin/customer
+
+1733501957529:::1 GET: /admin/categories
+
+1733502016589:::1 GET: /admin/categories
+
+1733502017145:::1 GET: /admin/customer
+
+1733502066972:::1 GET: /admin/categories
+
+1733502068113:::1 GET: /admin/customer
+
+1733506131763:::1 GET: /admin/customer
+
+1733506287616:::1 GET: /admin/categories
+
+1733506300537:::1 GET: /admin/customer
+
+1733506301003:::1 GET: /admin/categories

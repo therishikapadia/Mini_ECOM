@@ -14,15 +14,22 @@ const orderSchema = new mongoose.Schema({
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true
+    required: true,
   },
   orderStatus: {
     type: String,
     enum: ["Approved", "Shipped", "Delivered", "Cancelled", "Pending"],
     default: "Pending",
   },
-},{timestamps:true});
+  isDeleted: {
+    type: Boolean,
+    default: false, // Default value set to false
+  },
+  notes: {
+    type: String,
+    default: "", // Default to empty string
+  },
+}, { timestamps: true });
 
 const Order = mongoose.model("Order", orderSchema);
-
 module.exports = Order;

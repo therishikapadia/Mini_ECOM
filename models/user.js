@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema(
         return this.role === 'CUSTOMER'; // Delivery address is required only if the role is CUSTOMER
       },
     },
+    isDeleted: {
+      type: Boolean,
+      default: false, // Default value set to false
+    },
   },
   { timestamps: true }
 );

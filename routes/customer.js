@@ -12,7 +12,7 @@ const {
 } = require("../controllers/order");
 
 //Manage orders
-router.route("/order")
+router.route("/order",restrictTo(["CUSTOMER"]))
   .all(checkForAuthentication)
     .post(handleAddOrder)
     .get(handleGetCustomerOrders)

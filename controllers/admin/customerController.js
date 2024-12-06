@@ -58,7 +58,6 @@ const {hashPassword}=require('../../utils/password')
       res.status(500).json({ error: 'Failed to update customer' });
     }
   };
-
   const handleDeleteCustomer = async (req, res) => {
     const { email } = req.body;
   
@@ -67,25 +66,30 @@ const {hashPassword}=require('../../utils/password')
     }
   
     try {
-      // Delete customer with the specified email and role "CUSTOMER"
-      const user = await User.findOneAndDelete({ email, role: 'CUSTOMER' });
+      // Find the user with the specified email and role "CUSTOMER"
+      const user = await User.findOne({ email, role: 'CUSTOMER' });
   
       if (!user) {
         return res.status(404).json({ error: 'Customer not found or not a CUSTOMER' });
       }
   
-      res.status(200).json({ message: 'Customer deleted successfully' });
+      // Set isDeleted to true instead of deleting the customer
+      user.isDeleted = true;
+      await user.save();
+  
+      res.status(200).json({ message: 'Customer marked as deleted successfully' });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Failed to delete customer' });
+      res.status(500).json({ error: 'Failed to mark customer as deleted' });
     }
   };
+  
   
 
 const handleGetAllCustomers = async (req, res) => {
   try {
     // Find all users with the role "CUSTOMER"
-    const customers = await User.find({ role: 'CUSTOMER' });
+    const customers = await User.find({ role: 'CUSTOMER',isDeleted:false });
 
     if (customers.length === 0) {
       return res.status(404).json({ error: 'No customers found' });
