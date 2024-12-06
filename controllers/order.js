@@ -52,7 +52,7 @@ const handleUpdateOrder = async (req, res) => {
       if (updatedProduct.attributes.quantity < 0) {
         // Rollback the stock update
         await Inventory.findByIdAndUpdate(order.product._id, {
-          $inc: { "attributes.quantity": quantityDifference },
+          $inc: { "attributes.quantity": quantityDifference }
         });
 
         return res.status(400).json({ error: "Insufficient stock" });
@@ -84,7 +84,7 @@ const handleUpdateOrder = async (req, res) => {
 //admin
 const handleGetAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find({})
+    const orders = await Order.find({isDeleted: false})
       .populate("product")
       .populate("customer"); // Assuming customer is referenced in the order
 
@@ -97,39 +97,40 @@ const handleGetAllOrders = async (req, res) => {
 
 //admin
 const handleDeleteOrder = async (req, res) => {
-    const { orderId } = req.body;
-  
-    if (!orderId) {
-      return res.status(400).json({ error: 'Order ID is required' });
+  const { orderId } = req.body;
+
+  if (!orderId) {
+    return res.status(400).json({ error: 'Order ID is required' });
+  }
+
+  try {
+    // Find the order by ID
+    const order = await Order.findById(orderId).populate('product');
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
     }
-  
-    try {
-      // Find the order by ID
-      const order = await Order.findById(orderId).populate('product');
-      if (!order) {
-        return res.status(404).json({ error: 'Order not found' });
-      }
-  
-      // If the order was not canceled, restore the product's stock quantity
-      if (order.orderStatus !== 'Cancelled') {
-        const product = await Product.findById(order.product._id);
-        product.attributes.quantity += order.quantity; // Restore the stock
-        await product.save();
-      }
-  
-      // Delete the order
-      await order.remove();
-  
-      res.status(200).json({ message: 'Order deleted successfully' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Failed to delete order' });
+
+    // If the order was not canceled, restore the product's stock quantity
+    if (order.orderStatus !== 'Cancelled') {
+      const product = await Product.findById(order.product._id);
+      product.attributes.quantity += order.quantity; // Restore the stock
+      await product.save();
     }
-  };
+
+    // Set isDeleted to true instead of removing the order
+    order.isDeleted = true;
+    await order.save(); // Save the updated order
+
+    res.status(200).json({ message: 'Order marked as deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to mark order as deleted' });
+  }
+};
 
 //customer
 const handleAddOrder = async (req, res) => {
-  const { product, quantity } = req.body;
+  const { product, quantity , notes} = req.body;
 
   const customer = req.user?._id; // Retrieve the authenticated user ID
   // console.log("Authenticated user:", req.user);
@@ -152,7 +153,9 @@ const handleAddOrder = async (req, res) => {
       product,
       quantity,
       customer,
+      notes,
       orderStatus: "Pending",
+      isDeleted:false,
     });
 
     await newOrder.save();
@@ -177,7 +180,7 @@ const handleGetCustomerOrders = async (req, res) => {
       const customerId = req.user._id; // Get the customer's ID from the authenticated user
   
       // Find all orders for the authenticated customer
-      const orders = await Order.find({ customer: customerId })
+      const orders = await Order.find({ customer: customerId ,isDeleted:false})
         .populate('product') // Populate product details
         .sort({ createdAt: -1 }); // Sort orders by the latest first
   
@@ -206,7 +209,7 @@ const handleUpdateCustomerOrder = async (req, res) => {
       }
   
       // Find the order by ID and ensure it belongs to the customer
-      const order = await Order.findOne({ _id: orderId, customer: req.user._id }).populate('product');
+      const order = await Order.findOne({ _id: orderId, customer: req.user._id,isDeleted:false}).populate('product');
       if (!order) {
         return res.status(404).json({ error: 'Order not found or does not belong to the user.' });
       }

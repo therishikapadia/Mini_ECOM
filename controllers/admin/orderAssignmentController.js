@@ -1,4 +1,4 @@
-const DeliveryDetails = require('../../models/delivery');
+// const DeliveryDetails = require('../../models/delivery');
 const User = require('../../models/user');
 
 const handleAssignDeliveryAgent = async (req, res) => {

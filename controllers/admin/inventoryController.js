@@ -8,7 +8,7 @@ const handleAddInventory = async (req, res) => {
 
   try {
     // Fetch category rules from the database
-    const categoryData = await Category.findOne({ name: category });
+    const categoryData = await Category.findOne({ name: category, });
     if (!categoryData) {
       return res.status(400).json({ error: "Invalid category" });
     }

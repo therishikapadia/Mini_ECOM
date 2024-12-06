@@ -1,7 +1,7 @@
 const User=require('../../models/user')
 const {hashPassword}=require('../../utils/password')
 
-  const handleAddDeliveryAgent = async (req, res) => {
+const handleAddDeliveryAgent = async (req, res) => {
     const { name, email, password } = req.body;
   
     if (!name || !email || !password ) {
@@ -26,8 +26,7 @@ const {hashPassword}=require('../../utils/password')
     }
   };
   
-
-  const handleUpdateDeliveryAgent = async (req, res) => {
+const handleUpdateDeliveryAgent = async (req, res) => {
     const { email, name, password,role} = req.body;
   
 
@@ -60,7 +59,7 @@ const {hashPassword}=require('../../utils/password')
     }
   };
 
-  const handleDeleteDeliveryAgent = async (req, res) => {
+const handleDeleteDeliveryAgent = async (req, res) => {
     const { email } = req.body;
   
     if (!email) {
@@ -82,7 +81,6 @@ const {hashPassword}=require('../../utils/password')
     }
   };
   
-
 const handleGetAllDeliveryAgents = async (req, res) => {
   try {
     // Find all users with the role "DELIVERY_AGENT"
@@ -99,9 +97,5 @@ const handleGetAllDeliveryAgents = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch delivery agents' });
   }
 };
-
-
-
-
 
 module.exports={handleAddDeliveryAgent,handleDeleteDeliveryAgent,handleGetAllDeliveryAgents,handleUpdateDeliveryAgent}

@@ -1,10 +1,11 @@
-const User=require('../models/user')
-const {setUser}=require('../services/auth')
+const User = require('../models/user')
+const { setUser } = require('../services/auth')
 const argon2 = require('argon2');
 const crypto = require('crypto');
-const { sendWelcomeEmail, sendPasswordResetEmail,sendPasswordResetNotificationEmail } = require('../utils/emailService');
-const {hashPassword} = require('../utils/password')
-const {validatePassword, comparePasswords} = require('../utils/passwordValidation')
+const { sendWelcomeEmail, sendPasswordResetEmail, sendPasswordResetNotificationEmail } = require('../utils/emailService');
+const { hashPassword } = require('../utils/password')
+const { validatePassword, comparePasswords } = require('../utils/passwordValidation');
+const { console } = require('inspector');
 
 async function verifyPassword(plaintextPassword, hashedPassword) {
     try {
@@ -21,9 +22,10 @@ async function verifyPassword(plaintextPassword, hashedPassword) {
     }
 }
 
-async function handleUserSignup(req,res) {
-    const {name, email, password, confirmPassword}=req.body
-    
+async function handleUserSignup(req, res) {
+    console.log("HI");
+    const { name, email, password, confirmPassword } = req.body
+    console.log(name, email, password, confirmPassword);
     // Validate required fields
     if (!name || !email || !password || !confirmPassword) {
         return res.status(400).json({ error: "All fields are required" });
@@ -32,9 +34,9 @@ async function handleUserSignup(req,res) {
     // Validate password strength
     const passwordValidation = validatePassword(password);
     if (!passwordValidation.isValid) {
-        return res.status(400).json({ 
-            error: "Password validation failed", 
-            details: passwordValidation.errors 
+        return res.status(400).json({
+            error: "Password validation failed",
+            details: passwordValidation.errors
         });
     }
 
@@ -42,16 +44,16 @@ async function handleUserSignup(req,res) {
     if (!comparePasswords(password, confirmPassword)) {
         return res.status(400).json({ error: "Passwords do not match" });
     }
-    
+
     try {
         const pwd = await hashPassword(password)
         const user = await User.create({
-            name:name,
-            email:email,
-            password:pwd,
+            name: name,
+            email: email,
+            password: pwd,
         })
         await sendWelcomeEmail(email, name)
-        return res.redirect('/')
+        return res.status(200).json({ success: true, data: { user } })
     } catch (error) {
         console.error('Signup error:', error);
         return res.status(500).json({ error: "Error during signup" });
@@ -60,6 +62,7 @@ async function handleUserSignup(req,res) {
 
 async function handleUserLogin(req, res) {
     const { email, password } = req.body;
+    console.log(email, password)
 
     if (!email || !password) {
         return res.render('login', { err: "Email and password are required" });
@@ -68,7 +71,6 @@ async function handleUserLogin(req, res) {
     try {
         // Find the user by email
         const user = await User.findOne({ email });
-        
         if (!user) {
             return res.render('login', { err: "Invalid username or password" });
         }
@@ -87,16 +89,15 @@ async function handleUserLogin(req, res) {
         // }
 
         // Password matches, generate a token and send it in a cookie
-        const token = setUser(user);  
+        const token = setUser(user);
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production', // Only use HTTPS in production
             sameSite: 'strict',
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
-        });  
+        });
         console.log(user);
-        if(req.user.role=="CUSTOMER") return res.redirect('/');
-        if(req.user.role=="ADMIN") return res.redirect('/admin/orders');
+        return res.status(200).json({ success: true, data: { user } ,token: token });
     } catch (error) {
         console.error('Login error:', error);
         return res.render('login', { err: "An error occurred during login" });
@@ -105,7 +106,7 @@ async function handleUserLogin(req, res) {
 
 async function handleForgotPassword(req, res) {
     const { email } = req.body;
-    
+
     try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -115,7 +116,7 @@ async function handleForgotPassword(req, res) {
         // Generate reset token and its hash
         const resetToken = crypto.randomBytes(32).toString('hex');
         const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
-        
+
         // Set token and expiration
         user.resetPasswordToken = hashedToken;
         user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour from now
@@ -123,10 +124,10 @@ async function handleForgotPassword(req, res) {
 
         // Send password reset email with unhashed token
         await sendPasswordResetEmail(user.email, resetToken);
-        
+
         console.log('Reset token generated:', resetToken); // For debugging
         console.log('Hashed token stored:', hashedToken); // For debugging
-        
+
         res.render('forgot-password', { message: 'Reset link sent to your email' });
     } catch (error) {
         console.error('Forgot password error:', error);
@@ -176,13 +177,26 @@ async function handleResetPassword(req, res) {
     }
 }
 
+// Controller for logging out
 async function handleUserLogout(req, res) {
-    res.clearCookie('token', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict'
-    });
-    return res.redirect('/login');
+    try {
+        // Clear the authentication token cookie
+        res.clearCookie('token', {
+            httpOnly: true, // Prevent JavaScript access to the cookie
+            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+            sameSite: 'strict' // CSRF protection
+        });
+
+        // Respond with a success message
+        return res.status(200).json({ success: true });
+    } catch (error) {
+        // Handle any errors that may occur during logout
+        return res.status(500).json({ error: "Logout failed" });
+    }
 }
 
-module.exports={handleUserSignup,handleUserLogin,handleForgotPassword,handleResetPassword,handleUserLogout}
+
+module.exports = handleUserLogout;
+
+
+module.exports = { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout }

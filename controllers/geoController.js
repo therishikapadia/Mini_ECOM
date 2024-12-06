@@ -13,7 +13,7 @@ redisClient.connect()
 // Controller function
 const addGeoData = async (req, res) => {
     try {
-        const { longitude, latitude, name } = req.body;
+        const { longitude, latitude, email } = req.body;
 
         // Validate input
         if (!longitude || !latitude || !name) {
@@ -25,10 +25,10 @@ const addGeoData = async (req, res) => {
         await redisClient.geoAdd(geoKey, {
             longitude: parseFloat(longitude),
             latitude: parseFloat(latitude),
-            member: name,
+            member: email,
         });
 
-        res.status(201).json({ message: 'Location added successfully', data: { longitude, latitude, name } });
+        res.status(201).json({ message: 'Location added successfully', data: { longitude, latitude, email } });
     } catch (error) {
         console.error('Error adding geo data:', error);
         res.status(500).json({ error: 'Internal server error' });

@@ -77,4 +77,24 @@ router.route('/orders')
 // Order assignment route
 router.post('/orders/assign', handleAssignDeliveryAgent);
 
+// Admin routes
+router.get('/orders', restrictTo(["ADMIN"]), async (req, res) => {
+    try {
+        const allOrders = await Order.find({})
+            .populate('customer', 'name email')
+            .sort({ createdAt: -1 });
+        return res.render("home", { order: allOrders });
+    } catch (error) {
+        console.error('Error fetching all orders:', error);
+        return res.status(500).render("error", { 
+            message: "Failed to load orders. Please try again later." 
+        });
+    }
+});
+
+router.get('/categories/new', restrictTo(["ADMIN"]), (req, res) => {
+    return res.render('add-category');
+});
+
+
 module.exports = router;

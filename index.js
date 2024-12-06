@@ -11,17 +11,22 @@ const cookieParser=require('cookie-parser')
 
 const {connectMongoDB}=require('./connect')
 
-const staticRouter=require('./routes/staticRouter')
+// const staticRouter=require('./routes/staticRouter')
 const userRoute=require('./routes/user')
 const customerRoute=require('./routes/customer')
 const adminRoute=require('./routes/admin')
-// const orderRoute=require('./routes/order')
-const deliveryRoute=require('./routes/delivery')
 const geoRoute=require('./routes/geoRoutes')
 
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT;
+
+const cors = require('cors');
+app.use(cors({
+    origin: 'http://localhost:3000', // React frontend origin
+    credentials: true, // Allow cookies
+}));
+
 
 // Added proper error handling for MongoDB connection
 connectMongoDB('mongodb://127.0.0.1:27017/omtraders')
@@ -47,11 +52,8 @@ app.set('views',path.resolve('./views'))
 const viewsRouter = require('./routes/viewsRouter');
 
 app.use('/', viewsRouter)  // Mount views router at root
-app.use('/static', staticRouter)  // Move static routes under /static path
 app.use('/user', userRoute)
-app.use('/customer', customerRoute)
-app.use('/admin', adminRoute)
-app.use('/delivery', deliveryRoute)
-
+app.use('/customer', restrictTo(["CUSTOMER"]),customerRoute)
+app.use('/admin',adminRoute)
 app.use('/add-geo', geoRoute);
 server.listen(port, () => console.log("Server running on port", port));

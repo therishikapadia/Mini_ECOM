@@ -1,6 +1,6 @@
 const fs = require('fs');
-const { getDeliveryLocation } = require('../services/redis');
-const DeliveryDetails = require('../models/delivery');
+// const { getDeliveryLocation } = require('../services/redis');
+// const DeliveryDetails = require('../models/delivery');
 
 function logReqRes(filename) {
     return (req, res, next) => fs.appendFile(filename,
