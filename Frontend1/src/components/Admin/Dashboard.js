@@ -1,6 +1,6 @@
 import React from 'react';
-import OverviewCards from "../Admin/OverviewCards";
-import Charts from "../Admin/Charts";
+import OverviewCards from "./OverviewCards";
+import Charts from "./Charts";
 
 // Dark and light mode color schemes
 const darkModeColors = {

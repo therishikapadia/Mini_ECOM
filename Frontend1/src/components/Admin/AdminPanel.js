@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import NavbarComponent from "./Navbar";
-import Category from "../Admin/Category";
-import Dashboard from "../Admin/Dashboard";
-import DisplayUser from "../Admin/DisplayUser";
+import Category from "./Category";
+import Dashboard from "./Dashboard";
+import DisplayUser from "./DisplayUser";
 
 const AdminPanel = ({ apiBaseUrl }) => {
   const [darkMode, setDarkMode] = useState(true);
