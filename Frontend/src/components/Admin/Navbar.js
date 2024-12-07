@@ -34,6 +34,7 @@ function NavbarComponent({ darkMode, toggleTheme, title }) {
         toast.success("Logout successful!");
         localStorage.removeItem("Users"); // Remove user info from localStorage
         localStorage.removeItem("authToken"); // Remove
+        localStorage.removeItem("role"); // Remove
         window.location.href = "/";  // Redirect to login page
       } else {
         console.error("Logout failed");

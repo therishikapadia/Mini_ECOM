@@ -3316,3 +3316,49 @@
 1733565983829:::1 GET: /user/logout
 
 1733566382329:::1 POST: /user/login
+
+1733570102466:::1 POST: /user/login
+
+1733570150905:::1 POST: /user/login
+
+1733570320290:::1 POST: /user/login
+
+1733570331122:::1 POST: /user/login
+
+1733570688910:::1 POST: /user/login
+
+1733570756141:::1 GET: /admin/categories
+
+1733570756831:::1 GET: /admin/customer
+
+1733570757896:::1 GET: /admin/categories
+
+1733570762096:::1 GET: /admin/categories
+
+1733570762572:::1 GET: /admin/customer
+
+1733570772123:::1 GET: /admin/customer
+
+1733570772748:::1 GET: /admin/categories
+
+1733570774879:::1 GET: /admin/categories
+
+1733570809431:::1 GET: /user/logout
+
+1733570958526:::1 POST: /user/login
+
+1733570985071:::1 GET: /user/logout
+
+1733571010904:::1 POST: /user/login
+
+1733571052073:::1 POST: /user/login
+
+1733571085785:::1 POST: /user/login
+
+1733571145131:::1 POST: /user/login
+
+1733571155244:::1 POST: /user/login
+
+1733571214130:::1 POST: /user/login
+
+1733571218937:::1 GET: /user/logout

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AdminPanel from "./components/Admin/AdminPanel";
 import LoginPage from "./components/Admin/LoginPage";
@@ -7,39 +7,38 @@ import SignupPage from "./components/Admin/SignupPage";
 import User from "./components/User/User";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); //This is for administration
-  const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false); // This is for User
-  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // For administration
+  const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false); // For user
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
-      setIsAuthenticated(true);
-      navigate("/admin", { replace: true }); // Prevent redundant history entries
-    } else {
-      setIsAuthenticated(false);
-      navigate("/", { replace: true }); // Prevent redundant history entries
+      const role = localStorage.getItem("role"); // Get role from localStorage
+      if (role === "ADMIN") {
+        setIsAuthenticated(true);
+      } else if (role === "CUSTOMER") {
+        setIsAuthenticatedUser(true);
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Intentionally leaving navigate out of the dependency array
+    setLoading(false); // Set loading to false after checking authentication
+  }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      setIsAuthenticatedUser(true);
-      navigate("/customer", { replace: true }); // Prevent redundant history entries
-    } else {
-      setIsAuthenticatedUser(false);
-      navigate("/", { replace: true }); // Prevent redundant history entries
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Intentionally leaving navigate out of the dependency array
-
+  // Render a loading spinner or placeholder while checking authentication
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <Routes>
-        {/* Protected Route for Admin Panel */}
+        {/* Admin Protected Route */}
         <Route
           path="/admin/*"
           element={
@@ -51,10 +50,11 @@ function App() {
           }
         />
 
+        {/* Customer/User Protected Route */}
         <Route
           path="/customer/*"
           element={
-            isAuthenticated ? (
+            isAuthenticatedUser ? (
               <User apiBaseUrl="http://localhost:8000" />
             ) : (
               <Navigate to="/" replace />
@@ -62,27 +62,30 @@ function App() {
           }
         />
 
-      
-        {/* Public Route for Login */}
+        {/* Login Route */}
         <Route
           path="/"
           element={
-            !isAuthenticatedUser ? (
+            !isAuthenticated && !isAuthenticatedUser ? (
               <LoginPage apiBaseUrl="http://localhost:8000" />
-            ) : (
+            ) : isAuthenticated ? (
               <Navigate to="/admin" replace />
+            ) : (
+              <Navigate to="/customer" replace />
             )
           }
         />
 
-        {/* Public Route for Signup */}
+        {/* Signup Route */}
         <Route
           path="/signup"
           element={
-            !isAuthenticated ? (
+            !isAuthenticated && !isAuthenticatedUser ? (
               <SignupPage apiBaseUrl="http://localhost:8000" />
-            ) : (
+            ) : isAuthenticated ? (
               <Navigate to="/admin" replace />
+            ) : (
+              <Navigate to="/customer" replace />
             )
           }
         />
