@@ -3142,3 +3142,173 @@
 1733506300537:::1 GET: /admin/customer
 
 1733506301003:::1 GET: /admin/categories
+
+1733555632406:::1 GET: /admin/categories
+
+1733555632844:::1 GET: /admin/customer
+
+1733555634726:::1 GET: /admin/customer
+
+1733555635330:::1 GET: /admin/customer
+
+1733555636349:::1 GET: /admin/categories
+
+1733555636988:::1 GET: /admin/categories
+
+1733555656413:::1 GET: /user/logout
+
+1733555728503:::1 POST: /user/login
+
+1733555741690:::1 POST: /user/login
+
+1733555839996:::1 GET: /user/logout
+
+1733555850637:::1 POST: /user/login
+
+1733555881691:::1 GET: /user/logout
+
+1733555891336:::1 POST: /user/login
+
+1733555899918:::1 GET: /admin/customer
+
+1733555900875:::1 GET: /admin/categories
+
+1733555906252:::1 GET: /admin/customer
+
+1733555907084:::1 GET: /admin/categories
+
+1733555923395:::1 GET: /admin/categories
+
+1733555923879:::1 GET: /admin/customer
+
+1733555924786:::1 GET: /admin/categories
+
+1733555925470:::1 GET: /admin/categories
+
+1733555925923:::1 GET: /admin/customer
+
+1733555927188:::1 GET: /admin/customer
+
+1733555927558:::1 GET: /admin/categories
+
+1733555928137:::1 GET: /admin/customer
+
+1733556133171:::1 GET: /admin/categories
+
+1733556133174:::1 GET: /admin/inventory
+
+1733556183813:::1 DELETE: /admin/inventory
+
+1733556183845:::1 GET: /admin/inventory
+
+1733556198853:::1 GET: /admin/customer
+
+1733556207603:::1 GET: /admin/categories
+
+1733556239427:::1 GET: /admin/customer
+
+1733556257489:::1 GET: /admin/categories
+
+1733556257492:::1 GET: /admin/inventory
+
+1733556261704:::1 GET: /admin/inventory
+
+1733556261706:::1 GET: /admin/categories
+
+1733556524266:::1 GET: /admin/categories
+
+1733556524285:::1 GET: /admin/inventory
+
+1733556872848:::1 GET: /admin/categories
+
+1733556872861:::1 GET: /admin/inventory
+
+1733556912152:::1 GET: /admin/categories
+
+1733556912157:::1 GET: /admin/inventory
+
+1733556916832:::1 GET: /admin/categories
+
+1733556916834:::1 GET: /admin/inventory
+
+1733556921289:::1 GET: /admin/categories
+
+1733556921301:::1 GET: /admin/inventory
+
+1733556925044:::1 GET: /admin/inventory
+
+1733556925047:::1 GET: /admin/categories
+
+1733556927542:::1 GET: /admin/inventory
+
+1733556927544:::1 GET: /admin/categories
+
+1733556941561:::1 GET: /admin/categories
+
+1733556941567:::1 GET: /admin/inventory
+
+1733557458163:::1 GET: /admin/categories
+
+1733557458165:::1 GET: /admin/inventory
+
+1733557466883:::1 GET: /admin/category-attributes
+
+1733557478276:::1 GET: /admin/category-attributes
+
+1733557508789:::1 GET: /admin/category-attributes
+
+1733557527450:::1 GET: /admin/inventory
+
+1733557527452:::1 GET: /admin/categories
+
+1733557530339:::1 GET: /admin/inventory
+
+1733557530340:::1 GET: /admin/categories
+
+1733557531519:::1 GET: /admin/inventory
+
+1733557531520:::1 GET: /admin/categories
+
+1733557535322:::1 GET: /admin/categories
+
+1733557535327:::1 GET: /admin/inventory
+
+1733558085723:::1 GET: /admin/categories
+
+1733558085724:::1 GET: /admin/inventory
+
+1733558087482:::1 GET: /admin/categories
+
+1733558087488:::1 GET: /admin/inventory
+
+1733558089760:::1 GET: /admin/categories
+
+1733558089762:::1 GET: /admin/inventory
+
+1733558092353:::1 GET: /admin/category-attributes
+
+1733558099476:::1 GET: /admin/inventory
+
+1733558099478:::1 GET: /admin/categories
+
+1733558105248:::1 GET: /admin/inventory
+
+1733558105249:::1 GET: /admin/categories
+
+1733558107688:::1 GET: /admin/inventory
+
+1733558107690:::1 GET: /admin/categories
+
+1733558111424:::1 GET: /admin/categories
+
+1733558111443:::1 GET: /admin/inventory
+
+1733558249595:::1 GET: /admin/categories
+
+1733558249596:::1 GET: /admin/inventory
+
+1733558252746:::1 GET: /admin/category-attributes
+
+1733558258017:::1 GET: /admin/categories
+
+1733558258018:::1 GET: /admin/inventory

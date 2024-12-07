@@ -53,7 +53,7 @@ const handleDeleteNewProduct = async (req, res) => {
 };
 
 const handleUpdateNewProduct = async (req, res) => {
-  const { oldName, newName, attributes } = req.body;
+  const { oldName, newName, attributes,categoryType } = req.body;
 
   if (!oldName || !newName) {
     return res
@@ -64,7 +64,7 @@ const handleUpdateNewProduct = async (req, res) => {
   try {
     const updatedCategory = await Category.findOneAndUpdate(
       { name: oldName }, // Search by the old name
-      { name: newName, attributes: attributes || undefined }, // Update with the new name and optional attributes
+      { name: newName, attributes: attributes || undefined ,categoryType:categoryType}, // Update with the new name and optional attributes
       { new: true }
     );
 
