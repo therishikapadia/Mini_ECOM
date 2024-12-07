@@ -3312,3 +3312,7 @@
 1733558258017:::1 GET: /admin/categories
 
 1733558258018:::1 GET: /admin/inventory
+
+1733565983829:::1 GET: /user/logout
+
+1733566382329:::1 POST: /user/login
