@@ -3380,3 +3380,11 @@
 1733572871040:::1 GET: /user/logout
 
 1733572877754:::1 POST: /user/login
+
+1733575445330:::1 POST: /user/login
+
+1733575971745:::1 POST: /user/login
+
+1733575992373:::1 GET: /admin/categories
+
+1733575992375:::1 GET: /admin/inventory

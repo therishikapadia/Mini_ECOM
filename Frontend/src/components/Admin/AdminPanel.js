@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import NavbarComponent from "./Navbar";
 import Category from "./Category";
-// import Inventory from "./Inventory";
+import Inventory from "./Inventory";
 import Dashboard from "./Dashboard";
 import DisplayUser from "./DisplayUser";
 
@@ -43,7 +43,7 @@ const AdminPanel = ({ apiBaseUrl }) => {
 
           {/* Nested Routes */}
           <Route path="/category" element={<Category darkMode={darkMode} />} />
-          {/* <Route path="/inventory" element={<Inventory apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} /> */}
+          <Route path="/inventory" element={<Inventory apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
           <Route path="/users" element={<DisplayUser apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
         </Routes>
       </div>
