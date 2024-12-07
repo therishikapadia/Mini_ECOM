@@ -3362,3 +3362,21 @@
 1733571214130:::1 POST: /user/login
 
 1733571218937:::1 GET: /user/logout
+
+1733572168568:::1 POST: /user/login
+
+1733572861485:::1 POST: /user/login
+
+1733572864234:::1 GET: /admin/customer
+
+1733572865220:::1 GET: /admin/categories
+
+1733572866359:::1 GET: /admin/categories
+
+1733572868276:::1 GET: /admin/customer
+
+1733572868812:::1 GET: /admin/categories
+
+1733572871040:::1 GET: /user/logout
+
+1733572877754:::1 POST: /user/login

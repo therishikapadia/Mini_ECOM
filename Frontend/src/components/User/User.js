@@ -1,11 +1,24 @@
-import React from 'react'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import UserNavbar from "./UserNavbar";
+import HomePage from "./HomePage"; // Home component
+import OrdersPage from "./OrdersPage"; // Orders component
+import SettingsPage from "./SettingsPage"; // Settings component
 
 function User() {
   return (
-    <div>
-      This is User Module
-    </div>
-  )
+    <>
+      <UserNavbar />
+      <div className="container mt-4">
+        <Routes>
+          {/* Define the routes */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Routes>
+      </div>
+    </>
+  );
 }
 
-export default User
+export default User;
