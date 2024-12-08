@@ -14,3 +14,7 @@ dist/
 
 # Ignore configuration files
 *.env
+.DS_Store
+Backend/controllers/.DS_Store
+Backend/views/.DS_Store
+Backend/controllers/.DS_Store

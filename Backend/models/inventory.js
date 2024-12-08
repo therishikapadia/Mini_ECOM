@@ -5,13 +5,15 @@ const inventorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  attributes: {
-    type: Object,
+  attributeId: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
-    default: {
-      quantity: 0, // Add quantity as part of attributes
-    },
+    ref:"Category"
   },
+  quantity: {
+    type: Number,
+    default: 0, // Default quantity
+  }
 });
 
 const Inventory = mongoose.model("Inventory", inventorySchema);

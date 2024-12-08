@@ -6,14 +6,19 @@ const categorySchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  attributes: {
-    type: Object,
-    required: true,
-  },
-  categoryType:{
+  attributes: [
+    {
+      type: mongoose.Schema.Types.Mixed,
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: () => new mongoose.Types.ObjectId(), // Automatically generate unique _id
+      },
+    },
+  ],
+  categoryType: {
     type: String,
     required: true,
-  }
+  },
 });
 
 const Category = mongoose.model('Category', categorySchema);

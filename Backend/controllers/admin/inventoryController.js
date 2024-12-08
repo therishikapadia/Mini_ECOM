@@ -1,40 +1,46 @@
 const Inventory = require("../../models/inventory");
 const Category = require("../../models/category");
-const { validateAttributes } = require("../../utils/validateAttributes");
+const mongoose = require("mongoose");
+// const { validateAttributes } = require("../../utils/validateAttributes");
 
-//Add new products
+//Add new products or update quantity
 const handleAddInventory = async (req, res) => {
-  const { category, attributes, quantity } = req.body;
+  //attributeId is attribute of object
+  const { category, attributeId, quantity } = req.body;
 
   try {
-    // Fetch category rules from the database
-    const categoryData = await Category.findOne({ name: category, });
+    // Fetch category data from the database
+    const categoryData = await Category.findOne({ name: category });
     if (!categoryData) {
       return res.status(400).json({ error: "Invalid category" });
     }
 
-    // Validate attributes against category rules
-    const isValid = validateAttributes(attributes, categoryData.attributes);
-    if (!isValid) {
-      return res
-        .status(400)
-        .json({ error: "Invalid attributes for the given category" });
+    // Validate if the provided attributeId exists in the category's attributes
+    const isValidAttribute = categoryData.attributes.some(
+      (attr) => String(attr._id) === attributeId
+    );
+
+    if (!isValidAttribute) {
+      return res.status(400).json({
+        error: "Invalid attributeId for the given category",
+      });
     }
 
-    // Check if a product with the same category and attributes exists
-    const existingProduct = await Inventory.findOne({ category, attributes });
+    // Check if a product with the same category and attributeId exists
+    const existingProduct = await Inventory.findOne({ category, attributeId });
 
     if (existingProduct) {
       // Update the quantity if the product already exists
-      existingProduct.attributes.quantity += quantity;
+      existingProduct.quantity =
+        Number(existingProduct.quantity) + Number(quantity);
       await existingProduct.save();
       return res.status(200).json({
         message: "Product quantity updated successfully",
         product: existingProduct,
-      }); 
+      });
     } else {
       // Create a new product if no existing product is found
-      const product = new Inventory({ category, attributes, quantity });
+      const product = new Inventory({ category, attributeId, quantity });
       await product.save();
       return res.status(201).json({
         message: "Product added successfully",
@@ -47,22 +53,73 @@ const handleAddInventory = async (req, res) => {
   }
 };
 
-
 const handleGetInventory = async (req, res) => {
-  const { category } = req.query;
+  const { category, attributeId } = req.query;
 
   try {
+    // If category is provided
     if (category) {
-      const products = await Inventory.find({ category });
-      if (!products.length) {
-        return res
-          .status(404)
-          .json({ error: "No products found for the given category" });
+      // Find the category in the Category collection to get the valid attributeId(s)
+      const categoryData = await Category.findOne({ name: category });
+
+      if (!categoryData) {
+        return res.status(404).json({ error: "Category not found" });
       }
-      return res.status(200).json({ products });
+
+      // If attributeId is provided, filter by it
+      let query = { category };
+
+      // If attributeId is provided, filter by attributeId
+      if (attributeId) {
+        query = { ...query, attributeId };
+      }
+
     }
 
-    const allProducts = await Inventory.find();
+    const allProducts = await Inventory.aggregate([
+      { $match: {} },
+      {
+        $lookup: {
+          from: "categories",
+          foreignField: "attributes._id",
+          localField: "attributeId",
+          as: "attributes",
+        },
+      },
+      {
+        $project: {
+          category: 1,
+          attributes: {
+            $arrayElemAt: [
+              {
+                $map: {
+                  input: "$attributes",
+                  as: "attribute",
+                  in: {
+                    $arrayElemAt: [
+                      {
+                        $filter: {
+                          input: "$$attribute.attributes",
+                          as: "final",
+                          cond: {
+                            $eq: [
+                              { $toString: "$$final._id" },
+                              { $toString: "$attributeId" },
+                            ],
+                          },
+                        },
+                      },
+                      0,
+                    ],
+                  },
+                },
+              },
+              0,
+            ],
+          },
+        },
+      },
+    ]);
     res.status(200).json({ products: allProducts });
   } catch (error) {
     console.error(error);
@@ -70,47 +127,50 @@ const handleGetInventory = async (req, res) => {
   }
 };
 
-const handleUpdateInventory = async (req, res) => {
-  const { oldName, newName, attributes } = req.body;
+// const handleUpdateInventory = async (req, res) => {
+//   const { name, attributeId, updatedAttribute } = req.body;
 
-  if (!oldName || !newName) {
-    return res.status(400).json({ error: "Both oldName and newName are required" });
-  }
+//   if (!name || !attributeId || !updatedAttribute) {
+//     return res
+//       .status(400)
+//       .json({ error: "Missing required fields: name, attributeId, or updatedAttribute" });
+//   }
 
-  try {
-    // Fetch the category data based on the old name
-    const categoryData = await Category.findOne({ name: oldName });
+//   try {
+//     // Fetch the category by name
+//     const categoryData = await Category.findOne({ name });
 
-    if (!categoryData) {
-      return res.status(404).json({ error: "Category not found" });
-    }
+//     if (!categoryData) {
+//       return res.status(404).json({ error: "Category not found" });
+//     }
 
-    // Validate the attributes if provided
-    if (attributes) {
-      const isValid = validateAttributes(attributes, categoryData.attributes);
-      if (!isValid) {
-        return res
-          .status(400)
-          .json({ error: "Invalid attributes for the given category" });
-      }
-    }
+//     // Find the attribute by ObjectId
+//     const attributeIndex = categoryData.attributes.findIndex(
+//       (attr) => attr._id.toString() === attributeId
+//     );
 
-    // Update the category name and attributes
-    const updatedCategory = await Category.findOneAndUpdate(
-      { name: oldName },
-      { name: newName, attributes: attributes || undefined },
-      { new: true }
-    );
+//     if (attributeIndex === -1) {
+//       return res.status(404).json({ error: "Attribute not found in the category" });
+//     }
 
-    res.status(200).json({
-      message: "Category updated successfully",
-      updatedCategory,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to update category" });
-  }
-};
+//     // Update the specific attribute
+//     categoryData.attributes[attributeIndex] = {
+//       ...categoryData.attributes[attributeIndex],
+//       ...updatedAttribute,
+//     };
+
+//     // Save the updated category
+//     await categoryData.save();
+
+//     res.status(200).json({
+//       message: "Category attribute updated successfully",
+//       updatedCategory: categoryData,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Failed to update category attribute" });
+//   }
+// };
 
 const handleDeleteInventory = async (req, res) => {
   const { productId } = req.body;
@@ -135,4 +195,8 @@ const handleDeleteInventory = async (req, res) => {
   }
 };
 
-module.exports = { handleAddInventory ,handleDeleteInventory,handleGetInventory,handleUpdateInventory};
+module.exports = {
+  handleAddInventory,
+  handleDeleteInventory,
+  handleGetInventory,
+};

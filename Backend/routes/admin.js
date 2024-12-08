@@ -26,7 +26,6 @@ const {
     handleAddInventory,
     handleDeleteInventory,
     handleGetInventory,
-    handleUpdateInventory
 } = require('../controllers/admin/inventoryController');
 
 const {
@@ -44,7 +43,6 @@ const {
 router.route('/inventory')
     .post(handleAddInventory)
     .get(handleGetInventory)
-    .patch(handleUpdateInventory)
     .delete(handleDeleteInventory);
 
 // Categories routes

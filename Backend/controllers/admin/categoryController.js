@@ -1,33 +1,41 @@
 const Category = require("../../models/category");
+const mongoose = require('mongoose');
 
 const handleAddNewProduct = async (req, res) => {
-  const { name, attributes, categoryType } = req.body; // Extract name, attributes, and categoryType from the request body
+  const { name, attributes, categoryType } = req.body;
 
   if (!name || !attributes || !categoryType) {
     return res
       .status(400)
       .json({
-        error:
-          "Product name, attributes, and category type (categoryType) are required",
+        error: "Product name, attributes, and category type are required",
       });
   }
 
   try {
+    // Add an _id to each attribute if not provided
+    const updatedAttributes = attributes.map(attr => ({
+      ...attr,
+      _id: new mongoose.Types.ObjectId(),
+    }));
+
     // Create a new product
-    const newProduct = new Product({
+    const newCategory = new Category({
       name,
-      attributes,
-      categoryType, // Assuming categoryType is part of your Product schema
+      attributes:updatedAttributes,
+      categoryType,
     });
 
     // Save the product to the database
-    await newProduct.save();
+    await newCategory.save();
 
     res
       .status(200)
-      .json({ message: "Product added successfully", product: newProduct });
+      .json({ message: "Product added successfully", product: newCategory });
   } catch (error) {
-    res.status(500).json({ error: "Failed to add product" });
+    console.error(error);
+res.status(500).json({ error: error.message || "Failed to add product" });
+
   }
 };
 
@@ -64,8 +72,9 @@ const handleUpdateNewProduct = async (req, res) => {
   try {
     const updatedCategory = await Category.findOneAndUpdate(
       { name: oldName }, // Search by the old name
-      { name: newName, attributes: attributes || undefined ,categoryType:categoryType}, // Update with the new name and optional attributes
-      { new: true }
+      { name: newName, attributes: attributes || undefined ,categoryType:categoryType}, 
+      
+      { new: true }// Update with the new name and optional attributes
     );
 
     if (!updatedCategory) {
