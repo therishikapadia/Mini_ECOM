@@ -19,7 +19,7 @@ const {
     handleAddNewProduct,
     handleDeleteNewProduct,
     handleUpdateNewProduct,
-    handleGetNewProduct
+    handleGetNewProduct,handleDeleteAttribute
 } = require('../controllers/admin/categoryController');
 
 const {
@@ -51,6 +51,8 @@ router.route('/categories')
     .delete(handleDeleteNewProduct)
     .patch(handleUpdateNewProduct)
     .get(handleGetNewProduct);
+
+router.delete('/categories/attribute',handleDeleteAttribute)
 
 // Customer routes
 router.route('/customer')

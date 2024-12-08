@@ -25,21 +25,21 @@ const handleUpdateOrder = async (req, res) => {
       return res.status(404).json({ error: "Order not found" });
     }
 
-    console.log("Current Order Quantity:", order.quantity);
-    console.log("New Quantity:", quantity);
+    // console.log("Current Order Quantity:", order.quantity);
+    // console.log("New Quantity:", quantity);
 
     // Update inventory and order only if quantity is provided and different
     if (quantity !== undefined && quantity !== order.quantity) {
       // Calculate the difference in quantity
-      const quantityDifference=quantity-order.quantity;
+      const quantityDifference = quantity - order.quantity;
 
-      console.log("Quantity Difference:", quantityDifference);
+      // console.log("Quantity Difference:", quantityDifference);
 
       // Ensure stock is sufficient before updating
       const updatedProduct = await Inventory.findByIdAndUpdate(
         order.product._id,
         {
-          $inc: { "attributes.quantity": -quantityDifference }, // Adjust stock
+          $inc: { quantity: -quantityDifference }, // Adjust stock
         },
         { new: true } // Return the updated document
       );
@@ -49,16 +49,16 @@ const handleUpdateOrder = async (req, res) => {
       }
 
       // Check if stock went negative
-      if (updatedProduct.attributes.quantity < 0) {
+      if (updatedProduct.quantity < 0) {
         // Rollback the stock update
         await Inventory.findByIdAndUpdate(order.product._id, {
-          $inc: { "attributes.quantity": quantityDifference }
+          $inc: { quantity: quantityDifference }
         });
 
         return res.status(400).json({ error: "Insufficient stock" });
       }
 
-      console.log("Updated Product Stock:", updatedProduct.attributes.quantity);
+      // console.log("Updated Product Stock:", updatedProduct.quantity);
 
       // Update the order quantity
       order.quantity = quantity;
@@ -70,9 +70,8 @@ const handleUpdateOrder = async (req, res) => {
     // Save the updated order
     await order.save();
 
-    console.log("Final Order Quantity:", order.quantity);
+    // console.log("Final Order Quantity:", order.quantity);
 
-    //this order is returning old quantity from inventory
     res.status(200).json({ message: "Order updated successfully", order });
   } catch (error) {
     console.error("Error updating order:", error);
@@ -81,12 +80,73 @@ const handleUpdateOrder = async (req, res) => {
 };
 
 
+
 //admin
 const handleGetAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find({isDeleted: false})
-      .populate("product")
-      .populate("customer"); // Assuming customer is referenced in the order
+    const orders = await Order.aggregate([
+      {
+        $match: {
+          isDeleted: false, // Only fetch non-deleted orders
+        },
+      },
+      {
+        $lookup: {
+          from: "inventories", // Collection name for Inventory
+          localField: "product",
+          foreignField: "_id",
+          as: "productDetails",
+        },
+      },
+      {
+        $unwind: "$productDetails",
+      },
+      {
+        $lookup: {
+          from: "categories", // Collection name for Category
+          localField: "productDetails.attributeId",
+          foreignField: "attributes._id",
+          as: "categoryDetails",
+        },
+      },
+      {
+        $unwind: "$categoryDetails",
+      },
+      {
+        $addFields: {
+          productAttributes: {
+            $arrayElemAt: [
+              {
+                $filter: {
+                  input: "$categoryDetails.attributes",
+                  as: "attr",
+                  cond: {
+                    $eq: ["$$attr._id", "$productDetails.attributeId"],
+                  },
+                },
+              },
+              0,
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          customer: 1,
+          quantity: 1,
+          orderStatus: 1,
+          createdAt: 1,
+          updatedAt: 1,
+          product: {
+            _id: "$productDetails._id",
+            category: "$productDetails.category",
+            quantity: "$productDetails.quantity",
+            attributes: "$productAttributes",
+          },
+        },
+      },
+    ]);
 
     res.status(200).json({ orders });
   } catch (error) {
@@ -95,38 +155,47 @@ const handleGetAllOrders = async (req, res) => {
   }
 };
 
+
 //admin
 const handleDeleteOrder = async (req, res) => {
   const { orderId } = req.body;
 
+  // Validate orderId
   if (!orderId) {
     return res.status(400).json({ error: 'Order ID is required' });
   }
 
   try {
-    // Find the order by ID
+    // Find the order by ID and populate the product reference
     const order = await Order.findById(orderId).populate('product');
     if (!order) {
       return res.status(404).json({ error: 'Order not found' });
     }
 
-    // If the order was not canceled, restore the product's stock quantity
+    // Restore the product's stock quantity if the order was not already canceled
     if (order.orderStatus !== 'Cancelled') {
-      const product = await Product.findById(order.product._id);
-      product.attributes.quantity += order.quantity; // Restore the stock
+      const product = await Inventory.findById(order.product._id);
+
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found in inventory' });
+      }
+
+      // Increment the inventory quantity
+      product.quantity += order.quantity;
       await product.save();
     }
 
-    // Set isDeleted to true instead of removing the order
+    // Soft delete the order by setting isDeleted to true
     order.isDeleted = true;
-    await order.save(); // Save the updated order
+    await order.save();
 
     res.status(200).json({ message: 'Order marked as deleted successfully' });
   } catch (error) {
-    console.error(error);
+    console.error('Error deleting order:', error);
     res.status(500).json({ error: 'Failed to mark order as deleted' });
   }
 };
+
 
 //customer
 const handleAddOrder = async (req, res) => {

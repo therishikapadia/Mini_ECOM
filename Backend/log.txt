@@ -3692,3 +3692,125 @@
 1733649170826:::1 POST: /admin/inventory
 
 1733649184048:::1 GET: /admin/inventory
+
+1733649447347:::1 GET: /admin/orders
+
+1733653119315:::1 GET: /admin/inventory
+
+1733653222698:::1 POST: /admin/inventory
+
+1733653235587:::1 GET: /admin/inventory
+
+1733653273196:::1 GET: /admin/categories
+
+1733653299405:::1 PATCH: /admin/categories
+
+1733653326514:::1 PATCH: /admin/categories
+
+1733653384064:::1 POST: /admin/categories
+
+1733653640338:::1 POST: /admin/inventory
+
+1733653645532:::1 POST: /admin/inventory
+
+1733653650165:::1 POST: /admin/inventory
+
+1733653655566:::1 POST: /admin/inventory
+
+1733653663549:::1 POST: /admin/inventory
+
+1733654830536:::1 GET: /admin/categories
+
+1733654849394:::1 GET: /admin/inventory
+
+1733655019295:::1 GET: /admin/inventory
+
+1733655036892:::1 POST: /admin/inventory
+
+1733655040485:::1 GET: /admin/inventory
+
+1733655129175:::1 GET: /admin/inventory
+
+1733655319747:::1 GET: /admin/orders
+
+1733655386999:::1 GET: /admin/orders
+
+1733655524057:::1 GET: /admin/orders
+
+1733655859752:::1 GET: /admin/orders
+
+1733656892786:::1 PATCH: /admin/orders
+
+1733656910198:::1 PATCH: /admin/orders
+
+1733657063194:::1 PATCH: /admin/orders
+
+1733657070110:::1 PATCH: /admin/orders
+
+1733657075998:::1 PATCH: /admin/orders
+
+1733657083712:::1 PATCH: /admin/orders
+
+1733657090220:::1 PATCH: /admin/orders
+
+1733657096838:::1 PATCH: /admin/orders
+
+1733657103449:::1 PATCH: /admin/orders
+
+1733657108302:::1 PATCH: /admin/orders
+
+1733657118689:::1 PATCH: /admin/orders
+
+1733657129186:::1 PATCH: /admin/orders
+
+1733657234061:::1 PATCH: /admin/orders
+
+1733657247912:::1 POST: /admin/inventory
+
+1733657294978:::1 POST: /admin/inventory
+
+1733657305607:::1 POST: /admin/inventory
+
+1733657315999:::1 POST: /admin/inventory
+
+1733657355756:::1 PATCH: /admin/orders
+
+1733657381937:::1 PATCH: /admin/orders
+
+1733657393342:::1 PATCH: /admin/orders
+
+1733657406668:::1 PATCH: /admin/orders
+
+1733657417570:::1 PATCH: /admin/orders
+
+1733657687464:::1 DELETE: /admin/orders
+
+1733657707576:::1 DELETE: /admin/orders
+
+1733657853985:::1 DELETE: /admin/orders
+
+1733658025819:::1 GET: /admin/orders
+
+1733660543520:::1 DELETE: /admin/categories/attribute
+
+1733660613399:::1 DELETE: /admin/categories/attribute
+
+1733660659681:::1 DELETE: /admin/categories/attribute
+
+1733660731347:::1 DELETE: /admin/categories/attribute
+
+1733660806600:::1 DELETE: /admin/categories/attribute
+
+1733660864785:::1 DELETE: /admin/categories/attribute
+
+1733660956379:::1 DELETE: /admin/categories/attribute
+
+1733660961655:::1 DELETE: /admin/categories/attribute
+
+1733661030050:::1 DELETE: /admin/categories/attribute
+
+1733661061590:::1 POST: /admin/categories
+
+1733661079739:::1 POST: /admin/categories
+
+1733661100317:::1 DELETE: /admin/categories/attribute

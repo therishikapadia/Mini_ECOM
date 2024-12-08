@@ -60,6 +60,43 @@ const handleDeleteNewProduct = async (req, res) => {
   }
 };
 
+const handleDeleteAttribute = async (req, res) => {
+  const { categoryId, attributeId } = req.body;
+
+  // Validate inputs
+  if (!categoryId || !attributeId) {
+    return res.status(400).json({ error: "categoryId and attributeId are required" });
+  }
+
+  try {
+    // Ensure the IDs are treated as ObjectIds
+    const categoryObjectId = new mongoose.Types.ObjectId(categoryId);
+    const attributeObjectId = new mongoose.Types.ObjectId(attributeId);
+
+    // Update the category by pulling the matching attribute
+    const updatedCategory = await Category.findOneAndUpdate(
+      { _id: categoryObjectId }, // Match the category by ID
+      {
+        $pull: { attributes: { _id: attributeObjectId } }, // Remove the matching attribute
+      },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedCategory) {
+      return res.status(404).json({ error: "Category not found or attribute not removed" });
+    }
+
+    res.status(200).json({
+      message: "Attribute deleted successfully",
+      category: updatedCategory,
+    });
+  } catch (error) {
+    console.error("Error deleting attribute:", error);
+    res.status(500).json({ error: "Failed to delete attribute" });
+  }
+};
+
+
 const handleUpdateNewProduct = async (req, res) => {
   const { oldName, newName, attributes,categoryType } = req.body;
 
@@ -115,4 +152,5 @@ module.exports = {
   handleDeleteNewProduct,
   handleGetNewProduct,
   handleUpdateNewProduct,
+  handleDeleteAttribute
 };

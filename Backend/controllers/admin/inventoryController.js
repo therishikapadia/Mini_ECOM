@@ -89,6 +89,8 @@ const handleGetInventory = async (req, res) => {
       {
         $project: {
           category: 1,
+          attributeId: 1,
+          quantity: 1,
           attributes: {
             $arrayElemAt: [
               {
@@ -171,7 +173,6 @@ const handleGetInventory = async (req, res) => {
 //     res.status(500).json({ error: "Failed to update category attribute" });
 //   }
 // };
-
 const handleDeleteInventory = async (req, res) => {
   const { productId } = req.body;
 
