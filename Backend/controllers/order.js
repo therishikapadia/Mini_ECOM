@@ -79,8 +79,6 @@ const handleUpdateOrder = async (req, res) => {
   }
 };
 
-
-
 //admin
 const handleGetAllOrders = async (req, res) => {
   try {
@@ -155,7 +153,6 @@ const handleGetAllOrders = async (req, res) => {
   }
 };
 
-
 //admin
 const handleDeleteOrder = async (req, res) => {
   const { orderId } = req.body;
@@ -196,12 +193,11 @@ const handleDeleteOrder = async (req, res) => {
   }
 };
 
-
 //customer
 const handleAddOrder = async (req, res) => {
-  const { product, quantity , notes} = req.body;
+  const { product, quantity , notes,customer} = req.body;
 
-  const customer = req.user?._id; // Retrieve the authenticated user ID
+  // const customer = req.user?._id; // Retrieve the authenticated user ID
   // console.log("Authenticated user:", req.user);
   // console.log("Authorization header:", req.headers.authorization);
 

@@ -3814,3 +3814,27 @@
 1733661079739:::1 POST: /admin/categories
 
 1733661100317:::1 DELETE: /admin/categories/attribute
+
+1733667052825:::1 POST: /admin/inventory
+
+1733667071864:::1 POST: /admin/inventory
+
+1733667089478:::1 GET: /admin/inventory
+
+1733667287985:::1 POST: /admin/inventory
+
+1733667329413:::1 POST: /admin/inventory
+
+1733667401737:::1 POST: /admin/inventory
+
+1733667427749:::1 POST: /admin/inventory
+
+1733667541132:::1 POST: /order
+
+1733667606509:::1 POST: /customer/order
+
+1733667606516:::1 GET: /login
+
+1733667625416:::1 POST: /customer/order
+
+1733667650625:::1 GET: /admin/orders
