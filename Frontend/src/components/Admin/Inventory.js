@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Button, Form, Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
+import {
+    Button,
+    Form,
+    Container,
+    Row,
+    Col,
+    Card,
+    Spinner,
+    Alert,
+    Modal,
+} from "react-bootstrap";
 
 const darkModeColors = {
     background: "#111d2e",
@@ -32,7 +42,7 @@ const cardLightModeColors = {
 
 const Inventory = ({ apiBaseUrl, darkMode }) => {
     const currentColors = darkMode ? darkModeColors : lightModeColors;
-    const cardColors = darkMode ? cardDarkModeColors : cardLightModeColors;
+    const currentCardColors = darkMode ? cardDarkModeColors : cardLightModeColors;
 
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -43,21 +53,31 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
     const [productId, setProductId] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
-    const [fetchingCategories, setFetchingCategories] = useState(false);
+    const [fetchingData, setFetchingData] = useState(false);
+    const [showModal, setShowModal] = useState(false); // Modal visibility
 
-    // Fetch categories
-    const fetchCategories = useCallback(async () => {
-        setFetchingCategories(true);
+    // Fetch categories and attributes together
+    const fetchCategoriesAndAttributes = useCallback(async () => {
+        setFetchingData(true);
         try {
-            const { data } = await axios.get(`${apiBaseUrl}/admin/categories`);
-            setCategories(data.categories || []);
+            // Fetch categories first
+            const { data: categoriesData } = await axios.get(`${apiBaseUrl}/admin/categories`);
+            setCategories(categoriesData.categories || []);
+            
+            // If a category is already selected, fetch its attributes
+            if (category) {
+                const { data: attributesData } = await axios.get(`${apiBaseUrl}/admin/categories`, {
+                    params: { category },
+                });
+                setCategoryAttributes(Object.keys(attributesData.categories.filter(c => c.name === category)[0].attributes));
+            }
         } catch (error) {
-            console.error("Error fetching categories:", error);
-            setMessage("Error fetching categories.");
+            console.error("Error fetching categories and attributes:", error);
+            setMessage("Error fetching categories and attributes.");
         } finally {
-            setFetchingCategories(false);
+            setFetchingData(false);
         }
-    }, [apiBaseUrl]);
+    }, [apiBaseUrl, category]);
 
     // Fetch products
     const fetchProducts = useCallback(async () => {
@@ -73,29 +93,19 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
         }
     }, [apiBaseUrl]);
 
-    // Fetch attributes for the selected category
-    const fetchAttributes = async (selectedCategory) => {
-        try {
-            const { data } = await axios.get(`${apiBaseUrl}/admin/category-attributes`, {
-                params: { category: selectedCategory },
-            });
-            setCategoryAttributes(data.attributes || []);
-        } catch (error) {
-            console.error("Error fetching category attributes:", error);
-            setMessage("Error fetching category attributes.");
-        }
-    };
-
     useEffect(() => {
-        fetchCategories();
+        fetchCategoriesAndAttributes();
         fetchProducts();
-    }, [fetchCategories, fetchProducts]);
+    }, [fetchCategoriesAndAttributes, fetchProducts]);
 
     // Handle category change
     const handleCategoryChange = (e) => {
         const selectedCategory = e.target.value;
         setCategory(selectedCategory);
-        if (selectedCategory) fetchAttributes(selectedCategory);
+        if (selectedCategory) {
+            // Fetch attributes for selected category
+            fetchCategoriesAndAttributes();
+        }
     };
 
     // Form submission handler
@@ -104,17 +114,32 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
         try {
             const payload = { category, attributes: Object.fromEntries(attributes), quantity };
             if (productId) {
+                // Handle product update (PATCH request)
                 await axios.patch(`${apiBaseUrl}/admin/inventory`, { ...payload, productId });
                 setMessage("Product updated successfully!");
             } else {
+                // Handle product creation (POST request)
                 await axios.post(`${apiBaseUrl}/admin/inventory`, payload);
                 setMessage("Product added successfully!");
             }
             resetForm();
             fetchProducts();
+            setShowModal(false); // Close the modal after saving
         } catch (error) {
             console.error("Error saving product:", error);
             setMessage("Error saving product.");
+        }
+    };
+
+    // Handle delete product
+    const handleDeleteProduct = async (productId) => {
+        try {
+            await axios.delete(`${apiBaseUrl}/admin/inventory`, { data: { productId } });
+            setMessage("Product deleted successfully!");
+            fetchProducts();
+        } catch (error) {
+            console.error("Error deleting product:", error);
+            setMessage("Error deleting product.");
         }
     };
 
@@ -141,13 +166,21 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                 <Alert variant={message.includes("Error") ? "danger" : "success"}>{message}</Alert>
             )}
 
-            {fetchingCategories || isLoading ? (
+            {fetchingData || isLoading ? (
                 <Spinner animation="border" className="d-block mx-auto" />
             ) : (
                 <>
-                    <Card className="mb-4" style={{ backgroundColor: cardColors.background, color: cardColors.text }}>
-                        <Card.Body>
-                            <h3>{productId ? "Update Product" : "Add Product"}</h3>
+                    {/* Add Product Button */}
+                    <Button variant="primary" onClick={() => setShowModal(true)} className="mb-4">
+                        Add Product
+                    </Button>
+
+                    {/* Modal for Adding/Editing Product */}
+                    <Modal show={showModal} onHide={() => setShowModal(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>{productId ? "Update Product" : "Add Product"}</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formCategory">
                                     <Form.Label>Category</Form.Label>
@@ -237,12 +270,44 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                                 <Button variant="primary" type="submit">
                                     {productId ? "Update Product" : "Add Product"}
                                 </Button>
-                                <Button variant="secondary" onClick={resetForm} className="ml-2">
-                                    Reset
+                                <Button variant="secondary" onClick={() => setShowModal(false)} className="ml-2">
+                                    Cancel
                                 </Button>
                             </Form>
-                        </Card.Body>
-                    </Card>
+                        </Modal.Body>
+                    </Modal>
+
+                    {/* Product List */}
+                    {products.length > 0 && (
+                        <div>
+                            <h3>Existing Products</h3>
+                            {products.map((product) => (
+                                <Card key={product._id} style={{ marginBottom: "20px" ,backgroundColor:currentCardColors.background,color:currentCardColors.text }}>
+                                    <Card.Body>
+                                        <h5>{product.category}</h5>
+                                        <p>Attributes: {JSON.stringify(product.attributes)}</p>
+                                        <p>Quantity: {product.quantity}</p>
+                                        <Button variant="danger" onClick={() => handleDeleteProduct(product._id)}>
+                                            Delete
+                                        </Button>
+                                        <Button
+                                            variant="primary"
+                                            onClick={() => {
+                                                setProductId(product._id);
+                                                setCategory(product.category);
+                                                setAttributes(Object.entries(product.attributes));
+                                                setQuantity(product.quantity);
+                                                setShowModal(true); // Open modal for editing
+                                            }}
+                                            className="ml-2"
+                                        >
+                                            Edit
+                                        </Button>
+                                    </Card.Body>
+                                </Card>
+                            ))}
+                        </div>
+                    )}
                 </>
             )}
         </Container>

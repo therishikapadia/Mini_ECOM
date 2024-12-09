@@ -3814,3 +3814,769 @@
 1733661079739:::1 POST: /admin/categories
 
 1733661100317:::1 DELETE: /admin/categories/attribute
+
+1733663834118:::1 GET: /admin/categories
+
+1733663835881:::1 GET: /admin/categories
+
+1733663840491:::1 GET: /admin/customer
+
+1733663841820:::1 GET: /admin/categories
+
+1733663841821:::1 GET: /admin/inventory
+
+1733663850444:::1 GET: /admin/categories
+
+1733665238318:::1 GET: /admin/categories
+
+1733665239977:::1 GET: /admin/categories
+
+1733665675788:::1 GET: /admin/categories
+
+1733665691243:::1 DELETE: /admin/categories/attribute
+
+1733665692660:::1 DELETE: /admin/categories/attribute
+
+1733665693092:::1 DELETE: /admin/categories/attribute
+
+1733665693276:::1 DELETE: /admin/categories/attribute
+
+1733665693436:::1 DELETE: /admin/categories/attribute
+
+1733665693588:::1 DELETE: /admin/categories/attribute
+
+1733665693748:::1 DELETE: /admin/categories/attribute
+
+1733665693876:::1 DELETE: /admin/categories/attribute
+
+1733665694430:::1 DELETE: /admin/categories/attribute
+
+1733665694732:::1 DELETE: /admin/categories/attribute
+
+1733665695492:::1 DELETE: /admin/categories/attribute
+
+1733665695763:::1 DELETE: /admin/categories/attribute
+
+1733665696261:::1 DELETE: /admin/categories/attribute
+
+1733665696692:::1 DELETE: /admin/categories/attribute
+
+1733665697740:::1 DELETE: /admin/categories/attribute
+
+1733665697972:::1 DELETE: /admin/categories/attribute
+
+1733665698612:::1 DELETE: /admin/categories/attribute
+
+1733665698973:::1 DELETE: /admin/categories/attribute
+
+1733665699635:::1 DELETE: /admin/categories/attribute
+
+1733665709597:::1 GET: /admin/categories
+
+1733665715215:::1 DELETE: /admin/categories/attribute
+
+1733666218025:::ffff:127.0.0.1 DELETE: /admin/categories/attribute
+
+1733666275726:::1 GET: /admin/categories
+
+1733666277253:::1 DELETE: /admin/categories/attribute
+
+1733666414186:::1 GET: /admin/categories
+
+1733666480524:::1 GET: /admin/categories
+
+1733666484269:::1 DELETE: /admin/categories/attribute
+
+1733667606189:::1 GET: /admin/categories
+
+1733667614604:::1 GET: /admin/categories
+
+1733667617752:::1 DELETE: /admin/categories/attribute
+
+1733667667452:::1 GET: /admin/categories
+
+1733667669908:::1 GET: /admin/categories
+
+1733667671635:::1 DELETE: /admin/categories/attribute
+
+1733667815054:::1 GET: /admin/categories
+
+1733667817390:::1 GET: /admin/categories
+
+1733667828491:::1 DELETE: /admin/categories/attribute
+
+1733667890012:::1 GET: /admin/categories
+
+1733667891403:::1 DELETE: /admin/categories/attribute
+
+1733667896389:::1 GET: /admin/categories
+
+1733667897619:::1 DELETE: /admin/categories/attribute
+
+1733667905169:::1 GET: /admin/categories
+
+1733668070280:::1 GET: /admin/categories
+
+1733668073636:::1 GET: /admin/categories
+
+1733668076371:::1 DELETE: /admin/categories/attribute
+
+1733668251945:::1 GET: /admin/categories
+
+1733668253578:::1 GET: /admin/categories
+
+1733668255451:::1 DELETE: /admin/categories/attribute
+
+1733668355043:::1 GET: /admin/categories
+
+1733668356774:::1 GET: /admin/categories
+
+1733668358338:::1 DELETE: /admin/categories/attribute
+
+1733668472822:::1 GET: /admin/categories
+
+1733668610650:::1 DELETE: /admin/categories/attribute
+
+1733668734920:::1 GET: /admin/categories
+
+1733668736714:::1 DELETE: /admin/categories/attribute
+
+1733668736732:::1 GET: /admin/categories
+
+1733668751052:::1 GET: /admin/categories
+
+1733669001081:::1 DELETE: /admin/categories
+
+1733669001090:::1 GET: /admin/categories
+
+1733669333180:::1 GET: /admin/categories
+
+1733669510922:::1 GET: /admin/categories
+
+1733669514701:::1 GET: /admin/categories
+
+1733669531181:::1 GET: /admin/categories
+
+1733669675369:::1 GET: /admin/categories
+
+1733669679416:::1 GET: /admin/categories
+
+1733669694955:::1 GET: /admin/categories
+
+1733669705171:::1 GET: /admin/categories
+
+1733669802911:::1 GET: /admin/categories
+
+1733669936902:::1 POST: /admin/categories
+
+1733669940579:::1 POST: /admin/categories
+
+1733669940907:::1 POST: /admin/categories
+
+1733669941529:::1 POST: /admin/categories
+
+1733669941707:::1 POST: /admin/categories
+
+1733669942676:::1 POST: /admin/categories
+
+1733669942843:::1 POST: /admin/categories
+
+1733669943018:::1 POST: /admin/categories
+
+1733669943179:::1 POST: /admin/categories
+
+1733669943347:::1 POST: /admin/categories
+
+1733669943507:::1 POST: /admin/categories
+
+1733669943699:::1 POST: /admin/categories
+
+1733669943891:::1 POST: /admin/categories
+
+1733669944051:::1 POST: /admin/categories
+
+1733669944228:::1 POST: /admin/categories
+
+1733669944379:::1 POST: /admin/categories
+
+1733669944554:::1 POST: /admin/categories
+
+1733669945811:::1 POST: /admin/categories
+
+1733669945987:::1 POST: /admin/categories
+
+1733669946164:::1 POST: /admin/categories
+
+1733669946315:::1 POST: /admin/categories
+
+1733669946483:::1 POST: /admin/categories
+
+1733669946659:::1 POST: /admin/categories
+
+1733669946804:::1 POST: /admin/categories
+
+1733669950077:::1 POST: /admin/categories
+
+1733669950258:::1 POST: /admin/categories
+
+1733669950395:::1 POST: /admin/categories
+
+1733669950516:::1 POST: /admin/categories
+
+1733669953827:::1 POST: /admin/categories
+
+1733669953988:::1 POST: /admin/categories
+
+1733669954155:::1 POST: /admin/categories
+
+1733669958365:::1 POST: /admin/categories
+
+1733669958514:::1 POST: /admin/categories
+
+1733669958666:::1 POST: /admin/categories
+
+1733669964246:::1 GET: /admin/categories
+
+1733670011143:::1 POST: /admin/categories
+
+1733670348178:::1 GET: /admin/categories
+
+1733670361704:::1 GET: /admin/categories
+
+1733670396628:::1 GET: /admin/categories
+
+1733670398441:::1 GET: /admin/categories
+
+1733670410748:::1 DELETE: /admin/categories
+
+1733670410761:::1 GET: /admin/categories
+
+1733671065909:::1 GET: /admin/categories
+
+1733671072003:::1 GET: /admin/categories
+
+1733671218181:::1 GET: /admin/categories
+
+1733671228393:::1 GET: /admin/categories
+
+1733671845177:::1 GET: /admin/categories
+
+1733672032181:::1 GET: /admin/categories
+
+1733672083732:::1 GET: /admin/categories
+
+1733672468705:::1 GET: /admin/categories
+
+1733672531385:::1 GET: /admin/categories
+
+1733672588057:::1 GET: /admin/categories
+
+1733672704647:::1 GET: /admin/categories
+
+1733672715431:::1 GET: /admin/categories
+
+1733672791399:::1 GET: /admin/categories
+
+1733673188890:::1 GET: /admin/categories
+
+1733673306180:::1 GET: /admin/categories
+
+1733673318514:::1 GET: /admin/categories
+
+1733673322151:::1 GET: /admin/categories
+
+1733673378117:::1 GET: /admin/categories
+
+1733673382514:::1 GET: /admin/categories
+
+1733673390178:::1 GET: /admin/categories
+
+1733673592618:::1 GET: /admin/categories
+
+1733673610255:::1 POST: /admin/categories
+
+1733673610283:::1 GET: /admin/categories
+
+1733673697753:::1 PATCH: /admin/categories
+
+1733673702784:::1 PATCH: /admin/categories
+
+1733673704717:::1 PATCH: /admin/categories
+
+1733673704915:::1 PATCH: /admin/categories
+
+1733673705109:::1 PATCH: /admin/categories
+
+1733673705260:::1 PATCH: /admin/categories
+
+1733673705397:::1 PATCH: /admin/categories
+
+1733673759759:::1 PATCH: /admin/categories
+
+1733673773231:::1 GET: /admin/categories
+
+1733674022881:::1 GET: /admin/categories
+
+1733674073863:::1 GET: /admin/categories
+
+1733674105962:::1 GET: /admin/categories
+
+1733674130347:::1 GET: /admin/categories
+
+1733674132736:::1 GET: /admin/categories
+
+1733674140198:::1 GET: /admin/categories
+
+1733674211869:::1 GET: /admin/categories
+
+1733674214081:::1 GET: /admin/categories
+
+1733674223229:::1 GET: /admin/categories
+
+1733674277935:::1 GET: /admin/categories
+
+1733674416153:::1 GET: /admin/categories
+
+1733674798176:::1 GET: /admin/categories
+
+1733674960659:::1 GET: /admin/categories
+
+1733675134330:::1 GET: /admin/categories
+
+1733675138824:::1 GET: /admin/categories
+
+1733675278683:::1 GET: /admin/categories
+
+1733675532325:::1 GET: /admin/categories
+
+1733675551631:::1 GET: /admin/categories
+
+1733675556359:::1 GET: /admin/categories
+
+1733675781243:::1 GET: /admin/categories
+
+1733675842817:::1 GET: /admin/categories
+
+1733675844000:::1 GET: /admin/categories
+
+1733675865522:::1 GET: /admin/categories
+
+1733675868245:::1 GET: /admin/categories
+
+1733675895145:::1 GET: /admin/categories
+
+1733675897413:::1 GET: /admin/categories
+
+1733675942077:::1 GET: /admin/categories
+
+1733675944144:::1 GET: /admin/categories
+
+1733675999876:::1 GET: /admin/categories
+
+1733676018444:::1 GET: /admin/categories
+
+1733676072212:::1 GET: /admin/categories
+
+1733676074537:::1 GET: /admin/categories
+
+1733676157133:::1 GET: /admin/categories
+
+1733676159308:::1 GET: /admin/categories
+
+1733676215230:::1 GET: /admin/categories
+
+1733676218045:::1 GET: /admin/categories
+
+1733678111713:::1 GET: /admin/categories
+
+1733678244526:::1 GET: /admin/categories
+
+1733678499059:::1 GET: /admin/categories
+
+1733678510251:::1 GET: /admin/categories
+
+1733678569389:::1 DELETE: /admin/categories
+
+1733678569412:::1 GET: /admin/categories
+
+1733678702289:::1 GET: /admin/categories
+
+1733678741160:::1 GET: /admin/categories
+
+1733678744568:::1 GET: /admin/categories
+
+1733678950179:::1 GET: /admin/categories
+
+1733678969175:::1 GET: /admin/categories
+
+1733678973180:::1 GET: /admin/categories
+
+1733679151183:::1 GET: /admin/categories
+
+1733679169407:::1 GET: /admin/categories
+
+1733679180351:::1 GET: /admin/categories
+
+1733679238937:::1 POST: /admin/categories
+
+1733679238954:::1 GET: /admin/categories
+
+1733679314525:::1 PATCH: /admin/categories
+
+1733679316607:::1 PATCH: /admin/categories
+
+1733679316919:::1 PATCH: /admin/categories
+
+1733679317093:::1 PATCH: /admin/categories
+
+1733679317229:::1 PATCH: /admin/categories
+
+1733679317381:::1 PATCH: /admin/categories
+
+1733679317519:::1 PATCH: /admin/categories
+
+1733679317661:::1 PATCH: /admin/categories
+
+1733679320289:::1 PATCH: /admin/categories
+
+1733679320469:::1 PATCH: /admin/categories
+
+1733679320655:::1 PATCH: /admin/categories
+
+1733679320812:::1 PATCH: /admin/categories
+
+1733679321023:::1 PATCH: /admin/categories
+
+1733679323229:::1 PATCH: /admin/categories
+
+1733679324957:::1 PATCH: /admin/categories
+
+1733679325109:::1 PATCH: /admin/categories
+
+1733679325326:::1 PATCH: /admin/categories
+
+1733679325477:::1 PATCH: /admin/categories
+
+1733679391281:::1 GET: /admin/categories
+
+1733679399770:::1 POST: /admin/categories
+
+1733679399780:::1 GET: /admin/categories
+
+1733679409975:::1 PATCH: /admin/categories
+
+1733679411157:::1 PATCH: /admin/categories
+
+1733679411317:::1 PATCH: /admin/categories
+
+1733679411484:::1 PATCH: /admin/categories
+
+1733679411741:::1 PATCH: /admin/categories
+
+1733679414429:::1 DELETE: /admin/categories
+
+1733679414436:::1 GET: /admin/categories
+
+1733679426575:::1 POST: /admin/categories
+
+1733679426581:::1 GET: /admin/categories
+
+1733679506574:::1 GET: /admin/categories
+
+1733679520195:::1 GET: /admin/categories
+
+1733679524096:::1 GET: /admin/categories
+
+1733679526702:::1 GET: /admin/categories
+
+1733679539727:::1 GET: /admin/categories
+
+1733679561972:::1 DELETE: /admin/categories/attribute
+
+1733679562016:::1 GET: /admin/categories
+
+1733680055982:::1 DELETE: /admin/categories/attribute
+
+1733680055992:::1 GET: /admin/categories
+
+1733680066247:::1 PATCH: /admin/categories
+
+1733680067428:::1 PATCH: /admin/categories
+
+1733680067588:::1 PATCH: /admin/categories
+
+1733680067741:::1 PATCH: /admin/categories
+
+1733680067915:::1 PATCH: /admin/categories
+
+1733680068084:::1 PATCH: /admin/categories
+
+1733680068420:::1 PATCH: /admin/categories
+
+1733680068604:::1 PATCH: /admin/categories
+
+1733680068780:::1 PATCH: /admin/categories
+
+1733680068980:::1 PATCH: /admin/categories
+
+1733680069156:::1 PATCH: /admin/categories
+
+1733680071397:::1 PATCH: /admin/categories
+
+1733680081254:::1 PATCH: /admin/categories
+
+1733680170834:::1 GET: /admin/categories
+
+1733680176700:::1 PATCH: /admin/categories
+
+1733680193109:::1 PATCH: /admin/categories
+
+1733680202548:::1 GET: /admin/categories
+
+1733680216889:::1 POST: /admin/categories
+
+1733680216900:::1 GET: /admin/categories
+
+1733680327192:::1 GET: /admin/categories
+
+1733680336351:::1 POST: /admin/categories
+
+1733680336358:::1 GET: /admin/categories
+
+1733680341927:::1 DELETE: /admin/categories
+
+1733680341935:::1 GET: /admin/categories
+
+1733680344162:::1 DELETE: /admin/categories
+
+1733680344169:::1 GET: /admin/categories
+
+1733680373217:::1 GET: /admin/categories
+
+1733680831953:::1 POST: /admin/categories
+
+1733680831964:::1 GET: /admin/categories
+
+1733680839056:::1 DELETE: /admin/categories
+
+1733680839065:::1 GET: /admin/categories
+
+1733681112164:::1 GET: /admin/categories
+
+1733681138989:::1 POST: /admin/categories
+
+1733681138996:::1 GET: /admin/categories
+
+1733681143934:::1 DELETE: /admin/categories
+
+1733681143942:::1 GET: /admin/categories
+
+1733681145207:::1 DELETE: /admin/categories
+
+1733681145214:::1 GET: /admin/categories
+
+1733708463392:::1 GET: /admin/categories
+
+1733708463450:::1 GET: /admin/categories
+
+1733708526321:::1 GET: /admin/categories
+
+1733709950178:::1 GET: /admin/categories
+
+1733709957692:::1 GET: /admin/categories
+
+1733710033784:::1 POST: /admin/categories
+
+1733710034805:::1 POST: /admin/categories
+
+1733710035397:::1 POST: /admin/categories
+
+1733710035534:::1 POST: /admin/categories
+
+1733710035805:::1 POST: /admin/categories
+
+1733710036078:::1 POST: /admin/categories
+
+1733710036270:::1 POST: /admin/categories
+
+1733710036444:::1 POST: /admin/categories
+
+1733710036781:::1 POST: /admin/categories
+
+1733710038309:::1 POST: /admin/categories
+
+1733710038485:::1 POST: /admin/categories
+
+1733710038653:::1 POST: /admin/categories
+
+1733710038791:::1 POST: /admin/categories
+
+1733710038941:::1 POST: /admin/categories
+
+1733710039101:::1 POST: /admin/categories
+
+1733710039237:::1 POST: /admin/categories
+
+1733710039501:::1 POST: /admin/categories
+
+1733710039661:::1 POST: /admin/categories
+
+1733710041934:::1 POST: /admin/categories
+
+1733710042085:::1 POST: /admin/categories
+
+1733710069998:::1 DELETE: /admin/categories/attribute
+
+1733710070016:::1 GET: /admin/categories
+
+1733710075224:::1 PATCH: /admin/categories
+
+1733710266226:::1 GET: /admin/categories
+
+1733710268672:::1 GET: /admin/categories
+
+1733710278425:::1 PATCH: /admin/categories
+
+1733710278845:::1 PATCH: /admin/categories
+
+1733710279005:::1 PATCH: /admin/categories
+
+1733710279293:::1 PATCH: /admin/categories
+
+1733710279525:::1 PATCH: /admin/categories
+
+1733710279706:::1 PATCH: /admin/categories
+
+1733710280069:::1 PATCH: /admin/categories
+
+1733710280237:::1 PATCH: /admin/categories
+
+1733710280380:::1 PATCH: /admin/categories
+
+1733710280575:::1 PATCH: /admin/categories
+
+1733710575473:::1 GET: /admin/categories
+
+1733710611073:::1 GET: /admin/categories
+
+1733710783967:::1 GET: /admin/categories
+
+1733710788892:::1 GET: /admin/categories
+
+1733710792631:::1 GET: /admin/categories
+
+1733710811041:::1 GET: /admin/categories
+
+1733710831362:::1 PATCH: /admin/categories
+
+1733710832195:::1 PATCH: /admin/categories
+
+1733710832356:::1 PATCH: /admin/categories
+
+1733710832508:::1 PATCH: /admin/categories
+
+1733710832795:::1 PATCH: /admin/categories
+
+1733710842507:::1 GET: /admin/categories
+
+1733710855343:::1 PATCH: /admin/categories
+
+1733710915109:::1 GET: /admin/categories
+
+1733710935511:::1 POST: /admin/categories
+
+1733710935524:::1 GET: /admin/categories
+
+1733710986753:::1 PATCH: /admin/categories
+
+1733710987620:::1 PATCH: /admin/categories
+
+1733710988028:::1 PATCH: /admin/categories
+
+1733710988300:::1 PATCH: /admin/categories
+
+1733711001449:::1 PATCH: /admin/categories
+
+1733711012295:::1 DELETE: /admin/categories
+
+1733711012307:::1 GET: /admin/categories
+
+1733711036265:::1 POST: /admin/categories
+
+1733711036274:::1 GET: /admin/categories
+
+1733714115578:::1 GET: /admin/categories
+
+1733714122605:::1 DELETE: /admin/categories
+
+1733714122726:::1 GET: /admin/categories
+
+1733714154720:::1 POST: /admin/categories
+
+1733714154784:::1 GET: /admin/categories
+
+1733714191715:::1 PATCH: /admin/categories
+
+1733714265991:::1 PATCH: /admin/categories
+
+1733714682801:::1 GET: /admin/categories
+
+1733714716527:::1 GET: /admin/categories
+
+1733714741650:::1 GET: /admin/categories
+
+1733715096125:::1 GET: /admin/categories
+
+1733715098748:::1 GET: /admin/categories
+
+1733715115588:::1 DELETE: /admin/categories
+
+1733715115617:::1 GET: /admin/categories
+
+1733715117756:::1 DELETE: /admin/categories
+
+1733715117779:::1 GET: /admin/categories
+
+1733715148990:::1 POST: /admin/categories
+
+1733715150117:::1 POST: /admin/categories
+
+1733715150331:::1 POST: /admin/categories
+
+1733715368028:::1 GET: /admin/categories
+
+1733715370622:::1 GET: /admin/categories
+
+1733715395185:::1 POST: /admin/categories
+
+1733715395247:::1 GET: /admin/categories
+
+1733715418252:::1 PATCH: /admin/categories
+
+1733715418294:::1 GET: /admin/categories
+
+1733715437227:::1 GET: /admin/customer
+
+1733715441936:::1 GET: /admin/categories
+
+1733715441939:::1 GET: /admin/inventory
+
+1733715449028:::1 GET: /admin/categories
+
+1733715449039:::1 GET: /admin/inventory
+
+1733715449054:::1 GET: /admin/categories
+
+1733715449103:::1 GET: /admin/categories
+
+1733722562227:::1 GET: /admin/categories
+
+1733722565325:::1 GET: /admin/categories
+
+1733722565329:::1 GET: /admin/inventory
+
+1733722566870:::1 GET: /admin/categories
+
+1733722566872:::1 GET: /admin/inventory
+
+1733722566949:::1 GET: /admin/categories
