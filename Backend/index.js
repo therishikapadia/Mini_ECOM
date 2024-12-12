@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const http = require('http');
-const redis = require('redis');
+// const redis = require('redis');
 
 
 const {logReqRes}=require('./middlewares')
@@ -16,10 +16,13 @@ const userRoute=require('./routes/user')
 const customerRoute=require('./routes/customer')
 const adminRoute=require('./routes/admin')
 const geoRoute=require('./routes/geoRoutes')
+const statRoute=require('./routes/stats')
 
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT;
+
+app.use(cookieParser())
 
 const cors = require('cors');
 app.use(cors({
@@ -38,7 +41,6 @@ connectMongoDB('mongodb://127.0.0.1:27017/omtraders')
 
 //middelwares
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser())
 app.use(express.json())
 app.use(logReqRes("log.txt"))
 app.use(checkForAuthentication)
@@ -53,7 +55,8 @@ const viewsRouter = require('./routes/viewsRouter');
 
 app.use('/', viewsRouter)  // Mount views router at root
 app.use('/user', userRoute)
-app.use('/customer',customerRoute)
+app.use('/customer',restrictTo('CUSTOMER'),customerRoute)
 app.use('/admin',adminRoute)
 app.use('/add-geo', geoRoute);
+app.use('/stats',statRoute)
 server.listen(port, () => console.log("Server running on port", port));

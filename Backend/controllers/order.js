@@ -91,24 +91,24 @@ const handleGetAllOrders = async (req, res) => {
       {
         $lookup: {
           from: "inventories", // Collection name for Inventory
-          localField: "product",
-          foreignField: "_id",
-          as: "productDetails",
+          localField: "product", 
+          foreignField: "_id", 
+          as: "productDetails", 
         },
       },
       {
-        $unwind: "$productDetails",
+        $unwind: "$productDetails", // Unwind the productDetails array
       },
       {
         $lookup: {
           from: "categories", // Collection name for Category
           localField: "productDetails.attributeId",
-          foreignField: "attributes._id",
+          foreignField: "attributes._id", 
           as: "categoryDetails",
         },
       },
       {
-        $unwind: "$categoryDetails",
+        $unwind: "$categoryDetails", // Unwind categoryDetails array
       },
       {
         $addFields: {
@@ -119,7 +119,7 @@ const handleGetAllOrders = async (req, res) => {
                   input: "$categoryDetails.attributes",
                   as: "attr",
                   cond: {
-                    $eq: ["$$attr._id", "$productDetails.attributeId"],
+                    $eq: ["$$attr._id", "$productDetails.attributeId"], 
                   },
                 },
               },
@@ -128,12 +128,32 @@ const handleGetAllOrders = async (req, res) => {
           },
         },
       },
+      // Lookup for customer details
+      {
+        $lookup: {
+          from: "users", // Collection name for Users (customers)
+          localField: "customer", // Join field from orders
+          foreignField: "_id", // Join field from users
+          as: "customerDetails", // The alias for customer data
+        },
+      },
+      {
+        $unwind: "$customerDetails", // Unwind the customerDetails array
+      },
       {
         $project: {
           _id: 1,
           customer: 1,
+          customerDetails: {
+            _id: 1,
+            name: 1,
+            email: 1,
+            delivery_address: 1,
+            createdAt: 1,
+          },
           quantity: 1,
           orderStatus: 1,
+          notes: 1,
           createdAt: 1,
           updatedAt: 1,
           product: {
@@ -152,6 +172,7 @@ const handleGetAllOrders = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch orders" });
   }
 };
+
 
 //admin
 const handleDeleteOrder = async (req, res) => {
@@ -238,6 +259,9 @@ const handleGetCustomerOrders = async (req, res) => {
     try {
       // Ensure the user is authenticated
       if (!req.user) {
+
+        console.log('User not authenticated:', req.user);
+
         return res.status(401).json({ error: 'Unauthorized. Please log in.' });
       }
       // const customerId=req.params.id
@@ -252,7 +276,8 @@ const handleGetCustomerOrders = async (req, res) => {
       if (!orders.length) {
         return res.status(404).json({ message: 'No orders found for this customer.' });
       }
-      res.status(200).json({ orders });
+      // console.log(orders)
+      res.status(200).json({orders});
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Failed to fetch customer orders' });
@@ -260,7 +285,7 @@ const handleGetCustomerOrders = async (req, res) => {
   };
   
 const handleUpdateCustomerOrder = async (req, res) => {
-    const { orderId, quantity } = req.body;
+    const { orderId, quantity,notes } = req.body;
   
     // Validate input
     if (!orderId || !quantity || quantity < 1) {
@@ -274,7 +299,7 @@ const handleUpdateCustomerOrder = async (req, res) => {
       }
   
       // Find the order by ID and ensure it belongs to the customer
-      const order = await Order.findOne({ _id: orderId, customer: req.user._id,isDeleted:false}).populate('product');
+      const order = await Order.findOne({ _id: orderId, customer: req.user._id,isDeleted:false,notes}).populate('product');
       if (!order) {
         return res.status(404).json({ error: 'Order not found or does not belong to the user.' });
       }

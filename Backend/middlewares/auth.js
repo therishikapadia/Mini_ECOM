@@ -1,22 +1,31 @@
 const {getUser}= require('../services/auth')
 
-function checkForAuthentication(req,res,next) {
-    const tokenCookie=req.cookies?.token
-    req.user=null
-    if(!tokenCookie) return next()
-        const token=tokenCookie
-        const user=getUser(token)
-        req.user=user
-        next()
+function checkForAuthentication(req, res, next) {
+    const tokenCookie = req.cookies?.token; // Extract the token from cookies
+    // req.user = null; // Default the user to null
+    
+    if (!tokenCookie) {
+        return next(); // If no token, proceed to the next middleware
     }
+
+    try {
+        const user = getUser(tokenCookie); // Validate and decode the token
+        req.user = user || null; // Assign the user if valid, else null
+    } catch (error) {
+        console.error('Authentication error:', error.message); // Log the error
+        req.user = null; // Ensure the user is null if an error occurs
+    }
+    next(); // Continue to the next middleware
+}
 
 function restrictTo(roles=[]) {
     return function(req,res,next){
-        console.log(roles);
-        if (!req.user) return res.redirect('/login')
-
+        console.log(roles,req.user);
+        // console.log(req.cookies)
+        // console.log(req);
+        // if (!req.user) return res.redirect('/login')
+        if (!req.user) return res.status(401).json({message:"User not set"})
         if (!roles.includes(req.user.role)) return res.end('Unauthorized')
-        
         next()
     }
 }

@@ -1,11 +1,10 @@
-const User = require('../models/user')
+const User = require('../models/user');
 const { setUser } = require('../services/auth')
+const { sendWelcomeEmail, sendPasswordResetEmail, sendPasswordResetNotificationEmail } = require('../utils/emailService');
 const argon2 = require('argon2');
 const crypto = require('crypto');
-const { sendWelcomeEmail, sendPasswordResetEmail, sendPasswordResetNotificationEmail } = require('../utils/emailService');
-const { hashPassword } = require('../utils/password')
+const { hashPassword } = require('../utils/password');
 const { validatePassword, comparePasswords } = require('../utils/passwordValidation');
-const { console } = require('inspector');
 
 async function verifyPassword(plaintextPassword, hashedPassword) {
     try {
@@ -24,8 +23,9 @@ async function verifyPassword(plaintextPassword, hashedPassword) {
 
 async function handleUserSignup(req, res) {
     console.log("HI");
-    const { name, email, password, confirmPassword } = req.body
+    const { name, email, password, confirmPassword } = req.body;
     console.log(name, email, password, confirmPassword);
+    
     // Validate required fields
     if (!name || !email || !password || !confirmPassword) {
         return res.status(400).json({ error: "All fields are required" });
@@ -46,23 +46,39 @@ async function handleUserSignup(req, res) {
     }
 
     try {
-        const pwd = await hashPassword(password)
-        const user = await User.create({
+        // Hash the password
+        const hashedPassword = await hashPassword(password);
+
+        // Generate a reset password token
+        const confirmationToken = crypto.randomBytes(32).toString('hex');
+
+        console.log('Generated token:', confirmationToken);
+
+        // Store the user data temporarily (pending confirmation)
+        const user = {
             name: name,
             email: email,
-            password: pwd,
-        })
-        await sendWelcomeEmail(email, name)
-        return res.status(200).json({ success: true, data: { user } })
+            password: hashedPassword,
+            resetPasswordToken: confirmationToken, // Assign the token to the schema field
+            isConfirmed: false // Set confirmation status to false
+        };
+
+        console.log('User created:', user);
+
+        // Send the welcome email with the reset password token
+        await sendWelcomeEmail(email, name, confirmationToken);
+
+        return res.status(200).json({ success: true, data: { user } });
     } catch (error) {
         console.error('Signup error:', error);
         return res.status(500).json({ error: "Error during signup" });
     }
 }
 
+
 async function handleUserLogin(req, res) {
     const { email, password } = req.body;
-    console.log(email, password)
+    console.log(email, password);
 
     if (!email || !password) {
         return res.render('login', { err: "Email and password are required" });
@@ -83,11 +99,6 @@ async function handleUserLogin(req, res) {
             return res.render('login', { err: "Invalid username or password" });
         }
 
-        //ask for delivery address  COMMENTED TO CONTINUE APP FLOW
-        // if (user.delivery_address==="OM"){
-        //     return res.render('address');
-        // }
-
         // Password matches, generate a token and send it in a cookie
         const token = setUser(user);
         res.cookie('token', token, {
@@ -97,7 +108,7 @@ async function handleUserLogin(req, res) {
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
         });
         console.log(user);
-        return res.status(200).json({ success: true, data: { user } ,token: token });
+        return res.status(200).json({ success: true, data: { user }, token: token });
     } catch (error) {
         console.error('Login error:', error);
         return res.render('login', { err: "An error occurred during login" });
@@ -177,6 +188,32 @@ async function handleResetPassword(req, res) {
     }
 }
 
+// Confirm sign-up
+async function confirmSignUp(req, res) {
+  const { token } = req.params;
+
+  console.log('Received token:', token);
+
+  try {
+    const user = await User.findOne({ resetPasswordToken: token });
+
+    console.log('User found:', user);
+
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid or expired token' });
+    }
+
+    user.isConfirmed = true;
+    user.resetPasswordToken = null;
+    await user.save();
+
+    res.status(200).json({ message: 'Sign-up confirmed successfully' });
+  } catch (error) {
+    console.error('Error confirming sign-up:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
 // Controller for logging out
 async function handleUserLogout(req, res) {
     try {
@@ -195,8 +232,4 @@ async function handleUserLogout(req, res) {
     }
 }
 
-
-module.exports = handleUserLogout;
-
-
-module.exports = { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout }
+module.exports = { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout, confirmSignUp };
