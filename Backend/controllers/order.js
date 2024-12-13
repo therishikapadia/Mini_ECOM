@@ -173,7 +173,6 @@ const handleGetAllOrders = async (req, res) => {
   }
 };
 
-
 //admin
 const handleDeleteOrder = async (req, res) => {
   const { orderId } = req.body;

@@ -1,13 +1,8 @@
 const express = require('express');
-const { addGeoData,getGeoData,setSelectedCustomers,getOptimizedRoute } = require('../controllers/geoController'); // Adjust the path
-const { get } = require('mongoose');
-
+const { processNearbyUsers} = require('../controllers/geoController'); // Adjust the path
 const router = express.Router();
 
 // Define the route
-router.post('/geoData', addGeoData);
-router.post('/geoData1', getGeoData);
-router.get('/optimized_route',getOptimizedRoute)
-router.post('/set_customers',setSelectedCustomers)
+router.post('/geoData',processNearbyUsers);
 
 module.exports = router;

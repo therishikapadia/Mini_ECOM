@@ -18,3 +18,4 @@ dist/
 Backend/controllers/.DS_Store
 Backend/views/.DS_Store
 Backend/controllers/.DS_Store
+Backend/log.txt

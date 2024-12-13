@@ -1,0 +1,72 @@
+const haversineDistance = (lat1, lon1, lat2, lon2) => {
+    // Earth's radius in kilometers
+    const R = 6371;
+  
+    // Convert latitude and longitude to radians
+    const toRadians = (degree) => degree * (Math.PI / 180);
+    
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+    
+    const a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2);
+    
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    
+    // Distance in kilometers
+    return R * c;
+  };
+
+const processNearbyUsers = (users, adminLocation) => {
+    return users.map(user => {
+      // Ensure full email is used
+      const email = user.email || user;
+      
+      // Check if user has valid coordinates
+      if (!user.latitude || !user.longitude) {
+        return {
+          email,
+          distance: null,
+          error: 'Invalid coordinates'
+        };
+      }
+  
+      // Calculate distance from admin location
+      const distance = haversineDistance(
+        adminLocation.latitude, 
+        adminLocation.longitude, 
+        user.latitude, 
+        user.longitude
+      );
+  
+      return {
+        email,
+        distance: Number(distance.toFixed(2)), // Round to 2 decimal places
+        coordinates: {
+          latitude: user.latitude,
+          longitude: user.longitude
+        }
+      };
+    });
+  };
+  
+  // Example usage
+  const adminLocation = { 
+    longitude: 72.59696188230406, 
+    latitude: 23.03965552350363 
+  };
+  
+  const users = [
+    { email: 'rishi@gmail.com', longitude: 72.1004, latitude: 23.232 },
+    { email: 'devansh@gmail.com', longitude: 72.1, latitude: 23.32 },
+    { email: 'example@gmail.com', longitude: 72.45, latitude: 23.1 }
+  ];
+  
+  const nearbyUsers = processNearbyUsers(users, adminLocation);
+  
+  console.log(JSON.stringify({
+    message: "Nearby users fetched successfully",
+    data: nearbyUsers
+  }, null, 2));

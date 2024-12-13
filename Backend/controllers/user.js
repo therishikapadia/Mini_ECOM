@@ -23,7 +23,7 @@ async function verifyPassword(plaintextPassword, hashedPassword) {
 
 async function handleUserSignup(req, res) {
     console.log("HI");
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword,longitude,latitude } = req.body;
     console.log(name, email, password, confirmPassword);
     
     // Validate required fields
@@ -60,7 +60,9 @@ async function handleUserSignup(req, res) {
             email: email,
             password: hashedPassword,
             resetPasswordToken: confirmationToken, // Assign the token to the schema field
-            isConfirmed: false // Set confirmation status to false
+            isConfirmed: false, // Set confirmation status to false
+            longitude,
+            latitude
         };
 
         console.log('User created:', user);
