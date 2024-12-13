@@ -31,9 +31,24 @@ const cardLightModeColors = {
   icon: "#000",
 };
 
+const innerCardDarkModeColors = {
+  background: "#20416e",
+  text: "#e0e0e0",
+  border: "#2c2c2c",
+  icon: "#fff",
+};
+
+const innerCardLightModeColors = {
+  background: "#f8f9fa",
+  text: "#000",
+  border: "#ddd",
+  icon: "#000",
+};
+
 const Category = ({ darkMode }) => {
   const currentColors = darkMode ? darkModeColors : lightModeColors;
   const cardCurrentColors = darkMode ? cardDarkModeColors : cardLightModeColors;
+  const innercardCurrentColors = darkMode ? innerCardDarkModeColors : innerCardLightModeColors;
 
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState({
@@ -58,82 +73,145 @@ const Category = ({ darkMode }) => {
     fetchCategories();
   }, []);
 
-  // Handle form changes
-  const handleFormChange = (field, value) => {
-    setNewCategory({ ...newCategory, [field]: value });
+  const handlePairChange = (groupIndex, pairIndex, field, value) => {
+    setNewCategory(prevState => {
+      const updatedAttributes = [...prevState.attributes];
+      updatedAttributes[groupIndex].pairs[pairIndex][field] = value;
+      return { ...prevState, attributes: updatedAttributes };
+    });
   };
-  
-  const handleAttributeChange = (index, field, value) => {
-    const updatedAttributes = [...newCategory.attributes];
-    updatedAttributes[index] = { ...updatedAttributes[index], [field]: value };
-    handleFormChange("attributes", updatedAttributes);
+
+  // Add a new key-value pair to a specific attribute group
+  const addNewPair = (groupIndex) => {
+    setNewCategory(prevState => {
+      const updatedAttributes = [...prevState.attributes];
+      updatedAttributes[groupIndex].pairs.push({ key: "", value: "" });
+      return { ...prevState, attributes: updatedAttributes };
+    });
   };
-  
-  const addNewAttribute = () => {
-    handleFormChange("attributes", [
-      ...newCategory.attributes,
-      { key: "", value: "" }, // Explicit key-value pair structure
-    ]);
+
+
+  const addNewAttributeGroup = () => {
+    setNewCategory(prevState => {
+      const updatedAttributes = [...prevState.attributes, { pairs: [] }];
+      return { ...prevState, attributes: updatedAttributes };
+    });
   };
-  
-  
-  const removeAttribute = (index) => {
-    const updatedAttributes = newCategory.attributes.filter((_, i) => i !== index);
-    handleFormChange("attributes", updatedAttributes);
+
+
+  // Remove a specific key-value pair from a group
+  const removePair = (groupIndex, pairIndex) => {
+    setNewCategory(prevState => {
+      const updatedAttributes = [...prevState.attributes];
+      updatedAttributes[groupIndex].pairs.splice(pairIndex, 1);
+      return { ...prevState, attributes: updatedAttributes };
+    });
   };
-  
-  const handleSaveCategory = async () => {
-    try {
-      let payload;
-  
-      if (editIndex !== null) {
-        // Editing an existing category
-        payload = {
-          oldName: categories[editIndex].name, // Pass old name
-          newName: newCategory.name, // Updated name
-          attributes: newCategory.attributes,
-          categoryType: newCategory.categoryType,
-        };
-  
-        // Make an API call to update the category
-        await axios.patch("http://localhost:8000/admin/categories", payload);
-      } else {
-        // Adding a new category
-        payload = {
-          name: newCategory.name, // New category name
-          attributes: newCategory.attributes,
-          categoryType: newCategory.categoryType,
-        };
-  
-        // Make an API call to add the category
-        await axios.post("http://localhost:8000/admin/categories", payload);
-      }
-  
-      console.log("Payload:", payload); // Debugging log
-  
-      // Refresh categories and reset modal state
-      fetchCategories();
-      setShowModal(false);
-      setNewCategory({ name: "", attributes: [], categoryType: "" });
-      setEditIndex(null);
-    } catch (error) {
-      console.error("Failed to save category:", error.response?.data || error.message);
+
+
+  const removeAttributeGroup = (groupIndex) => {
+    setNewCategory(prevState => {
+      const updatedAttributes = [...prevState.attributes];
+      updatedAttributes.splice(groupIndex, 1);
+      return { ...prevState, attributes: updatedAttributes };
+    });
+  };
+
+
+  const handleSaveCategory = () => {
+    let categoryData = {};
+
+    if (editIndex !== null) {
+      // Editing a category
+      categoryData = {
+        id: categories[editIndex]._id, // Use the unique category ID if available
+        oldName: categories[editIndex].name, // Existing name
+        newName: newCategory.name,           // Updated name
+        categoryType: newCategory.categoryType, // Updated category type
+        attributes: newCategory.attributes.map(attributeGroup => {
+          // Flatten each attribute group into key-value objects
+          const attributeObject = {};
+          attributeGroup.pairs.forEach(pair => {
+            attributeObject[pair.key] = pair.value;
+          });
+          return attributeObject;
+        }),
+      };
+    } else {
+      // Adding a new category
+      categoryData = {
+        name: newCategory.name,              // New category name
+        categoryType: newCategory.categoryType, // New category type
+        attributes: newCategory.attributes.map(attributeGroup => {
+          // Transform pairs into key-value objects
+          const attributeObject = {};
+          attributeGroup.pairs.forEach(pair => {
+            attributeObject[pair.key] = pair.value;
+          });
+          return {
+            ...attributeObject,
+            _id: new Date().getTime() + Math.random().toString(36).substr(2, 9), // Unique ID for each attribute
+          };
+        }),
+      };
     }
+
+    // Determine HTTP method and URL
+    const method = editIndex !== null ? "PATCH" : "POST";
+    const url = "http://localhost:8000/admin/categories";
+
+    // Send the request
+    fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(categoryData),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(
+          editIndex !== null
+            ? "Category updated successfully:"
+            : "Category added successfully:",
+          data
+        );
+        setShowModal(false); // Close modal on success
+        fetchCategories();   // Refresh categories
+      })
+      .catch(error => {
+        console.error(
+          editIndex !== null
+            ? "Error updating category:"
+            : "Error adding category:",
+          error
+        );
+      });
   };
-  
-  
-  
+
 
   const handleEditCategory = (index) => {
     const category = categories[index];
+
+    // Safeguard for undefined or missing attributes
+    const transformedAttributes = (category.attributes || []).map((attribute) => {
+      const pairs = Object.entries(attribute)
+        .filter(([key]) => key !== "_id") // Exclude _id from pairs
+        .map(([key, value]) => ({ key, value }));
+
+      return { ...attribute, pairs }; // Add the pairs for the frontend
+    });
+
     setNewCategory({
       name: category.name,
-      attributes: category.attributes,
+      attributes: transformedAttributes,
       categoryType: category.categoryType || "",
     });
+
     setEditIndex(index);
     setShowModal(true);
   };
+
 
   const handleRemoveCategory = async (index) => {
     try {
@@ -157,10 +235,17 @@ const Category = ({ darkMode }) => {
     }
   };
 
+  const handleFormChange = (field, value) => {
+    setNewCategory(prevState => ({
+      ...prevState,
+      [field]: value
+    }));
+  };
+
   return (
     <div className="p-4" style={{ backgroundColor: currentColors.background }}>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 style={{ color: currentColors.text }}>Categories</h3>
+        <h3 style={{ color: currentColors.text }}>Categories: </h3>
         <Button
           variant="primary"
           onClick={() => {
@@ -181,7 +266,8 @@ const Category = ({ darkMode }) => {
               style={{
                 backgroundColor: cardCurrentColors.background,
                 color: currentColors.text,
-                borderColor: cardCurrentColors.border,
+                // borderColor:cardCurrentColors.text,
+                // border:"1px solid"
               }}
             >
               <Button
@@ -205,16 +291,32 @@ const Category = ({ darkMode }) => {
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <p><strong>Type:</strong> {item.categoryType}</p>
+                {/* {console.log(item.attributes)} Logs the entire attributes array */}
 
                 {item.attributes.map((attr, attrIndex) => (
-                  <Card key={attrIndex} className="mb-3" style={{ backgroundColor: cardCurrentColors.background, color: currentColors.text }}>
+                  <Card
+                    key={attrIndex}
+                    className="mb-3"
+                    style={{ backgroundColor: innercardCurrentColors.background, color: innercardCurrentColors.text }}
+                  >
                     <Card.Body>
                       <h5>Attributes:</h5>
-                      {Object.keys(attr).map((key, keyIndex) => (
-                        <p key={keyIndex}>
-                          <strong>{key}:</strong> {attr[key]}
-                        </p>
-                      ))}
+                      {Object.entries(attr).map(([key, value], pairIndex) => {
+                        // Skip rendering _id or any non-attribute fields
+                        if (key === "_id") return null;
+
+                        // Check if value is an object, and only render if it's a string or number
+                        if (typeof value === "object") {
+                          console.warn(`Skipping object value for ${key}`);
+                          return null; // Skip object values
+                        }
+
+                        return (
+                          <p key={pairIndex}>
+                            <strong>{key}:</strong> {value}
+                          </p>
+                        );
+                      })}
                       <Button
                         variant="danger"
                         onClick={() => handleRemoveSpecificAttribute(item._id, attr._id)}
@@ -224,6 +326,8 @@ const Category = ({ darkMode }) => {
                     </Card.Body>
                   </Card>
                 ))}
+
+
                 <Button variant="warning" onClick={() => handleEditCategory(index)}>
                   Edit
                 </Button>
@@ -239,6 +343,7 @@ const Category = ({ darkMode }) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
+            {/* Category Name Input */}
             <Form.Group className="mb-3">
               <Form.Label>Category Name:</Form.Label>
               <Form.Control
@@ -248,6 +353,8 @@ const Category = ({ darkMode }) => {
                 placeholder="Enter category name"
               />
             </Form.Group>
+
+            {/* Category Type Input */}
             <Form.Group className="mb-3">
               <Form.Label>Category Type:</Form.Label>
               <Form.Control
@@ -258,49 +365,66 @@ const Category = ({ darkMode }) => {
               />
             </Form.Group>
 
+            {/* Attributes Section */}
             <h5>Attributes:</h5>
-{newCategory.attributes.map((attribute, index) => (
-  <div key={index} className="mb-3">
-    <div className="d-flex mb-2">
-      <Form.Control
-        type="text"
-        placeholder="Attribute Key"
-        value={attribute.key}
-        onChange={(e) => handleAttributeChange(index, "key", e.target.value)} // Update key
-        className="mr-2"
-      />
-      <Form.Control
-        type="text"
-        placeholder="Attribute Value"
-        value={attribute.value}
-        onChange={(e) => handleAttributeChange(index, "value", e.target.value)} // Update value
-      />
-    </div>
-    <Button
-      variant="danger"
-      onClick={() => removeAttribute(index)}
-      className="mt-2"
-    >
-      Remove Attribute
-    </Button>
-  </div>
-))}
-<Button variant="success" onClick={addNewAttribute}>
-  Add New Attribute
-</Button>
 
+            {newCategory.attributes.map((attributeGroup, groupIndex) => (
+              <div key={groupIndex} className="mb-3">
+                <h6>Attribute Group {groupIndex + 1}</h6>
 
+                {/* Render Key-Value Pairs for the Group */}
+                {attributeGroup.pairs.map((pair, pairIndex) => (
+                  <div key={pairIndex} className="d-flex mb-2">
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter key"
+                      value={pair.key || ""}
+                      onChange={(e) => handlePairChange(groupIndex, pairIndex, "key", e.target.value)}
+                      className="me-2"
+                    />
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter value"
+                      value={pair.value || ""}
+                      onChange={(e) => handlePairChange(groupIndex, pairIndex, "value", e.target.value)}
+                    />
+                    <Button variant="danger" onClick={() => removePair(groupIndex, pairIndex)} className="ms-2">
+                      Remove
+                    </Button>
+                  </div>
+                ))}
+
+                {/* Add New Key-Value Pair Button */}
+                <Button variant="success" onClick={() => addNewPair(groupIndex)}>
+                  Add Key-Value Pair
+                </Button>
+
+                {/* Remove Entire Attribute Group */}
+                <Button variant="danger" onClick={() => removeAttributeGroup(groupIndex)} className="ms-2">
+                  Remove Group
+                </Button>
+              </div>
+            ))}
+
+            {/* Add New Attribute Group */}
+            <Button variant="primary" onClick={addNewAttributeGroup}>
+              Add Attribute Group
+            </Button>
           </Form>
         </Modal.Body>
+
+        {/* Modal Footer with Save/Close buttons */}
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>
           <Button variant="primary" onClick={handleSaveCategory}>
-            Save Category
+            {editIndex !== null ? "Update Category" : "Save Category"}
           </Button>
         </Modal.Footer>
       </Modal>
+
+
     </div>
   );
 };

@@ -1,16 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import {
-    Button,
-    Form,
-    Container,
-    Row,
-    Col,
-    Card,
-    Spinner,
-    Alert,
-    Modal,
-} from "react-bootstrap";
+import { Button, Form, Container, Row, Col, Card, Spinner, Alert, Modal, } from "react-bootstrap";
 
 const darkModeColors = {
     background: "#111d2e",
@@ -48,13 +38,17 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
     const [categories, setCategories] = useState([]);
     const [category, setCategory] = useState("");
     const [categoryAttributes, setCategoryAttributes] = useState([]);
-    const [attributes, setAttributes] = useState([["", ""]]);
+    const [attributes, setAttributes] = useState([{}]);
     const [quantity, setQuantity] = useState(0);
     const [productId, setProductId] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [fetchingData, setFetchingData] = useState(false);
     const [showModal, setShowModal] = useState(false); // Modal visibility
+
+
+    const [selectedAttributeId, setSelectedAttributeId] = useState("");
+
 
     // Fetch categories and attributes together
     const fetchCategoriesAndAttributes = useCallback(async () => {
@@ -63,13 +57,14 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
             // Fetch categories first
             const { data: categoriesData } = await axios.get(`${apiBaseUrl}/admin/categories`);
             setCategories(categoriesData.categories || []);
-            
+
             // If a category is already selected, fetch its attributes
             if (category) {
                 const { data: attributesData } = await axios.get(`${apiBaseUrl}/admin/categories`, {
                     params: { category },
                 });
-                setCategoryAttributes(Object.keys(attributesData.categories.filter(c => c.name === category)[0].attributes));
+                const selectedCategory = attributesData.categories.find(c => c.name === category);
+                setCategoryAttributes(selectedCategory ? selectedCategory.attributes : []);
             }
         } catch (error) {
             console.error("Error fetching categories and attributes:", error);
@@ -103,25 +98,29 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
         const selectedCategory = e.target.value;
         setCategory(selectedCategory);
         if (selectedCategory) {
-            // Fetch attributes for selected category
-            fetchCategoriesAndAttributes();
+            fetchCategoriesAndAttributes(); // Fetch category-specific attributes
         }
     };
 
     // Form submission handler
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
-            const payload = { category, attributes: Object.fromEntries(attributes), quantity };
+            const payload = {
+                category,
+                attributeId: selectedAttributeId, // Send only the selected attribute ID
+                quantity,
+            };
+
             if (productId) {
-                // Handle product update (PATCH request)
                 await axios.patch(`${apiBaseUrl}/admin/inventory`, { ...payload, productId });
                 setMessage("Product updated successfully!");
             } else {
-                // Handle product creation (POST request)
                 await axios.post(`${apiBaseUrl}/admin/inventory`, payload);
                 setMessage("Product added successfully!");
             }
+
             resetForm();
             fetchProducts();
             setShowModal(false); // Close the modal after saving
@@ -130,6 +129,9 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
             setMessage("Error saving product.");
         }
     };
+
+
+
 
     // Handle delete product
     const handleDeleteProduct = async (productId) => {
@@ -146,7 +148,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
     // Reset form
     const resetForm = () => {
         setCategory("");
-        setAttributes([["", ""]]);
+        setAttributes([{}]);
         setQuantity(0);
         setProductId("");
     };
@@ -160,7 +162,6 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                 padding: "20px",
             }}
         >
-            <h1 className="text mb-4">Inventory Management</h1>
 
             {message && (
                 <Alert variant={message.includes("Error") ? "danger" : "success"}>{message}</Alert>
@@ -171,9 +172,12 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
             ) : (
                 <>
                     {/* Add Product Button */}
-                    <Button variant="primary" onClick={() => setShowModal(true)} className="mb-4">
-                        Add Product
-                    </Button>
+                    <div style={{marginBottom:"10px"}} className="d-flex justify-content-between align-items-center">
+                        <h3>Products:</h3>
+                        <Button variant="primary" style={{}} onClick={() => setShowModal(true)} className="mb-4">
+                            Add Product
+                        </Button>
+                    </div>
 
                     {/* Modal for Adding/Editing Product */}
                     <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -201,113 +205,102 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
 
                                 <Form.Group>
                                     <Form.Label>Attributes</Form.Label>
-                                    {attributes.map(([key, value], index) => (
-                                        <Row key={index} className="mb-2">
-                                            <Col>
-                                                <Form.Control
-                                                    as="select"
-                                                    value={key}
-                                                    onChange={(e) =>
-                                                        setAttributes((prev) =>
-                                                            prev.map((attr, i) =>
-                                                                i === index ? [e.target.value, attr[1]] : attr
-                                                            )
-                                                        )
-                                                    }
-                                                    required
-                                                >
-                                                    <option value="">Select Attribute</option>
-                                                    {categoryAttributes.map((attr) => (
-                                                        <option key={attr} value={attr}>
-                                                            {attr}
-                                                        </option>
-                                                    ))}
-                                                </Form.Control>
-                                            </Col>
-                                            <Col>
-                                                <Form.Control
-                                                    placeholder="Value"
-                                                    value={value}
-                                                    onChange={(e) =>
-                                                        setAttributes((prev) =>
-                                                            prev.map((attr, i) =>
-                                                                i === index ? [attr[0], e.target.value] : attr
-                                                            )
-                                                        )
-                                                    }
-                                                    required
-                                                />
-                                            </Col>
-                                            <Col xs="auto">
-                                                <Button
-                                                    variant="danger"
-                                                    onClick={() =>
-                                                        setAttributes((prev) =>
-                                                            prev.filter((_, i) => i !== index)
-                                                        )
-                                                    }
-                                                >
-                                                    Remove
-                                                </Button>
-                                            </Col>
-                                        </Row>
-                                    ))}
-                                    <Button variant="success" onClick={() => setAttributes((prev) => [...prev, ["", ""]])}>
-                                        Add Attribute
-                                    </Button>
+                                    <Form.Control
+                                        as="select"
+                                        value={selectedAttributeId}
+                                        onChange={(e) => setSelectedAttributeId(e.target.value)} // Save selected attribute ID
+                                        required
+                                    >
+                                        <option value="">Select an Attribute</option>
+                                        {categoryAttributes.map((attr) => (
+                                            <option key={attr._id} value={attr._id}>
+                                                {Object.entries(attr)
+                                                    .filter(([key]) => key !== "_id")
+                                                    .map(([key, value]) => `${key}: ${value}`)
+                                                    .join(" , ")} {/* Combine key-value pairs for display */}
+                                            </option>
+                                        ))}
+                                    </Form.Control>
                                 </Form.Group>
-
                                 <Form.Group controlId="formQuantity">
                                     <Form.Label>Quantity</Form.Label>
                                     <Form.Control
                                         type="number"
                                         value={quantity}
-                                        onChange={(e) => setQuantity(Number(e.target.value))}
+                                        onChange={(e) => setQuantity(parseInt(e.target.value))}
                                         required
                                     />
                                 </Form.Group>
 
-                                <Button variant="primary" type="submit">
+                                <Button variant="primary" type="submit" className="mt-3">
                                     {productId ? "Update Product" : "Add Product"}
-                                </Button>
-                                <Button variant="secondary" onClick={() => setShowModal(false)} className="ml-2">
-                                    Cancel
                                 </Button>
                             </Form>
                         </Modal.Body>
                     </Modal>
 
                     {/* Product List */}
-                    {products.length > 0 && (
-                        <div>
-                            <h3>Existing Products</h3>
-                            {products.map((product) => (
-                                <Card key={product._id} style={{ marginBottom: "20px" ,backgroundColor:currentCardColors.background,color:currentCardColors.text }}>
-                                    <Card.Body>
-                                        <h5>{product.category}</h5>
-                                        <p>Attributes: {JSON.stringify(product.attributes)}</p>
-                                        <p>Quantity: {product.quantity}</p>
-                                        <Button variant="danger" onClick={() => handleDeleteProduct(product._id)}>
-                                            Delete
-                                        </Button>
-                                        <Button
-                                            variant="primary"
-                                            onClick={() => {
-                                                setProductId(product._id);
-                                                setCategory(product.category);
-                                                setAttributes(Object.entries(product.attributes));
-                                                setQuantity(product.quantity);
-                                                setShowModal(true); // Open modal for editing
-                                            }}
-                                            className="ml-2"
-                                        >
-                                            Edit
-                                        </Button>
-                                    </Card.Body>
-                                </Card>
-                            ))}
-                        </div>
-                    )}
+                    <Row>
+                        {products.map((product) => {
+                            const productAttributes = product.attributes || {};
+
+                            return (
+                                <Col key={product._id} md={4} className="mb-3">
+                                    <Card
+                                        style={{
+                                            backgroundColor: currentCardColors.background,
+                                            color: currentCardColors.text,
+                                            border: "1px solid #ccc",
+                                        }}
+                                    >
+                                        <Card.Body>
+                                            <h4>{product.category}</h4>
+                                            <h5>Quantity: {product.quantity}</h5>
+
+                                            {/* Display Attributes */}
+                                            <div style={{ fontSize: "18px" }}>
+                                                <h5 style={{ marginBottom: "10px" }}>Attributes:{" "}</h5>
+                                                {Object.keys(productAttributes).length > 0 ? (
+                                                    <div style={{ fontSize: "16px", marginLeft: "10px", marginBottom: "20px" }}>
+                                                        {Object.entries(productAttributes)
+                                                            .filter(([key]) => key !== "_id") // Exclude _id
+                                                            .map(([key, value]) => (
+                                                                <div key={key}>
+                                                                    {key}: {value}{" "}
+                                                                </div>
+                                                            ))}
+                                                    </div>
+                                                ) : (
+                                                    <em>No attributes available 😒</em>
+                                                )}
+                                            </div>
+
+                                            {/* Edit and Delete buttons */}
+                                            <Button
+                                                variant="warning"
+                                                onClick={() => {
+                                                    setProductId(product._id);
+                                                    setCategory(product.category);
+                                                    setAttributes(product.attributes || [{}]);
+                                                    setQuantity(product.quantity);
+                                                    setShowModal(true);
+                                                }}
+                                            >
+                                                Edit
+                                            </Button>
+                                            <Button
+                                                variant="danger"
+                                                onClick={() => handleDeleteProduct(product._id)}
+                                                className="ml-2"
+                                            >
+                                                Delete
+                                            </Button>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            );
+                        })}
+                    </Row>
                 </>
             )}
         </Container>

@@ -99,7 +99,6 @@ const handleDeleteAttribute = async (req, res) => {
 
 const handleUpdateNewProduct = async (req, res) => {
   const { oldName, newName, attributes,categoryType } = req.body;
-  console.log(oldName, newName, attributes,categoryType)
   if (!oldName || !newName) {
     return res
       .status(400)

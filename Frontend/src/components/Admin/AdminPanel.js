@@ -6,6 +6,7 @@ import Category from "./Category";
 import Inventory from "./Inventory";
 import Dashboard from "./Dashboard";
 import DisplayUser from "./DisplayUser";
+import DisplayOrder from "./DisplayOrder";
 
 const AdminPanel = ({ apiBaseUrl }) => {
   const [darkMode, setDarkMode] = useState(true);
@@ -45,6 +46,7 @@ const AdminPanel = ({ apiBaseUrl }) => {
           <Route path="/category" element={<Category darkMode={darkMode} />} />
           <Route path="/inventory" element={<Inventory apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
           <Route path="/users" element={<DisplayUser apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
+          <Route path="/orders" element={<DisplayOrder apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
         </Routes>
       </div>
     </div>
@@ -64,6 +66,10 @@ const NavbarWithDynamicTitle = ({ darkMode, toggleTheme }) => {
         return "Category Management";
       case "/admin/users":
         return "User Management";
+      case "/admin/inventory":
+        return "Inventory Management";
+      case "/admin/orders":
+        return "Order Management";
       default:
         return "Admin Panel";
     }

@@ -53,7 +53,7 @@ const viewsRouter = require('./routes/viewsRouter');
 
 app.use('/', viewsRouter)  // Mount views router at root
 app.use('/user', userRoute)
-app.use('/customer', restrictTo(["CUSTOMER"]),customerRoute)
+app.use('/customer',restrictTo(["CUSTOMER"]),customerRoute)
 app.use('/admin',adminRoute)
 app.use('/add-geo', geoRoute);
 server.listen(port, () => console.log("Server running on port", port));
