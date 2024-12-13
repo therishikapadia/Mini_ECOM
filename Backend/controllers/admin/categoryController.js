@@ -62,6 +62,7 @@ const handleDeleteNewProduct = async (req, res) => {
 
 const handleDeleteAttribute = async (req, res) => {
   const { categoryId, attributeId } = req.body;
+  console.log(categoryId, attributeId);
 
   // Validate inputs
   if (!categoryId || !attributeId) {

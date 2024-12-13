@@ -37,7 +37,11 @@ const Order = ({ apiBaseUrl }) => {
     const fetchInventory = async () => {
         try {
             const response = await axios.get(`${apiBaseUrl}/admin/inventory`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
             });
             setInventory(response.data.products);
         } catch (err) {

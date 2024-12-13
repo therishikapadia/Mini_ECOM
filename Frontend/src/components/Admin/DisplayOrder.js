@@ -54,7 +54,15 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
         setIsLoading(true);
         setFetchingData(true);
         try {
-            const { data } = await axios.get(`${apiBaseUrl}/admin/orders`);
+            const { data } = await axios.get(`${apiBaseUrl}/admin/orders`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                }
+            );
             setOrders(data.orders || []);
         } catch (error) {
             console.error("Error fetching orders:", error);
@@ -76,7 +84,15 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
     // Handle delete order
     const handleDeleteOrder = async (orderId) => {
         try {
-            await axios.delete(`${apiBaseUrl}/admin/orders`, { data: { orderId } });
+            await axios.delete(`${apiBaseUrl}/admin/orders`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                },
+                { data: { orderId } });
             setMessage("Order deleted successfully!");
             fetchOrders();
         } catch (error) {
@@ -97,10 +113,18 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
         }
 
         try {
-            const { data } = await axios.patch(`${apiBaseUrl}/admin/orders`, {
-                orderId: selectedOrder._id,
-                ...updateData
-            });
+            const { data } = await axios.patch(`${apiBaseUrl}/admin/orders`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                },
+                {
+                    orderId: selectedOrder._id,
+                    ...updateData
+                });
             setUpdateMessage(data.message);
             fetchOrders();  // Refresh the order list
             setShowModal(false);  // Close modal after update

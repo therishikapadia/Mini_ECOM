@@ -55,14 +55,30 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
         setFetchingData(true);
         try {
             // Fetch categories first
-            const { data: categoriesData } = await axios.get(`${apiBaseUrl}/admin/categories`);
+            const { data: categoriesData } = await axios.get(`${apiBaseUrl}/admin/categories`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                }
+            );
             setCategories(categoriesData.categories || []);
 
             // If a category is already selected, fetch its attributes
             if (category) {
-                const { data: attributesData } = await axios.get(`${apiBaseUrl}/admin/categories`, {
-                    params: { category },
-                });
+                const { data: attributesData } = await axios.get(`${apiBaseUrl}/admin/categories`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                            "Content-Type": "application/json",
+                        },
+                        withCredentials: true,
+                    },
+                    {
+                        params: { category },
+                    });
                 const selectedCategory = attributesData.categories.find(c => c.name === category);
                 setCategoryAttributes(selectedCategory ? selectedCategory.attributes : []);
             }
@@ -78,7 +94,16 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
         try {
-            const { data } = await axios.get(`${apiBaseUrl}/admin/inventory`);
+            const { data } = await axios.get(`${apiBaseUrl}/admin/inventory`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                },
+
+            );
             setProducts(data.products || []);
         } catch (error) {
             console.error("Error fetching products:", error);
@@ -114,10 +139,26 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
             };
 
             if (productId) {
-                await axios.patch(`${apiBaseUrl}/admin/inventory`, { ...payload, productId });
+                await axios.patch(`${apiBaseUrl}/admin/inventory`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                            "Content-Type": "application/json",
+                        },
+                        withCredentials: true,
+                    }
+                    , { ...payload, productId });
                 setMessage("Product updated successfully!");
             } else {
-                await axios.post(`${apiBaseUrl}/admin/inventory`, payload);
+                await axios.post(`${apiBaseUrl}/admin/inventory`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                            "Content-Type": "application/json",
+                        },
+                        withCredentials: true,
+                    }
+                    , payload);
                 setMessage("Product added successfully!");
             }
 
@@ -136,7 +177,15 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
     // Handle delete product
     const handleDeleteProduct = async (productId) => {
         try {
-            await axios.delete(`${apiBaseUrl}/admin/inventory`, { data: { productId } });
+            await axios.delete(`${apiBaseUrl}/admin/inventory`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                }
+                , { data: { productId } });
             setMessage("Product deleted successfully!");
             fetchProducts();
         } catch (error) {
@@ -172,7 +221,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
             ) : (
                 <>
                     {/* Add Product Button */}
-                    <div style={{marginBottom:"10px"}} className="d-flex justify-content-between align-items-center">
+                    <div style={{ marginBottom: "10px" }} className="d-flex justify-content-between align-items-center">
                         <h3>Products:</h3>
                         <Button variant="primary" style={{}} onClick={() => setShowModal(true)} className="mb-4">
                             Add Product

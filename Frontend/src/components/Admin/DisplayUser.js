@@ -43,7 +43,15 @@ const DisplayUser = ({ apiBaseUrl, darkMode }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${apiBaseUrl}/admin/customer`);
+        const response = await axios.get(`${apiBaseUrl}/admin/customer`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
         if (response.data && response.data.customers) {
           setUsers(response.data.customers);
         }
@@ -72,7 +80,15 @@ const DisplayUser = ({ apiBaseUrl, darkMode }) => {
   // Save Changes to User
   const saveChanges = async () => {
     try {
-      const response = await axios.patch(`${apiBaseUrl}/admin/customer`, {
+      const response = await axios.patch(`${apiBaseUrl}/admin/customer`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
+        {
         ...editForm,
         role: "CUSTOMER",
       });
@@ -95,7 +111,15 @@ const DisplayUser = ({ apiBaseUrl, darkMode }) => {
   const handleDelete = async (email) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      const response = await axios.delete(`${apiBaseUrl}/admin/customer`, {
+      const response = await axios.delete(`${apiBaseUrl}/admin/customer`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
+        {
         data: { email },
       });
       alert(response.data.message);

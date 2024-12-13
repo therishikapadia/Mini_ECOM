@@ -1,0 +1,142 @@
+
+1734101033619:::1 POST: /user/login
+
+1734101038580:::1 GET: /admin/categories
+
+1734101041703:::1 GET: /admin/categories
+
+1734101042103:::1 GET: /admin/customer
+
+1734101042566:::1 GET: /admin/orders
+
+1734101043021:::1 GET: /admin/categories
+
+1734101043022:::1 GET: /admin/inventory
+
+1734101043678:::1 GET: /admin/orders
+
+1734101044040:::1 GET: /admin/customer
+
+1734101044444:::1 GET: /admin/orders
+
+1734101044777:::1 GET: /admin/customer
+
+1734101045140:::1 GET: /admin/categories
+
+1734101047859:::1 GET: /admin/orders
+
+1734101212717:::1 GET: /admin/orders
+
+1734101216870:::1 GET: /admin/orders
+
+1734101266178:::1 GET: /admin/orders
+
+1734101289177:::1 GET: /admin/orders
+
+1734101402369:::1 GET: /admin/categories
+
+1734101403181:::1 GET: /admin/categories
+
+1734101859188:::1 GET: /admin/categories
+
+1734101875216:::1 GET: /admin/categories
+
+1734101897363:::1 PATCH: /admin/categories
+
+1734101897373:::1 GET: /admin/categories
+
+1734101902456:::1 DELETE: /admin/categories/attribute
+
+1734101903475:::1 DELETE: /admin/categories/attribute
+
+1734101904226:::1 DELETE: /admin/categories/attribute
+
+1734101904371:::1 DELETE: /admin/categories/attribute
+
+1734101904507:::1 DELETE: /admin/categories/attribute
+
+1734101917949:::1 GET: /admin/categories
+
+1734101920628:::1 DELETE: /admin/categories/attribute
+
+1734102025124:::1 DELETE: /admin/categories/attribute
+
+1734102066553:::1 DELETE: /admin/categories/attribute
+
+1734102071456:::1 DELETE: /admin/categories/attribute
+
+1734102091088:::1 GET: /admin/categories
+
+1734102094114:::1 DELETE: /admin/categories/attribute
+
+1734102151157:::1 GET: /admin/categories
+
+1734102154594:::1 GET: /admin/categories
+
+1734102157332:::1 DELETE: /admin/categories/attribute
+
+1734102163130:::1 GET: /admin/categories
+
+1734102163371:::1 DELETE: /admin/categories/attribute
+
+1734102201471:::1 GET: /admin/categories
+
+1734102201804:::1 DELETE: /admin/categories/attribute
+
+1734102244834:::1 GET: /admin/categories
+
+1734102247156:::1 DELETE: /admin/categories/attribute
+
+1734102247216:::1 GET: /admin/categories
+
+1734102260330:::1 GET: /admin/categories
+
+1734102262741:::1 GET: /admin/categories
+
+1734102268108:::1 DELETE: /admin/categories/attribute
+
+1734102292491:::1 DELETE: /admin/categories
+
+1734102362509:::1 GET: /admin/categories
+
+1734102365236:::1 GET: /admin/categories
+
+1734102369811:::1 DELETE: /admin/categories
+
+1734102478071:::1 GET: /admin/categories
+
+1734102480215:::1 GET: /admin/customer
+
+1734102504729:::1 GET: /admin/customer
+
+1734102509097:::1 GET: /admin/customer
+
+1734102547966:::1 GET: /admin/customer
+
+1734102573294:::1 GET: /admin/categories
+
+1734102573296:::1 GET: /admin/inventory
+
+1734102577419:::1 GET: /admin/inventory
+
+1734102577423:::1 GET: /admin/categories
+
+1734102579789:::1 GET: /admin/inventory
+
+1734102579788:::1 GET: /admin/categories
+
+1734102620177:::1 GET: /admin/categories
+
+1734102620180:::1 GET: /admin/inventory
+
+1734102651159:::1 GET: /admin/categories
+
+1734102651160:::1 GET: /admin/inventory
+
+1734102673538:::1 GET: /admin/categories
+
+1734102673547:::1 GET: /admin/inventory
+
+1734102676317:::1 GET: /admin/categories
+
+1734102676318:::1 GET: /admin/inventory

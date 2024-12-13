@@ -62,7 +62,15 @@ const Category = ({ darkMode }) => {
   // Fetch categories
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/admin/categories");
+      const response = await axios.get("http://localhost:8000/admin/categories",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
       setCategories(response.data.categories);
     } catch (error) {
       console.error("Failed to fetch categories:", error.response?.data || error.message);
@@ -163,10 +171,12 @@ const Category = ({ darkMode }) => {
     // Send the request
     fetch(url, {
       method,
+      body: JSON.stringify(categoryData),
       headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(categoryData),
+      withCredentials: true,
     })
       .then(response => response.json())
       .then(data => {
@@ -214,10 +224,19 @@ const Category = ({ darkMode }) => {
 
 
   const handleRemoveCategory = async (index) => {
+    console.log(categories[index].name);
     try {
-      await axios.delete("http://localhost:8000/admin/categories", {
-        data: { name: categories[index].name },
-      });
+      await axios.delete("http://localhost:8000/admin/categories",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
+        {
+          data: { name: categories[index].name },
+        });
       fetchCategories();
     } catch (error) {
       console.error("Failed to delete category:", error.response?.data || error.message);
@@ -225,10 +244,19 @@ const Category = ({ darkMode }) => {
   };
 
   const handleRemoveSpecificAttribute = async (categoryId, attributeId) => {
+    console.log(categoryId, attributeId);
     try {
-      await axios.delete("http://localhost:8000/admin/categories/attribute", {
-        data: { categoryId, attributeId },
-      });
+      await axios.delete("http://localhost:8000/admin/categories/attribute",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
+        {
+          data: { categoryId, attributeId },
+        });
       fetchCategories();
     } catch (error) {
       console.error("Failed to delete specific attribute:", error.response?.data || error.message);
