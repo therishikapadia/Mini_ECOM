@@ -12,8 +12,8 @@ function User() {
       <div className="container mt-4">
         <Routes>
           {/* Define the routes */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/" element={<HomePage apiBaseUrl="http://localhost:8000"/>} />
+          <Route path="/orders" element={<OrdersPage apiBaseUrl="http://localhost:8000"/>} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </div>

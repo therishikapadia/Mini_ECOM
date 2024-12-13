@@ -59,5 +59,4 @@ app.use('/customer',restrictTo(['CUSTOMER']),customerRoute)
 app.use('/admin',restrictTo(['ADMIN']),adminRoute)
 app.use('/add-geo', restrictTo(['ADMIN']),geoRoute);
 app.use('/stats',restrictTo(['ADMIN']),statRoute)
-
 server.listen(port, () => console.log("Server running on port", port));

@@ -5,6 +5,7 @@ const Order = require("../models/order");
 //pass quantity only if need to change
 const handleUpdateOrder = async (req, res) => {
   const { orderId, orderStatus, quantity } = req.body;
+  console.log(orderId, orderStatus, quantity)
 
   const validStatuses = ["Approved", "Shipped", "Delivered", "Cancelled"];
 
@@ -215,12 +216,11 @@ const handleDeleteOrder = async (req, res) => {
 
 //customer
 const handleAddOrder = async (req, res) => {
-  const { product, quantity , notes,customer} = req.body;
-
-  // const customer = req.user?._id; // Retrieve the authenticated user ID
-  // console.log("Authenticated user:", req.user);
-  // console.log("Authorization header:", req.headers.authorization);
-
+  const { product, quantity , notes} = req.body;
+  
+  const customer = req.user?._id; // Retrieve the authenticated user ID
+//   console.log("Authenticated user:", req.user);
+//   console.log("Authorization header:", req.headers.authorization);
 
   if (!product || !quantity) {
     return res.status(400).json({ error: "Product and quantity are required" });

@@ -20,6 +20,7 @@ function checkForAuthentication(req, res, next) {
 
 function restrictTo(roles=[]) {
     return function(req,res,next){
+
         console.log(roles,req.user);
         // console.log(req.cookies)
         // console.log(req);
