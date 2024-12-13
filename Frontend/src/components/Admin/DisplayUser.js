@@ -118,7 +118,7 @@ const DisplayUser = ({ apiBaseUrl, darkMode }) => {
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <h3 className="mb-4">All Users</h3>
+      <h3 className="mb-4">All Users:</h3>
 
       {loading && <p>Loading users...</p>}
       {error && <p className="text-danger">{error}</p>}

@@ -90,7 +90,7 @@ function Sidebar({ toggleSidebar, sidebarOpen, darkMode }) {
         />
         <NavItem
           to="/admin/category"
-          label="Products"
+          label="Category"
           icon={<FaBox />}
           color="purple"
           sidebarOpen={sidebarOpen}
