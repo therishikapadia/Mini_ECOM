@@ -173,6 +173,7 @@ const handleGetAllOrders = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch orders" });
   }
 };
+
 //admin
 const handleDeleteOrder = async (req, res) => {
   const { orderId } = req.body;
@@ -218,9 +219,8 @@ const handleAddOrder = async (req, res) => {
   const { product, quantity , notes} = req.body;
   
   const customer = req.user?._id; // Retrieve the authenticated user ID
-  console.log("Authenticated user:", req.user);
-  console.log("Authorization header:", req.headers.authorization);
-  
+//   console.log("Authenticated user:", req.user);
+//   console.log("Authorization header:", req.headers.authorization);
 
   if (!product || !quantity) {
     return res.status(400).json({ error: "Product and quantity are required" });
