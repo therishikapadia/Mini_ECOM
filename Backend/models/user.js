@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
@@ -20,15 +20,22 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       required: true,
-      enum: ['CUSTOMER', 'DELIVERY_AGENT', 'ADMIN'], // Allowed roles
-      default: 'CUSTOMER',
+      enum: ["CUSTOMER", "DELIVERY_AGENT", "ADMIN"], // Allowed roles
+      default: "CUSTOMER",
     },
-    delivery_address: {
-      type: String,
-      default:"OM",
-      required: function () {
-        return this.role === 'CUSTOMER'; // Delivery address is required only if the role is CUSTOMER
-      },
+    latitude: {
+      type: Number,
+      required: true,
+      default:0
+    },
+    longitude: {
+      type: Number,   
+      required: true,
+      default:0
+    },
+    isConfirmed: {
+      type: Boolean,
+      default: false, // Default value set to false
     },
     isDeleted: {
       type: Boolean,
@@ -38,6 +45,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

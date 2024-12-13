@@ -29,27 +29,41 @@ transporter.verify(function(error, success) {
 });
 
 // Send welcome email
-async function sendWelcomeEmail(userEmail, name) {
+async function sendWelcomeEmail(userEmail, name, resetPasswordToken) {
   try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: userEmail,
-      subject: 'Welcome to Our Platform',
-      html: `
-        <h1>Welcome ${name}!</h1>
-        <p>Thank you for registering with us.</p>
-      `
-    });
+      // Construct the confirmation URL
+      const confirmationUrl = `${process.env.APP_URL}/user/confirm-signup?token=${resetPasswordToken}`;
+
+      // Send the email with the confirmation button
+      await transporter.sendMail({
+          from: process.env.EMAIL_USER,
+          to: userEmail,
+          subject: 'Confirm Your Sign-In',
+          html: `
+              <h1>Welcome ${name}!</h1>
+              <p>Thank you for signing up. Please confirm your email address by clicking the button below:</p>
+              <a href="${confirmationUrl}" style="
+                  display: inline-block;
+                  padding: 10px 20px;
+                  font-size: 16px;
+                  color: white;
+                  background-color: #007BFF;
+                  text-decoration: none;
+                  border-radius: 5px;
+              ">Confirm Sign-In</a>
+              <p>If you did not sign up, please ignore this email.</p>
+          `,
+      });
   } catch (error) {
-    console.error('Error sending welcome email:', {
-      error: error.message,
-      code: error.code,
-      response: error.response,
-      user: process.env.EMAIL_USER // Log email user for verification
-    });
-    throw error;
+      console.error('Error sending welcome email:', {
+          error: error.message,
+          code: error.code,
+          response: error.response,
+      });
+      throw error;
   }
 }
+
 
 // Send password reset email
 async function sendPasswordResetEmail(userEmail, resetToken) {

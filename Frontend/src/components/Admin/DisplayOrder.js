@@ -39,6 +39,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
     const [message, setMessage] = useState("");
     const [fetchingData, setFetchingData] = useState(false);
 
+
     const [selectedOrderStatus, setSelectedOrderStatus] = useState("");  // For orderStatus filter
 
     // Modal-related state
@@ -212,7 +213,6 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                                             >
                                                 Update Order
                                             </Button>
-
                                             {/* Delete Order Button */}
                                             <Button
                                                 variant="danger"
@@ -230,7 +230,6 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                             </Col>
                         )}
                     </Row>
-
                     {/* Modal for Updating Order */}
                     <Modal show={showModal} onHide={() => setShowModal(false)}>
                         <Modal.Header closeButton>

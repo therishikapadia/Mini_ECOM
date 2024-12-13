@@ -1,8 +1,15 @@
-const express=require('express')
-const router=express.Router()
-const {handleUserSignup,handleUserLogin,handleForgotPassword,handleResetPassword,handleUserLogout}=require('../controllers/user')
+const express = require('express');
+const router = express.Router();
+const { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout, confirmSignUp } = require('../controllers/user');
 
-router.post('/signup',handleUserSignup)
+// Confirm sign-up
+router.post('/confirm-signup/:token', confirmSignUp);
+router.get('/confirm-signup/:token', confirmSignUp);
+
+router.post('/signup', handleUserSignup)
+router.get('/signup', (req, res) => {
+    res.render('signup', { error: null });
+});
 router.post('/login',handleUserLogin)
 router.get('/logout',handleUserLogout)
 router.post('/forgot-password', handleForgotPassword)

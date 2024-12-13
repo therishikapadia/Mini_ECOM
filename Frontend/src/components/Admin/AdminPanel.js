@@ -43,7 +43,8 @@ const AdminPanel = ({ apiBaseUrl }) => {
           <Route path="/" element={<Dashboard darkMode={darkMode} />} />
 
           {/* Nested Routes */}
-          <Route path="/category" element={<Category darkMode={darkMode} />} />
+          <Route path="/category" element={<Category apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
+          <Route path="/orders" element={<DisplayOrder apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
           <Route path="/inventory" element={<Inventory apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
           <Route path="/users" element={<DisplayUser apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
           <Route path="/orders" element={<DisplayOrder apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
@@ -63,13 +64,15 @@ const NavbarWithDynamicTitle = ({ darkMode, toggleTheme }) => {
       case "/admin":
         return "Dashboard";
       case "/admin/category":
-        return "Category Management";
+        return "Product";
       case "/admin/users":
-        return "User Management";
-      case "/admin/inventory":
-        return "Inventory Management";
-      case "/admin/orders":
-        return "Order Management";
+        return "User";
+        case "/admin/orders":
+          return "Order";
+        case "/admin/inventory":
+            return "Inventory";
+        case "/admin/settings":
+            return "Settings"
       default:
         return "Admin Panel";
     }
