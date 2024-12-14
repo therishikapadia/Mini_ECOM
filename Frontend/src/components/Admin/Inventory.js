@@ -130,16 +130,21 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
     // Form submission handler
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
             const payload = {
                 category,
                 attributeId: selectedAttributeId, // Send only the selected attribute ID
                 quantity,
             };
-
+    
+            console.log('Payload:', payload); // Log to verify the structure
+    
             if (productId) {
-                await axios.patch(`${apiBaseUrl}/admin/inventory`,
+                // For updating an existing product
+                await axios.post(
+                    `${apiBaseUrl}/admin/inventory`,
+                    { ...payload, productId }, // Send the payload and productId
                     {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -147,10 +152,13 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                         },
                         withCredentials: true,
                     }
-                    , { ...payload, productId });
+                );
                 setMessage("Product updated successfully!");
             } else {
-                await axios.post(`${apiBaseUrl}/admin/inventory`,
+                // For adding a new product
+                await axios.post(
+                    `${apiBaseUrl}/admin/inventory`,
+                    payload, // Send the payload
                     {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -158,18 +166,20 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                         },
                         withCredentials: true,
                     }
-                    , payload);
+                );
                 setMessage("Product added successfully!");
             }
-
-            resetForm();
-            fetchProducts();
+    
+            resetForm(); // Clear the form
+            fetchProducts(); // Refresh the product list
             setShowModal(false); // Close the modal after saving
         } catch (error) {
             console.error("Error saving product:", error);
             setMessage("Error saving product.");
         }
     };
+    
+
 
 
 
@@ -184,8 +194,9 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                         "Content-Type": "application/json",
                     },
                     withCredentials: true,
+                    data: { productId }
                 }
-                , { data: { productId } });
+            );
             setMessage("Product deleted successfully!");
             fetchProducts();
         } catch (error) {

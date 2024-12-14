@@ -21,9 +21,9 @@ function checkForAuthentication(req, res, next) {
 function restrictTo(roles=[]) {
     return function(req,res,next){
 
-        console.log(roles,req.user);
+        // console.log(roles,req.user);
         // console.log(req.cookies)
-        // console.log(req);
+        // console.log(req.cookies,req._parsedUrl.pathname);
         // if (!req.user) return res.redirect('/login')
         if (!req.user) return res.status(401).json({message:"User not set"})
         if (!roles.includes(req.user.role)) return res.end('Unauthorized')

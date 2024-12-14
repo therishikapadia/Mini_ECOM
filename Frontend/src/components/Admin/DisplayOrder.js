@@ -91,8 +91,9 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                         "Content-Type": "application/json",
                     },
                     withCredentials: true,
+                    data: { orderId }
                 },
-                { data: { orderId } });
+            );
             setMessage("Order deleted successfully!");
             fetchOrders();
         } catch (error) {
@@ -113,18 +114,20 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
         }
 
         try {
-            const { data } = await axios.patch(`${apiBaseUrl}/admin/orders`,
+            const { data } = await axios.patch(
+                `${apiBaseUrl}/admin/orders`,
+                {
+                    orderId: selectedOrder._id,
+                    ...updateData
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                         "Content-Type": "application/json",
                     },
                     withCredentials: true,
-                },
-                {
-                    orderId: selectedOrder._id,
-                    ...updateData
-                });
+                }
+            );
             setUpdateMessage(data.message);
             fetchOrders();  // Refresh the order list
             setShowModal(false);  // Close modal after update

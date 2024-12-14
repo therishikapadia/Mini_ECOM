@@ -126,7 +126,7 @@ const Category = ({ darkMode }) => {
   };
 
 
-  const handleSaveCategory = () => {
+  const handleSaveCategory = async () => {
     let categoryData = {};
 
     if (editIndex !== null) {
@@ -168,36 +168,36 @@ const Category = ({ darkMode }) => {
     const method = editIndex !== null ? "PATCH" : "POST";
     const url = "http://localhost:8000/admin/categories";
 
-    // Send the request
-    fetch(url, {
-      method,
-      body: JSON.stringify(categoryData),
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(
-          editIndex !== null
-            ? "Category updated successfully:"
-            : "Category added successfully:",
-          data
-        );
-        setShowModal(false); // Close modal on success
-        fetchCategories();   // Refresh categories
-      })
-      .catch(error => {
-        console.error(
-          editIndex !== null
-            ? "Error updating category:"
-            : "Error adding category:",
-          error
-        );
+    try {
+      const response = await axios({
+        method,
+        url,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+        data: categoryData,
       });
-  };
+
+      console.log(
+        editIndex !== null
+          ? "Category updated successfully:"
+          : "Category added successfully:",
+        response.data
+      );
+      setShowModal(false); // Close modal on success
+      fetchCategories();   // Refresh categories
+    } catch (error) {
+      console.error(
+        editIndex !== null
+          ? "Error updating category:"
+          : "Error adding category:",
+        error.response?.data || error.message
+      );
+    }
+};
+
 
 
   const handleEditCategory = (index) => {
@@ -233,10 +233,9 @@ const Category = ({ darkMode }) => {
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        },
-        {
           data: { name: categories[index].name },
-        });
+        },
+      );
       fetchCategories();
     } catch (error) {
       console.error("Failed to delete category:", error.response?.data || error.message);
@@ -253,10 +252,10 @@ const Category = ({ darkMode }) => {
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        },
-        {
           data: { categoryId, attributeId },
-        });
+        },
+
+      );
       fetchCategories();
     } catch (error) {
       console.error("Failed to delete specific attribute:", error.response?.data || error.message);

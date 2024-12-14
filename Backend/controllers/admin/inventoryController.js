@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const handleAddInventory = async (req, res) => {
   //attributeId is attribute of object
   const { category, attributeId, quantity } = req.body;
-
+  console.log(category, attributeId, quantity)
   try {
     // Fetch category data from the database
     const categoryData = await Category.findOne({ name: category });
@@ -28,11 +28,10 @@ const handleAddInventory = async (req, res) => {
 
     // Check if a product with the same category and attributeId exists
     const existingProduct = await Inventory.findOne({ category, attributeId });
-
+    console.log(existingProduct)
     if (existingProduct) {
       // Update the quantity if the product already exists
-      existingProduct.quantity =
-        Number(existingProduct.quantity) + Number(quantity);
+      existingProduct.quantity =  Number(quantity);
       await existingProduct.save();
       return res.status(200).json({
         message: "Product quantity updated successfully",

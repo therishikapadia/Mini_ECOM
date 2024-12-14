@@ -22,7 +22,7 @@ const handleAddNewProduct = async (req, res) => {
     // Create a new product
     const newCategory = new Category({
       name,
-      attributes:updatedAttributes,
+      attributes: updatedAttributes,
       categoryType,
     });
 
@@ -34,7 +34,7 @@ const handleAddNewProduct = async (req, res) => {
       .json({ message: "Product added successfully", product: newCategory });
   } catch (error) {
     console.error(error);
-res.status(500).json({ error: error.message || "Failed to add product" });
+    res.status(500).json({ error: error.message || "Failed to add product" });
 
   }
 };
@@ -99,7 +99,7 @@ const handleDeleteAttribute = async (req, res) => {
 
 
 const handleUpdateNewProduct = async (req, res) => {
-  const { oldName, newName, attributes,categoryType } = req.body;
+  const { oldName, newName, attributes, categoryType } = req.body;
   if (!oldName || !newName) {
     return res
       .status(400)
@@ -107,11 +107,20 @@ const handleUpdateNewProduct = async (req, res) => {
   }
 
   try {
+    // Add an _id to each attribute if not provided
+    const updatedAttributes = attributes.map(attr => ({
+      ...attr,
+      _id: attr._id || new mongoose.Types.ObjectId(), // Generate _id if not already present
+    }));
+
     const updatedCategory = await Category.findOneAndUpdate(
       { name: oldName }, // Search by the old name
-      { name: newName, attributes: attributes || undefined ,categoryType:categoryType}, 
-      
-      { new: true }// Update with the new name and optional attributes
+      {
+        name: newName,
+        attributes: updatedAttributes, // Updated attributes with _id ensured
+        categoryType: categoryType,
+      },
+      { new: true } // Return the updated document
     );
 
     if (!updatedCategory) {
@@ -126,6 +135,7 @@ const handleUpdateNewProduct = async (req, res) => {
     res.status(500).json({ error: "Failed to update category" });
   }
 };
+
 
 const handleGetNewProduct = async (req, res) => {
   const { name } = req.query;
