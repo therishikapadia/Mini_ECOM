@@ -7,7 +7,7 @@ const handleUpdateOrder = async (req, res) => {
   const { orderId, orderStatus, quantity } = req.body;
   console.log(orderId, orderStatus, quantity)
 
-  const validStatuses = ["Approved", "Shipped", "Delivered", "Cancelled"];
+  const validStatuses = ["Approved", "Shipped", "Delivered", "Cancelled","Pending"];
 
   // Validate orderId and orderStatus
   if (!orderId || !orderStatus || !validStatuses.includes(orderStatus)) {

@@ -174,6 +174,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                     <option value="Shipped">Shipped</option>
                     <option value="Delivered">Delivered</option>
                     <option value="Cancelled">Cancelled</option>
+                    <option value="Pending">Pending</option>
                 </Form.Control>
             </Form.Group>
 
@@ -285,6 +286,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                                         <option value="Shipped">Shipped</option>
                                         <option value="Delivered">Delivered</option>
                                         <option value="Cancelled">Cancelled</option>
+                                        <option value="Pending">Pending</option>
                                     </Form.Control>
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
