@@ -43,6 +43,7 @@ const Order = ({ apiBaseUrl }) => {
                 },
                 withCredentials: true,
             });
+            console.log(response)
             setInventory(response.data.products);
         } catch (err) {
             setError("Failed to fetch inventory.");
@@ -161,6 +162,7 @@ const Order = ({ apiBaseUrl }) => {
                         <div className="spinner-border text-primary" role="status"></div>
                     </div>
                 )}
+                {console.log(filteredOrders)}
                 {filteredOrders.map((order) => (
                     <div
                         key={order._id}
@@ -168,7 +170,10 @@ const Order = ({ apiBaseUrl }) => {
                     >
                         <div className="card h-100">
                             <div className="card-body">
-                                <h5 className="card-title">{order.product.category}</h5>
+                                {/* Conditionally render the product category */}
+                                <h5 className="card-title">
+                                    {order.product ? order.product.category : "No Category"}
+                                </h5>
                                 <p className="card-text">
                                     <strong>Status:</strong> {order.orderStatus} <br />
                                     <strong>Notes:</strong> {order.notes || "N/A"} <br />
@@ -187,6 +192,7 @@ const Order = ({ apiBaseUrl }) => {
                         </div>
                     </div>
                 ))}
+
             </div>
 
 

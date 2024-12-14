@@ -17,21 +17,15 @@ const lightModeColors = {
   icon: "#000",
 };
 
-const Dashboard = ({ darkMode }) => {
+const Dashboard = ({ darkMode ,apiBaseUrl }) => {
   // Determine the colors based on darkMode
   const currentColors = darkMode ? darkModeColors : lightModeColors;
 
   return (
     <div className="p-4" style={{ backgroundColor: currentColors.background }}>
       {/* Content blocks */}
-      <OverviewCards darkMode={darkMode} />
-      <Charts darkMode={darkMode} />
-      <OverviewCards darkMode={darkMode} />
-      <Charts darkMode={darkMode} />
-      <OverviewCards darkMode={darkMode} />
-      <Charts darkMode={darkMode} />
-      <OverviewCards darkMode={darkMode} />
-      <Charts darkMode={darkMode} />
+      <OverviewCards apiBaseUrl={apiBaseUrl} darkMode={darkMode} />
+      <Charts darkMode={darkMode} apiBaseUrl={apiBaseUrl} />
     </div>
   );
 };

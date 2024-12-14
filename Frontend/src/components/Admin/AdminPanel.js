@@ -40,7 +40,7 @@ const AdminPanel = ({ apiBaseUrl }) => {
         {/* Define Routes for Sub-pages */}
         <Routes>
           {/* Default Route: Dashboard */}
-          <Route path="/" element={<Dashboard darkMode={darkMode} />} />
+          <Route path="/" element={<Dashboard darkMode={darkMode} apiBaseUrl={apiBaseUrl} />} />
 
           {/* Nested Routes */}
           <Route path="/category" element={<Category apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
