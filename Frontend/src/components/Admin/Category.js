@@ -45,7 +45,7 @@ const innerCardLightModeColors = {
   icon: "#000",
 };
 
-const Category = ({ darkMode }) => {
+const Category = ({ apiBaseUrl,darkMode }) => {
   const currentColors = darkMode ? darkModeColors : lightModeColors;
   const cardCurrentColors = darkMode ? cardDarkModeColors : cardLightModeColors;
   const innercardCurrentColors = darkMode ? innerCardDarkModeColors : innerCardLightModeColors;
@@ -62,7 +62,7 @@ const Category = ({ darkMode }) => {
   // Fetch categories
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/admin/categories",
+      const response = await axios.get(`${apiBaseUrl}/admin/categories`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -166,7 +166,7 @@ const Category = ({ darkMode }) => {
 
     // Determine HTTP method and URL
     const method = editIndex !== null ? "PATCH" : "POST";
-    const url = "http://localhost:8000/admin/categories";
+    const url = `${apiBaseUrl}/admin/categories`;
 
     try {
       const response = await axios({
@@ -226,7 +226,7 @@ const Category = ({ darkMode }) => {
   const handleRemoveCategory = async (index) => {
     console.log(categories[index].name);
     try {
-      await axios.delete("http://localhost:8000/admin/categories",
+      await axios.delete(`${apiBaseUrl}/admin/categories`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -245,7 +245,7 @@ const Category = ({ darkMode }) => {
   const handleRemoveSpecificAttribute = async (categoryId, attributeId) => {
     console.log(categoryId, attributeId);
     try {
-      await axios.delete("http://localhost:8000/admin/categories/attribute",
+      await axios.delete(`${apiBaseUrl}/admin/categories/attribute`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,

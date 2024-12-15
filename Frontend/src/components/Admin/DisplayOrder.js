@@ -38,7 +38,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [fetchingData, setFetchingData] = useState(false);
-
+    const [users, setUsers] = useState([]);
 
     const [selectedOrderStatus, setSelectedOrderStatus] = useState("");  // For orderStatus filter
 
@@ -48,6 +48,35 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
     const [newQuantity, setNewQuantity] = useState("");
     const [newOrderStatus, setNewOrderStatus] = useState("");
     const [updateMessage, setUpdateMessage] = useState("");
+
+    // Modal states for adding a new order
+    const [showAddOrderModal, setShowAddOrderModal] = useState(false);
+    const [selectedUserId, setSelectedUserId] = useState("");
+    const [selectedProduct, setSelectedProduct] = useState("");
+    const [orderQuantity, setOrderQuantity] = useState("");
+    const [orderNotes, setOrderNotes] = useState("");
+
+    const [products, setProducts] = useState([]); // State to store fetched products
+    // const [selectedProduct, setSelectedProduct] = useState("");
+
+
+    // Fetch users for dropdown
+    const fetchUsers = useCallback(async () => {
+        try {
+            const { data } = await axios.get(`${apiBaseUrl}/admin/customer`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            });
+            console.log(data);
+            setUsers(data.customers || []);
+        } catch (error) {
+            console.error("Error fetching users:", error);
+            setMessage("Error fetching users.");
+        }
+    }, [apiBaseUrl]);
 
     // Fetch orders
     const fetchOrders = useCallback(async () => {
@@ -73,9 +102,27 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
         }
     }, [apiBaseUrl]);
 
+    const fetchProducts = useCallback(async () => {
+        try {
+            const { data } = await axios.get(`${apiBaseUrl}/admin/inventory`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            });
+            console.log(data);
+            setProducts(data.products || []); // Assuming the API returns a "products" array
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    }, [apiBaseUrl]);
+
     useEffect(() => {
         fetchOrders();
-    }, [fetchOrders]); // Initial fetch when the component mounts
+        fetchProducts();
+        fetchUsers();
+    }, [fetchOrders, fetchProducts, fetchUsers]); // Initial fetch when the component mounts
 
     const filteredOrders = selectedOrderStatus
         ? orders.filter((order) => order.orderStatus === selectedOrderStatus)
@@ -138,6 +185,38 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
         }
     };
 
+    const handleAddOrder = async () => {
+        if (!selectedUserId || !selectedProduct || !orderQuantity) {
+            setMessage("All fields are required.");
+            return;
+        }
+
+        try {
+            const { data } = await axios.post(
+                `${apiBaseUrl}/admin/orders`,
+                {
+                    product: selectedProduct,
+                    quantity: orderQuantity,
+                    notes: orderNotes,
+                    customer: selectedUserId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                }
+            );
+            setMessage("Order added successfully!");
+            fetchOrders(); // Refresh the order list
+            setShowAddOrderModal(false); // Close modal
+        } catch (error) {
+            console.error("Error adding order:", error);
+            setMessage("Failed to add order.");
+        }
+    };
+
     return (
         <Container
             fluid
@@ -147,7 +226,10 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                 padding: "20px",
             }}
         >
-            <h1 className="text mb-4">Orders</h1>
+            <div className="d-flex justify-content-between">
+                <h1 className="text mb-4">Orders</h1>
+                <Button className="mb-4" onClick={() => setShowAddOrderModal(true)}>Add New Order</Button>
+            </div>
 
             {message && (
                 <Alert variant={message.includes("Error") ? "danger" : "success"}>
@@ -258,6 +340,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                             </Col>
                         )}
                     </Row>
+
                     {/* Modal for Updating Order */}
                     <Modal show={showModal} onHide={() => setShowModal(false)}>
                         <Modal.Header closeButton>
@@ -291,6 +374,81 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
                                     Save Changes
+                                </Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+
+                    {/* Modal for Adding New Order */}
+                    <Modal show={showAddOrderModal} onHide={() => setShowAddOrderModal(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Add New Order</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form>
+                                <Form.Group controlId="formUser">
+                                    <Form.Label>Select User</Form.Label>
+                                    <Form.Control
+                                        as="select"
+                                        value={selectedUserId}
+                                        onChange={(e) => setSelectedUserId(e.target.value)}
+                                    >
+                                        <option value="">Choose User</option>
+                                        {users.map((user) => (
+                                            <option key={user._id} value={user._id}>
+                                                {user.name} ({user.email})
+                                            </option>
+                                        ))}
+                                    </Form.Control>
+                                </Form.Group>
+                                {console.log(products)}
+                                <Form.Group controlId="formProduct">
+                                    <Form.Label>Product</Form.Label>
+                                    <Form.Control
+                                        as="select"
+                                        value={selectedProduct}
+                                        onChange={(e) => setSelectedProduct(e.target.value)}
+                                    >
+                                        <option value="">Select a product</option>
+                                        {products.map((item) => (
+                                            <option key={item._id} value={item._id}>
+                                                {item.category}
+                                                {item.attributes &&
+                                                    " (" +
+                                                    Object.entries(item.attributes)
+                                                        .filter(([key]) => key !== "_id")
+                                                        .map(([key, value]) => `${key}: ${value}`)
+                                                        .join(", ") +
+                                                    ")"}
+                                            </option>
+                                        ))}
+
+                                    </Form.Control>
+                                </Form.Group>
+
+                                <Form.Group controlId="formQuantity">
+                                    <Form.Label>Quantity</Form.Label>
+                                    <Form.Control
+                                        type="number"
+                                        placeholder="Enter quantity"
+                                        value={orderQuantity}
+                                        onChange={(e) => setOrderQuantity(e.target.value)}
+                                        min="1"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group className="mb-3" controlId="formNotes">
+                                    <Form.Label>Notes (optional)</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        value={orderNotes}
+                                        onChange={(e) => setOrderNotes(e.target.value)}
+                                    />
+                                </Form.Group>
+
+                                <Button variant="primary" onClick={handleAddOrder}>
+                                    Add Order
                                 </Button>
                             </Form>
                         </Modal.Body>

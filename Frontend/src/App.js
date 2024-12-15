@@ -11,6 +11,8 @@ function App() {
   const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false); // For user
   const [loading, setLoading] = useState(true); // Loading state
 
+  const apiBaseUrl = "http://localhost:8000"
+
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
@@ -43,7 +45,7 @@ function App() {
           path="/admin/*"
           element={
             isAuthenticated ? (
-              <AdminPanel apiBaseUrl="http://localhost:8000" />
+              <AdminPanel apiBaseUrl={apiBaseUrl} />
             ) : (
               <Navigate to="/" replace />
             )
@@ -55,7 +57,7 @@ function App() {
           path="/customer/*"
           element={
             isAuthenticatedUser ? (
-              <User apiBaseUrl="http://localhost:8000" />
+              <User apiBaseUrl={apiBaseUrl} />
             ) : (
               <Navigate to="/" replace />
             )
@@ -67,7 +69,7 @@ function App() {
           path="/"
           element={
             !isAuthenticated && !isAuthenticatedUser ? (
-              <LoginPage apiBaseUrl="http://localhost:8000" />
+              <LoginPage apiBaseUrl={apiBaseUrl} />
             ) : isAuthenticated ? (
               <Navigate to="/admin" replace />
             ) : (
@@ -81,7 +83,7 @@ function App() {
           path="/signup"
           element={
             !isAuthenticated && !isAuthenticatedUser ? (
-              <SignupPage apiBaseUrl="http://localhost:8000" />
+              <SignupPage apiBaseUrl={apiBaseUrl} />
             ) : isAuthenticated ? (
               <Navigate to="/admin" replace />
             ) : (

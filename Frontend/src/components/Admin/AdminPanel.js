@@ -47,7 +47,6 @@ const AdminPanel = ({ apiBaseUrl }) => {
           <Route path="/orders" element={<DisplayOrder apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
           <Route path="/inventory" element={<Inventory apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
           <Route path="/users" element={<DisplayUser apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
-          <Route path="/orders" element={<DisplayOrder apiBaseUrl={apiBaseUrl} darkMode={darkMode} />} />
         </Routes>
       </div>
     </div>
