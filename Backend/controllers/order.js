@@ -107,6 +107,45 @@ const handleUpdateOrder = async (req, res) => {
   }
 };
 
+const handleAdminAddOrder = async (req, res) => {
+  const { product, quantity , notes, customer} = req.body;
+  
+  // const customer = req.user?._id; // Retrieve the authenticated user ID
+//   console.log("Authenticated user:", req.user);
+//   console.log("Authorization header:", req.headers.authorization);
+
+  if (!product || !quantity) {
+    return res.status(400).json({ error: "Product and quantity are required" });
+  }
+
+  try {
+    // Find the product in inventory
+    const productData = await Inventory.findById(product);
+    if (!productData) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    // Create the order
+    const newOrder = new Order({
+      product,
+      quantity,
+      customer,
+      notes,
+      orderStatus: "Pending",
+      isDeleted:false,
+    });
+
+    await newOrder.save();
+
+    res
+      .status(201)
+      .json({ message: "Order placed successfully", order: newOrder });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to place order" });
+  }
+};
+
 
 //admin
 const handleGetAllOrders = async (req, res) => {
@@ -354,5 +393,6 @@ module.exports = {
   handleGetCustomerOrders,
   handleUpdateOrder,
   handleDeleteOrder,
-  handleUpdateCustomerOrder
+  handleUpdateCustomerOrder,
+  handleAdminAddOrder
 };

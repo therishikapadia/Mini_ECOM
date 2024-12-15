@@ -32,7 +32,7 @@ const handleGetMonthlyStats = async (req, res) => {
 
       // Ensure valid category and quantity
       if (category && quantity > 0) {
-        totalProducts += quantity;
+        totalProducts += 1;
         categoryDistribution[category] = (categoryDistribution[category] || 0) + quantity;
       }
     });

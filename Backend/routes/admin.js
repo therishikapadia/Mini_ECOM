@@ -5,7 +5,7 @@ const { restrictTo } = require('../middlewares/auth');
 const {
     handleGetAllOrders,
     handleUpdateOrder,
-    handleDeleteOrder
+    handleDeleteOrder,handleAdminAddOrder
 } = require('../controllers/order');
 
 const {
@@ -70,6 +70,7 @@ router.route('/delivery-agent')
 
 // Orders routes
 router.route('/orders')
+    .post(handleAdminAddOrder)
     .get(handleGetAllOrders)
     .patch(handleUpdateOrder)
     .delete(handleDeleteOrder);

@@ -88,9 +88,9 @@ const LocationPicker = ({ apiKey, onLocationSelect }) => {
                     try {
                         const loader = new Loader({
                             apiKey: apiKey,
-                            version: 'weekly',  // ensure this is set correctly
-                            libraries: ['places', 'geometry'],
-                        });
+                            version: 'weekly',  // Use the latest version
+                            libraries: ['places', 'marker'],  // Include 'marker' library
+                        })                        
                         
 
                         const google = await loader.load();
