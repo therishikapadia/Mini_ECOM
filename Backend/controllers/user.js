@@ -26,6 +26,12 @@ async function handleUserSignup(req, res) {
     const { name, email, password, confirmPassword,longitude,latitude } = req.body;
     console.log(name, email, password, confirmPassword);
     
+    // Check if email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+        return res.status(400).json({ error: "Email already registered" });
+    }
+
     // Validate required fields
     if (!name || !email || !password || !confirmPassword) {
         return res.status(400).json({ error: "All fields are required" });
@@ -69,6 +75,10 @@ async function handleUserSignup(req, res) {
 
         // Send the welcome email with the reset password token
         await sendWelcomeEmail(email, name, confirmationToken);
+
+        // Log all users and their confirmation tokens
+        const allUsers = await User.find({}, { email: 1, resetPasswordToken: 1 });
+        console.log('All users and their confirmation tokens:', allUsers);
 
         return res.status(200).json({ success: true, data: { user } });
     } catch (error) {
@@ -181,30 +191,24 @@ async function handleResetPassword(req, res) {
     }
 }
 
-// Confirm sign-up
-async function confirmSignUp(req, res) {
-  const { token } = req.params;
+async function handleconfirmSignUp(req, res) {
+    const { token } = req.params; // Extract token from request parameters
 
-  console.log('Received token:', token);
+    try {
+        const user = await User.findOne({ resetPasswordToken: token });
 
-  try {
-    const user = await User.findOne({ resetPasswordToken: token });
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid or expired token' });
+        }
 
-    console.log('User found:', user);
+        user.isConfirmed = true;
+        user.resetPasswordToken = null;
+        await user.save();
 
-    if (!user) {
-      return res.status(400).json({ message: 'Invalid or expired token' });
+        res.status(200).json({ message: 'Sign-up confirmed successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
     }
-
-    user.isConfirmed = true;
-    user.resetPasswordToken = null;
-    await user.save();
-
-    res.status(200).json({ message: 'Sign-up confirmed successfully' });
-  } catch (error) {
-    console.error('Error confirming sign-up:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
 }
 
 // Controller for logging out
@@ -225,4 +229,4 @@ async function handleUserLogout(req, res) {
     }
 }
 
-module.exports = { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout, confirmSignUp };
+module.exports = { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout, handleconfirmSignUp };
