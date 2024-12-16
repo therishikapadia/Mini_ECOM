@@ -117,76 +117,67 @@ async function handleUserLogin(req, res) {
     }
 }
 
+// Backend Changes
+
+// ForgotPassword Controller
 async function handleForgotPassword(req, res) {
     const { email } = req.body;
 
     try {
         const user = await User.findOne({ email });
         if (!user) {
-            return res.render('forgot-password', { error: 'Email not found' });
+            return res.status(404).json({ error: 'Email not found' });
         }
 
-        // Generate reset token and its hash
         const resetToken = crypto.randomBytes(32).toString('hex');
         const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
 
-        // Set token and expiration
         user.resetPasswordToken = hashedToken;
-        user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour from now
+        user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour
         await user.save();
 
-        // Send password reset email with unhashed token
-        await sendPasswordResetEmail(user.email, resetToken);
+        const resetLink = `${process.env.REACT_APP_URL}/reset-password/${resetToken}`;
+        await sendPasswordResetEmail(user.email, resetLink);
 
-        console.log('Reset token generated:', resetToken); // For debugging
-        console.log('Hashed token stored:', hashedToken); // For debugging
-
-        res.render('forgot-password', { message: 'Reset link sent to your email' });
+        res.status(200).json({ message: 'Reset link sent to your email' });
     } catch (error) {
-        console.error('Forgot password error:', error);
-        res.render('forgot-password', { error: 'Error processing request' });
+        console.error('Error in handleForgotPassword:', error);
+        res.status(500).json({ error: 'Error processing request' });
     }
 }
 
+
+// ResetPassword Controller
 async function handleResetPassword(req, res) {
     const { token } = req.params;
     const { password } = req.body;
+    console.log(token, password);
 
     try {
-        // Validate password
         if (!password || password.length < 8) {
-            return res.render('reset-password', { error: 'Password must be at least 8 characters long' });
+            return res.status(400).json({ error: 'Password must be at least 8 characters long' });
         }
 
-        // Hash the provided token to match stored hash
         const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
-
-        // Find user by token and ensure token hasn't expired
         const user = await User.findOne({
             resetPasswordToken: hashedToken,
-            resetPasswordExpires: { $gt: Date.now() }
+            resetPasswordExpires: { $gt: Date.now() },
         });
 
         if (!user) {
-            return res.render('reset-password', { error: 'Invalid or expired reset token' });
+            return res.status(400).json({ error: 'Invalid or expired reset token' });
         }
 
-        // Update password using argon2
         user.password = await hashPassword(password);
-
-        // Clear reset token fields
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
-
         await user.save();
 
         await sendPasswordResetNotificationEmail(user.email);
-
-        // Redirect to login
-        res.redirect('/login?reset=success');
+        res.status(200).json({ message: 'Password successfully reset' });
     } catch (error) {
-        console.error('Reset password error:', error);
-        res.render('reset-password', { error: 'Error resetting password' });
+        console.error('Error in handleResetPassword:', error);
+        res.status(500).json({ error: 'Error resetting password' });
     }
 }
 

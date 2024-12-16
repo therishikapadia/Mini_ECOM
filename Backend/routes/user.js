@@ -3,7 +3,7 @@ const router = express.Router();
 const { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout, confirmSignUp } = require('../controllers/user');
 
 // Confirm sign-up
-router.post('/confirm-signup/:token', confirmSignUp);
+router.post('/confirm-signup', confirmSignUp);
 router.get('/confirm-signup/:token', confirmSignUp);
 
 router.post('/signup', handleUserSignup)

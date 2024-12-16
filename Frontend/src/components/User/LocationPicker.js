@@ -1,7 +1,7 @@
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-const Map = ({ apikey }) => {
+const Map = ({apiBaseUrl, apikey }) => {
   const mapStyles = {
     height: "100vh",
     width: "100%",

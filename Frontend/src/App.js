@@ -5,6 +5,8 @@ import AdminPanel from "./components/Admin/AdminPanel";
 import LoginPage from "./components/Admin/LoginPage";
 import SignupPage from "./components/Admin/SignupPage";
 import User from "./components/User/User";
+import ForgetPassword from "./components/Admin/ForgetPassword";
+import ResetPassword from "./components/Admin/ResetPassword";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // For administration
@@ -90,6 +92,17 @@ function App() {
               <Navigate to="/customer" replace />
             )
           }
+        />
+
+        {/* Signup Route */}
+        <Route
+          path="/forgot-password"
+          element={<ForgetPassword apiBaseUrl={apiBaseUrl} />}
+        />
+
+        <Route
+          path="/reset-password/:token"
+          element={<ResetPassword apiBaseUrl={apiBaseUrl} />}
         />
       </Routes>
     </div>
