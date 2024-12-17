@@ -4204,3 +4204,247 @@
 1734414663026:::1 POST: /confirm-signup/5b4ce7792f62ee79fc35d08f805efe7ce98c15721f944bae58d8e596fccb2550
 
 1734414889000:::1 POST: /user/signup
+
+1734432418128:::1 POST: /user/login
+
+1734433858569:::1 POST: /user/login
+
+1734433860347:::1 GET: /stats/monthly
+
+1734433860425:::1 GET: /stats/monthly
+
+1734433861233:::1 GET: /admin/categories
+
+1734433861237:::1 GET: /admin/inventory
+
+1734434491734:::1 POST: /geoData
+
+1734435026231:::1 POST: /add-geo/geoData
+
+1734435037097:::1 POST: /add-geo/geoData
+
+1734435097206:::1 POST: /add-geo/geoData
+
+1734435158549:::ffff:127.0.0.1 POST: /add-geo/geoData
+
+1734435168406:::ffff:127.0.0.1 POST: /add-geo/geoData
+
+1734435232081:::ffff:127.0.0.1 POST: /add-geo/geoData
+
+1734435265548:::ffff:127.0.0.1 POST: /add-geo/geoData
+
+1734435282463:::1 POST: /add-geo/geoData
+
+1734435388918:::1 POST: /add-geo/geoData
+
+1734435615101:::1 POST: /add-geo/geoData
+
+1734436055881:::1 GET: /admin/customer
+
+1734436105688:::1 GET: /admin/customer
+
+1734436107777:::1 GET: /admin/customer
+
+1734436114250:::1 GET: /admin/customer
+
+1734436542486:::1 GET: /admin/customer
+
+1734436570964:::1 POST: /add-geo/geoData
+
+1734436696968:::1 GET: /user/logout
+
+1734436713513:::1 POST: /user/forgot-password
+
+1734437979357:::1 POST: /user/signup
+
+1734438005986:::1 GET: /user/confirm-signup
+
+1734438049670:::1 POST: /user/confirm-signup
+
+1734438431453:::1 POST: /user/login
+
+1734438433468:::1 GET: /stats/monthly
+
+1734438433510:::1 GET: /stats/monthly
+
+1734438436335:::1 GET: /admin/categories
+
+1734438436340:::1 GET: /admin/inventory
+
+1734438437036:::1 GET: /admin/customer
+
+1734438581482:::1 GET: /admin/customer
+
+1734438593513:::1 GET: /admin/categories
+
+1734438594139:::1 GET: /admin/orders
+
+1734438594140:::1 GET: /admin/inventory
+
+1734438594142:::1 GET: /admin/customer
+
+1734438596145:::1 GET: /admin/categories
+
+1734438596146:::1 GET: /admin/inventory
+
+1734438596636:::1 GET: /admin/customer
+
+1734438613308:::1 GET: /admin/customer
+
+1734438629930:::1 GET: /admin/customer
+
+1734438643760:::1 GET: /admin/categories
+
+1734438643762:::1 GET: /admin/inventory
+
+1734438644622:::1 GET: /admin/customer
+
+1734438736821:::1 GET: /admin/customer
+
+1734438842138:::1 GET: /admin/customer
+
+1734438880257:::1 GET: /admin/customer
+
+1734438893855:::1 GET: /admin/customer
+
+1734438911575:::1 GET: /admin/customer
+
+1734438925878:::1 GET: /admin/customer
+
+1734438936654:::1 GET: /admin/customer
+
+1734438972415:::1 GET: /admin/customer
+
+1734438986355:::1 GET: /admin/customer
+
+1734438990510:::1 GET: /admin/customer
+
+1734439020217:::1 GET: /admin/customer
+
+1734439025134:::1 GET: /admin/categories
+
+1734439030292:::1 GET: /admin/customer
+
+1734439080237:::1 POST: /add-geo/geoData
+
+1734440216452:::1 GET: /admin/categories
+
+1734440216454:::1 GET: /admin/inventory
+
+1734440217090:::1 GET: /admin/customer
+
+1734440284582:::1 GET: /admin/orders
+
+1734440284592:::1 GET: /admin/inventory
+
+1734440284593:::1 GET: /admin/customer
+
+1734440285033:::1 GET: /admin/categories
+
+1734440285395:::1 GET: /stats/monthly
+
+1734440285410:::1 GET: /stats/monthly
+
+1734440286523:::1 GET: /admin/categories
+
+1734440337729:::1 GET: /admin/customer
+
+1734440340913:::1 GET: /admin/customer
+
+1734440341395:::1 GET: /admin/customer
+
+1734440341396:::1 GET: /admin/orders
+
+1734440341398:::1 GET: /admin/inventory
+
+1734440341777:::1 GET: /admin/categories
+
+1734440342141:::1 GET: /stats/monthly
+
+1734440342155:::1 GET: /stats/monthly
+
+1734440342538:::1 GET: /admin/orders
+
+1734440342539:::1 GET: /admin/inventory
+
+1734440342541:::1 GET: /admin/customer
+
+1734440342960:::1 GET: /admin/categories
+
+1734440342961:::1 GET: /admin/inventory
+
+1734440343365:::1 GET: /admin/customer
+
+1734440344759:::1 GET: /stats/monthly
+
+1734440344773:::1 GET: /stats/monthly
+
+1734440345887:::1 GET: /admin/customer
+
+1734440404496:::1 GET: /stats/monthly
+
+1734440404513:::1 GET: /stats/monthly
+
+1734440409095:::1 GET: /user/logout
+
+1734442986621:::1 POST: /user/signup
+
+1734443077959:::1 POST: /user/signup
+
+1734443094131:::1 GET: /user/signup
+
+1734443122407:::1 GET: /user/signup
+
+1734444243053:::1 POST: /user/signup
+
+1734444278924:::1 POST: /user/signup
+
+1734444330718:::1 POST: /user/signup
+
+1734444396397:::1 POST: /user/signup
+
+1734444452494:::1 POST: /user/signup
+
+1734444493861:::1 POST: /user/signup
+
+1734444568598:::1 GET: /user/signup
+
+1734444666600:::1 GET: /user/signup
+
+1734444770027:::1 GET: /user/signup
+
+1734444833611:::1 POST: /user/signup
+
+1734445268199:::1 POST: /user/signup
+
+1734445288341:::1 GET: /user/signup
+
+1734445348525:::1 POST: /user/signup
+
+1734445591927:::1 POST: /user/signup
+
+1734446545474:::1 POST: /user/signup
+
+1734446877943:::1 POST: /user/signup
+
+1734447160381:::1 POST: /user/signup
+
+1734447363386:::1 POST: /user/signup
+
+1734447384958:::1 POST: /user/confirm-signup/undefined
+
+1734447731197:::1 POST: /user/confirm-signup/f2e5a665996fecbdf73a2f3f8299aaf0769f0183725b4c7c551ec9c90e502d45
+
+1734447751912:::1 POST: /user/login
+
+1734447925878:::1 POST: /user/signup
+
+1734448051609:::1 POST: /user/signup
+
+1734448064178:::1 POST: /user/confirm-signup/d48ab7e079ebf92de6270162a84be1f181dba7bdbd8129f79680f4fe16870037
+
+1734448141929:::1 POST: /user/signup
+
+1734448159074:::1 POST: /user/confirm-signup/21cae3a3897d3d02d07755db618154babba84bf505e720f3d87e74dc5469ecd2
+
+1734448172102:::1 POST: /user/login

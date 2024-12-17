@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-import { FaHome, FaBox, FaUsers, FaChartBar, FaCog } from "react-icons/fa";
+import { FaHome, FaBox, FaUsers, FaChartBar, FaMapMarkedAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdOutlineInventory } from "react-icons/md";
 
@@ -84,7 +84,7 @@ function Sidebar({ toggleSidebar, sidebarOpen, darkMode }) {
           to="/admin"
           label="Dashboard"
           icon={<FaHome />}
-          color="green"
+          color="chocolate"
           sidebarOpen={sidebarOpen}
           darkMode={darkMode}
         />
@@ -121,10 +121,10 @@ function Sidebar({ toggleSidebar, sidebarOpen, darkMode }) {
           darkMode={darkMode}
         />
         <NavItem
-          to="/admin/settings"
-          label="Settings"
-          icon={<FaCog />}
-          color="cyan"
+          to="/admin/routes"
+          label="Route"
+          icon={<FaMapMarkedAlt />}
+          color="green"
           sidebarOpen={sidebarOpen}
           darkMode={darkMode}
         />

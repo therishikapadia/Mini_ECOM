@@ -3,6 +3,7 @@ import { Button, Dropdown, Image } from "react-bootstrap";
 import { FaSun, FaMoon } from "react-icons/fa";
 import axios from "axios"; // Import axios
 import toast from "react-hot-toast"; // Import react-hot-toast
+import image from "../Admin/images/admin.png"; 
 
 const darkModeColors = {
   background: "#18283e",
@@ -69,9 +70,9 @@ function NavbarComponent({ darkMode, toggleTheme, title }) {
             className="me-3"
             style={{
               backgroundColor: "transparent",
-              border: `1px solid ${currentColors.border}`,
               fontSize: "20px",
               cursor: "pointer",
+              border:"none"
             }}
           >
             {darkMode ? (
@@ -83,7 +84,7 @@ function NavbarComponent({ darkMode, toggleTheme, title }) {
           <Dropdown align="end">
             <Dropdown.Toggle
               as={Image}
-              src="https://via.placeholder.com/40"
+              src={image}
               roundedCircle
               style={{ cursor: "pointer", width: "40px", height: "40px" }}
             />

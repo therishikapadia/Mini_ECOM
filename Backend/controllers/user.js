@@ -60,7 +60,7 @@ async function handleUserSignup(req, res) {
         console.log('Generated token:', confirmationToken);
 
         // Store the user data temporarily (pending confirmation)
-        const user = {
+        const user =await User.create({
             name: name,
             email: email,
             password: hashedPassword,
@@ -68,7 +68,7 @@ async function handleUserSignup(req, res) {
             isConfirmed: false, // Set confirmation status to false
             longitude,
             latitude
-        };
+        });
 
         console.log('User created:', user);
 

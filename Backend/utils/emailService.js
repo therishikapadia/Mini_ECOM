@@ -32,7 +32,7 @@ transporter.verify(function(error, success) {
 async function sendWelcomeEmail(userEmail, name, resetPasswordToken) {
   try {
       // Construct the confirmation URL
-      const confirmationUrl = `${process.env.APP_URL}/user/confirm-signup?token=${resetPasswordToken}`;
+      const confirmationUrl = `${process.env.REACT_APP_URL}/confirm-signup/${resetPasswordToken}`;
 
       // Send the email with the confirmation button
       await transporter.sendMail({

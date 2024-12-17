@@ -7,6 +7,7 @@ import SignupPage from "./components/Admin/SignupPage";
 import User from "./components/User/User";
 import ForgetPassword from "./components/Admin/ForgetPassword";
 import ResetPassword from "./components/Admin/ResetPassword";
+import SignupConfirm from "./components/Admin/SignupConfirm";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // For administration
@@ -98,7 +99,7 @@ function App() {
           path="/confirm-signup/:token"
           element={
             !isAuthenticated && !isAuthenticatedUser ? (
-              <SignupPage apiBaseUrl={apiBaseUrl} />
+              <SignupConfirm apiBaseUrl={apiBaseUrl} />
             ) : isAuthenticated ? (
               <Navigate to="/admin" replace />
             ) : (
@@ -110,12 +111,28 @@ function App() {
         {/* Signup Route */}
         <Route
           path="/forgot-password"
-          element={<ForgetPassword apiBaseUrl={apiBaseUrl} />}
+          element={
+            !isAuthenticated && !isAuthenticatedUser ? (
+              <ForgetPassword apiBaseUrl={apiBaseUrl} />
+            ) : isAuthenticated ? (
+              <Navigate to="/admin" replace />
+            ) : (
+              <Navigate to="/customer" replace />
+            )
+          }
         />
 
         <Route
           path="/reset-password/:token"
-          element={<ResetPassword apiBaseUrl={apiBaseUrl} />}
+          element={
+            !isAuthenticated && !isAuthenticatedUser ? (
+              <ResetPassword apiBaseUrl={apiBaseUrl} />
+            ) : isAuthenticated ? (
+              <Navigate to="/admin" replace />
+            ) : (
+              <Navigate to="/customer" replace />
+            )
+          }
         />
       </Routes>
     </div>
