@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const Signup = ({ mode, apiBaseUrl }) => {
+const Signup = ({ apiBaseUrl }) => {
   const [isVerificationSent, setIsVerificationSent] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -17,25 +17,22 @@ const Signup = ({ mode, apiBaseUrl }) => {
     getValues
   } = useForm();
 
-  const sendVerificationEmail = async (userInfo) => {
+  const sendSignupData = async (userInfo) => {
     try {
-      const res = await axios.post(`${apiBaseUrl}/user/send-verification`, {
-        name: userInfo.name,
-        email: userInfo.email
-      });
+      const res = await axios.post(`${apiBaseUrl}/user/signup`, userInfo);
 
-      if (res.data) {
+      if (res.data.success) {
         // Store user info in local storage temporarily
         localStorage.setItem('pendingUserSignup', JSON.stringify({
-          ...userInfo,
-          verificationToken: res.data.verificationToken
+          email: userInfo.email,
+          token: res.data.data.user.resetPasswordToken
         }));
 
-        toast.success("Verification email sent! Please check your inbox.");
+        toast.success("Signup successful! Check your email for the verification code.");
         setIsVerificationSent(true);
       }
     } catch (err) {
-      toast.error(err.response?.data?.error || "Failed to send verification email");
+      toast.error(err.response?.data?.error || "Signup failed. Please try again.");
     }
   };
 
@@ -49,71 +46,50 @@ const Signup = ({ mode, apiBaseUrl }) => {
       name: data.name,
       email: data.email,
       password: data.password,
-      confirmPassword: data.confirmPassword
+      confirmPassword: data.confirmPassword,
+      longitude: 12,
+      latitude: 120
     };
 
-    // First, send verification email
-    await sendVerificationEmail(userInfo);
+    // Send signup data to the backend
+    await sendSignupData(userInfo);
   };
 
   const completeSignup = async (verificationCode) => {
     try {
       // Retrieve pending user info
       const pendingUserSignup = JSON.parse(localStorage.getItem('pendingUserSignup'));
-      
+
       if (!pendingUserSignup) {
         toast.error("No pending signup found. Please start signup process again.");
         return;
       }
 
+      const { email, token } = pendingUserSignup;
+
       // Send verification request
-      const res = await axios.post(`${apiBaseUrl}/user/verify-email`, {
-        email: pendingUserSignup.email,
-        verificationCode: verificationCode
-      });
+      const res = await axios.post(`${apiBaseUrl}/user/confirm-signup/${token}`, {});
 
       if (res.data) {
-        // Complete user registration
-        const signupRes = await axios.post(`${apiBaseUrl}/user/signup`, pendingUserSignup);
-        
-        if (signupRes.data) {
-          toast.success("Signup successful!");
-          localStorage.removeItem('pendingUserSignup');
-          localStorage.setItem("Users", JSON.stringify(signupRes.data.data.user.name));
-          navigate(from, { replace: true });
-        }
+        toast.success("Signup confirmed successfully!");
+        localStorage.removeItem('pendingUserSignup');
+        navigate(from, { replace: true });
       }
     } catch (err) {
-      toast.error(err.response?.data?.error || "Verification failed");
+      toast.error(err.response?.data?.message || "Verification failed. Please try again.");
       setIsVerificationSent(false);
     }
   };
 
   // Verification form
   const VerificationForm = () => {
-    const [verificationCode, setVerificationCode] = useState('');
-
     const handleVerification = () => {
-      if (verificationCode.trim()) {
-        completeSignup(verificationCode);
-      } else {
-        toast.error("Please enter verification code");
-      }
+      completeSignup();
     };
 
     return (
       <div className="card shadow-lg p-4" style={{ maxWidth: '400px', borderRadius: '20px' }}>
         <h3 className="text-center mb-4">Verify Your Email</h3>
-        <div className="mb-3">
-          <label>Verification Code:</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter verification code"
-            value={verificationCode}
-            onChange={(e) => setVerificationCode(e.target.value)}
-          />
-        </div>
         <button 
           onClick={handleVerification} 
           className="btn btn-success w-100"

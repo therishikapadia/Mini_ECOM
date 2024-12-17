@@ -94,6 +94,19 @@ function App() {
           }
         />
 
+        <Route
+          path="/confirm-signup/:token"
+          element={
+            !isAuthenticated && !isAuthenticatedUser ? (
+              <SignupPage apiBaseUrl={apiBaseUrl} />
+            ) : isAuthenticated ? (
+              <Navigate to="/admin" replace />
+            ) : (
+              <Navigate to="/customer" replace />
+            )
+          }
+        />
+
         {/* Signup Route */}
         <Route
           path="/forgot-password"

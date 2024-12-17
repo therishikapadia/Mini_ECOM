@@ -4180,3 +4180,27 @@
 1734356240824:::1 GET: /user/logout
 
 1734362035399:::1 POST: /user/login
+
+1734413024748:::1 GET: /customer/order
+
+1734413024755:::1 GET: /admin/inventory
+
+1734413028589:::1 GET: /customer/order
+
+1734413028592:::1 GET: /admin/inventory
+
+1734413264413:::1 POST: /user/signup
+
+1734413275425:::1 POST: /user/signup
+
+1734413429044:::1 POST: /user/signup
+
+1734414057433:::1 POST: /user/signup
+
+1734414572534:::1 POST: /signup
+
+1734414591125:::1 POST: /user/signup
+
+1734414663026:::1 POST: /confirm-signup/5b4ce7792f62ee79fc35d08f805efe7ce98c15721f944bae58d8e596fccb2550
+
+1734414889000:::1 POST: /user/signup

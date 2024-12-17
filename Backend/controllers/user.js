@@ -22,9 +22,8 @@ async function verifyPassword(plaintextPassword, hashedPassword) {
 }
 
 async function handleUserSignup(req, res) {
-    console.log("HI");
     const { name, email, password, confirmPassword,longitude,latitude } = req.body;
-    console.log(name, email, password, confirmPassword);
+    console.log(name, email, password, confirmPassword,longitude,latitude);
     
     // Check if email already exists
     const existingUser = await User.findOne({ email });
@@ -76,10 +75,6 @@ async function handleUserSignup(req, res) {
         // Send the welcome email with the reset password token
         await sendWelcomeEmail(email, name, confirmationToken);
 
-        // Log all users and their confirmation tokens
-        const allUsers = await User.find({}, { email: 1, resetPasswordToken: 1 });
-        console.log('All users and their confirmation tokens:', allUsers);
-
         return res.status(200).json({ success: true, data: { user } });
     } catch (error) {
         console.error('Signup error:', error);
@@ -90,7 +85,7 @@ async function handleUserSignup(req, res) {
 
 async function handleUserLogin(req, res) {
     const { email, password } = req.body;
-    console.log(email, password);
+    // console.log(email, password);
 
     if (!email || !password) {
         return res.render('login', { err: "Email and password are required" });
@@ -119,7 +114,7 @@ async function handleUserLogin(req, res) {
             sameSite: 'strict',
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
         });
-        console.log(user);
+        // console.log(user);
         return res.status(200).json({ success: true, data: { user }, token: token });
     } catch (error) {
         console.error('Login error:', error);

@@ -3,11 +3,11 @@ const router = express.Router();
 const { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout, handleconfirmSignUp } = require('../controllers/user');
 
 // Confirm sign-up
-router.get('/confirm-signup/:token', handleconfirmSignUp);
-
-
-
+router.post('/confirm-signup/:token', handleconfirmSignUp);
 router.post('/signup', handleUserSignup)
+
+
+
 // router.get('/signup', (req, res) => {
     // res.render('signup', { error: null });
 // });
