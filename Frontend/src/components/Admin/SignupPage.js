@@ -169,7 +169,7 @@ const Signup = ({ apiBaseUrl }) => {
   );
 
   return (
-    <div className={`bg-${mode} text-${mode === 'light' ? 'dark' : 'light'}`}>
+    <div className={``}>
       <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
         {isVerificationSent ? <VerificationForm /> : <SignupForm />}
       </div>
