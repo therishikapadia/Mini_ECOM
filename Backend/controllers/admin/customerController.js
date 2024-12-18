@@ -28,8 +28,8 @@ const {hashPassword}=require('../../utils/password')
   
 
   const handleUpdateCustomer = async (req, res) => {
-    const { email, name, password, role } = req.body;
-  
+    const { email, name, password } = req.body;
+    role="CUSTOMER";
     if (!email || !name || !password || !role) {
       return res.status(400).json({ error: 'Please provide all required fields' });
     }
@@ -58,9 +58,10 @@ const {hashPassword}=require('../../utils/password')
       res.status(500).json({ error: 'Failed to update customer' });
     }
   };
+  
   const handleDeleteCustomer = async (req, res) => {
     const { email } = req.body;
-  
+  console.log(email);
     if (!email) {
       return res.status(400).json({ error: 'Email is required to delete customer' });
     }

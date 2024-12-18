@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Row, Col, Button, Form, Modal } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
+import {toast } from "react-hot-toast";
 
 const darkModeColors = {
   background: "#111d2e",
@@ -74,6 +75,7 @@ const Category = ({ apiBaseUrl,darkMode }) => {
       setCategories(response.data.categories);
     } catch (error) {
       console.error("Failed to fetch categories:", error.response?.data || error.message);
+      toast.error("Failed to load categories.");
     }
   };
 
@@ -188,6 +190,7 @@ const Category = ({ apiBaseUrl,darkMode }) => {
       );
       setShowModal(false); // Close modal on success
       fetchCategories();   // Refresh categories
+      toast.success(editIndex !== null ? "Category updated successfully!" : "Category added successfully!");
     } catch (error) {
       console.error(
         editIndex !== null
@@ -195,6 +198,7 @@ const Category = ({ apiBaseUrl,darkMode }) => {
           : "Error adding category:",
         error.response?.data || error.message
       );
+      toast.error(editIndex !== null ? "Failed to update category." : "Failed to add category.");
     }
 };
 
@@ -237,8 +241,10 @@ const Category = ({ apiBaseUrl,darkMode }) => {
         },
       );
       fetchCategories();
+      toast.success("Category removed successfully!");
     } catch (error) {
       console.error("Failed to delete category:", error.response?.data || error.message);
+      toast.error("Failed to remove category.");
     }
   };
 
@@ -257,8 +263,10 @@ const Category = ({ apiBaseUrl,darkMode }) => {
 
       );
       fetchCategories();
+      toast.success("Attribute removed successfully!");
     } catch (error) {
       console.error("Failed to delete specific attribute:", error.response?.data || error.message);
+      toast.error("Failed to remove attribute.");
     }
   };
 

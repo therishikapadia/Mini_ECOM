@@ -44,7 +44,7 @@ const handleUpdateOrder = async (req, res) => {
 
       // Check inventory sufficiency
       if (inventoryItem.quantity < quantity) {
-        return res.status(400).json({ 
+        return res.status(400).json({
           error: "Insufficient inventory",
           availableStock: inventoryItem.quantity,
           requestedQuantity: quantity
@@ -54,24 +54,24 @@ const handleUpdateOrder = async (req, res) => {
       // Determine inventory adjustment
       if (order.orderStatus !== "Approved") {
         // First time approval - subtract full quantity
-        inventoryUpdate = { 
-          $inc: { quantity: -quantity } 
+        inventoryUpdate = {
+          $inc: { quantity: -quantity }
         };
       } else {
         // Already approved - adjust based on quantity difference
         const quantityDifference = quantity - order.quantity;
-        inventoryUpdate = { 
-          $inc: { quantity: -quantityDifference } 
+        inventoryUpdate = {
+          $inc: { quantity: -quantityDifference }
         };
       }
 
       // Update order quantity
       orderUpdate.quantity = quantity;
-    } 
+    }
     // If changing from Approved to Pending, add quantity back to inventory
     else if (order.orderStatus === "Approved" && orderStatus === "Pending") {
-      inventoryUpdate = { 
-        $inc: { quantity: order.quantity } 
+      inventoryUpdate = {
+        $inc: { quantity: order.quantity }
       };
     }
 
@@ -87,8 +87,8 @@ const handleUpdateOrder = async (req, res) => {
 
     // Update order
     const updatedOrder = await Order.findByIdAndUpdate(
-      orderId, 
-      orderUpdate, 
+      orderId,
+      orderUpdate,
       { new: true }
     );
 
@@ -100,19 +100,19 @@ const handleUpdateOrder = async (req, res) => {
 
   } catch (error) {
     console.error("Order update error:", error);
-    res.status(500).json({ 
-      error: "Failed to update order", 
-      details: error.message 
+    res.status(500).json({
+      error: "Failed to update order",
+      details: error.message
     });
   }
 };
 
 const handleAdminAddOrder = async (req, res) => {
-  const { product, quantity , notes, customer} = req.body;
-  
+  const { product, quantity, notes, customer } = req.body;
+
   // const customer = req.user?._id; // Retrieve the authenticated user ID
-//   console.log("Authenticated user:", req.user);
-//   console.log("Authorization header:", req.headers.authorization);
+  //   console.log("Authenticated user:", req.user);
+  //   console.log("Authorization header:", req.headers.authorization);
 
   if (!product || !quantity) {
     return res.status(400).json({ error: "Product and quantity are required" });
@@ -132,7 +132,7 @@ const handleAdminAddOrder = async (req, res) => {
       customer,
       notes,
       orderStatus: "Pending",
-      isDeleted:false,
+      isDeleted: false,
     });
 
     await newOrder.save();
@@ -159,9 +159,9 @@ const handleGetAllOrders = async (req, res) => {
       {
         $lookup: {
           from: "inventories", // Collection name for Inventory
-          localField: "product", 
-          foreignField: "_id", 
-          as: "productDetails", 
+          localField: "product",
+          foreignField: "_id",
+          as: "productDetails",
         },
       },
       {
@@ -171,7 +171,7 @@ const handleGetAllOrders = async (req, res) => {
         $lookup: {
           from: "categories", // Collection name for Category
           localField: "productDetails.attributeId",
-          foreignField: "attributes._id", 
+          foreignField: "attributes._id",
           as: "categoryDetails",
         },
       },
@@ -187,7 +187,7 @@ const handleGetAllOrders = async (req, res) => {
                   input: "$categoryDetails.attributes",
                   as: "attr",
                   cond: {
-                    $eq: ["$$attr._id", "$productDetails.attributeId"], 
+                    $eq: ["$$attr._id", "$productDetails.attributeId"],
                   },
                 },
               },
@@ -283,11 +283,11 @@ const handleDeleteOrder = async (req, res) => {
 
 //customer
 const handleAddOrder = async (req, res) => {
-  const { product, quantity , notes} = req.body;
-  
+  const { product, quantity, notes } = req.body;
+
   const customer = req.user?._id; // Retrieve the authenticated user ID
-//   console.log("Authenticated user:", req.user);
-//   console.log("Authorization header:", req.headers.authorization);
+  //   console.log("Authenticated user:", req.user);
+  //   console.log("Authorization header:", req.headers.authorization);
 
   if (!product || !quantity) {
     return res.status(400).json({ error: "Product and quantity are required" });
@@ -307,7 +307,7 @@ const handleAddOrder = async (req, res) => {
       customer,
       notes,
       orderStatus: "Pending",
-      isDeleted:false,
+      isDeleted: false,
     });
 
     await newOrder.save();
@@ -322,73 +322,76 @@ const handleAddOrder = async (req, res) => {
 };
 
 const handleGetCustomerOrders = async (req, res) => {
-    try {
-      // Ensure the user is authenticated
-      if (!req.user) {
+  try {
+    // Ensure the user is authenticated
+    if (!req.user) {
 
-        console.log('User not authenticated:', req.user);
+      console.log('User not authenticated:', req.user);
 
-        return res.status(401).json({ error: 'Unauthorized. Please log in.' });
-      }
-      // const customerId=req.params.id
-  
-      const customerId = req.user._id; // Get the customer's ID from the authenticated user
-  
-      // Find all orders for the authenticated customer
-      const orders = await Order.find({ customer: customerId ,isDeleted:false})
-        .populate('product') // Populate product details
-        .sort({ createdAt: -1 }); // Sort orders by the latest first
-  
-      if (!orders.length) {
-        return res.status(404).json({ message: 'No orders found for this customer.' });
-      }
-      // console.log(orders)
-      res.status(200).json({orders});
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Failed to fetch customer orders' });
+      return res.status(401).json({ error: 'Unauthorized. Please log in.' });
     }
-  };
-  
+    // const customerId=req.params.id
+
+    const customerId = req.user._id; // Get the customer's ID from the authenticated user
+
+    // Find all orders for the authenticated customer
+    const orders = await Order.find({ customer: customerId, isDeleted: false })
+      .populate('product') // Populate product details
+      .sort({ createdAt: -1 }); // Sort orders by the latest first
+
+    if (!orders.length) {
+      return res.status(404).json({ message: 'No orders found for this customer.' });
+    }
+    // console.log(orders)
+    res.status(200).json({ orders });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch customer orders' });
+  }
+};
+
 const handleUpdateCustomerOrder = async (req, res) => {
-    const { orderId, quantity,notes } = req.body;
-    console.log(orderId, quantity, notes);
-    
-  
-    // Validate input
-    if (!orderId || !quantity || quantity < 1) {
-      return res.status(400).json({ error: 'Order ID and a valid quantity are required.' });
+  const { orderId, quantity, notes } = req.body;
+
+  // Validate input
+  if (!orderId || !quantity || quantity < 1) {
+    return res.status(400).json({ error: 'Order ID and a valid quantity are required.' });
+  }
+
+  try {
+    // Ensure the user is authenticated
+    if (!req.user) {
+      return res.status(401).json({ error: 'Unauthorized. Please log in.' });
     }
-  
-    try {
-      // Ensure the user is authenticated
-      if (!req.user) {
-        return res.status(401).json({ error: 'Unauthorized. Please log in.' });
-      }
-  
-      // Find the order by ID and ensure it belongs to the customer
-      const order = await Order.findOne({ _id: orderId, customer: req.user._id,isDeleted:false,notes}).populate('product');
-      console.log(req.user._id)
-      if (!order) {
-        return res.status(404).json({ error: 'Order not found or does not belong to the user.' });
-      }
-  
-      // Ensure the order is still in Pending state
-      if (order.orderStatus !== 'Pending') {
-        return res.status(400).json({ error: 'Only orders in Pending state can be updated.' });
-      }
-  
-      // Update the order quantity only
-      order.quantity = quantity;
-      await order.save();
-  
-      res.status(200).json({ message: 'Order updated successfully.', order });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Failed to update the order.' });
+
+    // Find the order by ID and ensure it belongs to the customer
+    const order = await Order.findOne({ 
+      _id: orderId, 
+      customer: req.user._id, 
+      isDeleted: false 
+    }).populate('product');
+
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found or does not belong to the user.' });
     }
-  };
-  
+
+    // Ensure the order is still in Pending state
+    if (order.orderStatus !== 'Pending') {
+      return res.status(400).json({ error: 'Only orders in Pending state can be updated.' });
+    }
+
+    // Update the order
+    order.quantity = quantity;
+    if (notes) order.notes = notes; // Update notes if provided
+    await order.save();
+
+    res.status(200).json({ message: 'Order updated successfully.', order });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to update the order. Please try again later.' });
+  }
+};
+
 
 module.exports = {
   handleAddOrder,

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { Button, Card, Container, Row, Col, Spinner, Alert, Modal, Form } from "react-bootstrap";
+import { toast } from "react-hot-toast";
 
 const darkModeColors = {
     background: "#111d2e",
@@ -74,7 +75,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
             setUsers(data.customers || []);
         } catch (error) {
             console.error("Error fetching users:", error);
-            setMessage("Error fetching users.");
+            toast.error("Error fetching users.");
         }
     }, [apiBaseUrl]);
 
@@ -95,7 +96,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
             setOrders(data.orders || []);
         } catch (error) {
             console.error("Error fetching orders:", error);
-            setMessage("Error fetching orders.");
+            toast.error("Error fetching products.");
         } finally {
             setIsLoading(false);
             setFetchingData(false);
@@ -141,11 +142,11 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                     data: { orderId }
                 },
             );
-            setMessage("Order deleted successfully!");
+            toast.success("Order deleted successfully!");
             fetchOrders();
         } catch (error) {
             console.error("Error deleting order:", error);
-            setMessage("Error deleting order.");
+            toast.error("Error deleting order.");
         }
     };
 
@@ -175,19 +176,19 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                     withCredentials: true,
                 }
             );
-            setUpdateMessage(data.message);
+            toast.success(data.message);
             fetchOrders();  // Refresh the order list
             setShowModal(false);  // Close modal after update
             setSelectedOrder(null);  // Clear the selected order after update
         } catch (error) {
             console.error("Error updating order:", error);
-            setUpdateMessage("Failed to update the order.");
+            toast.error("Failed to update the order.");
         }
     };
 
     const handleAddOrder = async () => {
         if (!selectedUserId || !selectedProduct || !orderQuantity) {
-            setMessage("All fields are required.");
+            toast.error("All fields are required.");
             return;
         }
 
@@ -208,12 +209,12 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                     withCredentials: true,
                 }
             );
-            setMessage("Order added successfully!");
+            toast.success("Order added successfully!");
             fetchOrders(); // Refresh the order list
             setShowAddOrderModal(false); // Close modal
         } catch (error) {
             console.error("Error adding order:", error);
-            setMessage("Failed to add order.");
+            toast.error("Failed to add order.");
         }
     };
 

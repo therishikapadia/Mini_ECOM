@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { Button, Form, Container, Row, Col, Card, Spinner, Alert, Modal, } from "react-bootstrap";
-
+import { toast } from 'react-hot-toast';
 const darkModeColors = {
     background: "#111d2e",
     text: "#e0e0e0",
@@ -85,6 +85,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
         } catch (error) {
             console.error("Error fetching categories and attributes:", error);
             setMessage("Error fetching categories and attributes.");
+            toast.error("Error fetching categories and attributes.");
         } finally {
             setFetchingData(false);
         }
@@ -108,6 +109,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
         } catch (error) {
             console.error("Error fetching products:", error);
             setMessage("Error fetching products.");
+            toast.error("Error fetching products.");
         } finally {
             setIsLoading(false);
         }
@@ -154,6 +156,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                     }
                 );
                 setMessage("Product updated successfully!");
+                toast.success("Product updated successfully!");
             } else {
                 // For adding a new product
                 await axios.post(
@@ -168,6 +171,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                     }
                 );
                 setMessage("Product added successfully!");
+                toast.success("Product added successfully!");
             }
     
             resetForm(); // Clear the form
@@ -176,6 +180,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
         } catch (error) {
             console.error("Error saving product:", error);
             setMessage("Error saving product.");
+            toast.error("Error saving product.");
         }
     };
     
@@ -198,10 +203,12 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                 }
             );
             setMessage("Product deleted successfully!");
+            toast.success("Product deleted successfully!");
             fetchProducts();
         } catch (error) {
             console.error("Error deleting product:", error);
             setMessage("Error deleting product.");
+            toast.error("Error deleting product.");
         }
     };
 

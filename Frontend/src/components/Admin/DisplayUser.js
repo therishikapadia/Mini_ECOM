@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const darkModeColors = {
   background: "#111d2e",
@@ -57,6 +58,7 @@ const DisplayUser = ({ apiBaseUrl, darkMode }) => {
         }
       } catch (err) {
         setError("Failed to load users");
+        toast.error("Failed to load users");
       } finally {
         setLoading(false);
       }
@@ -80,57 +82,64 @@ const DisplayUser = ({ apiBaseUrl, darkMode }) => {
   // Save Changes to User
   const saveChanges = async () => {
     try {
-      const response = await axios.patch(`${apiBaseUrl}/admin/customer`,
+      const payload = {
+        name: editForm.name,
+        email: editForm.email,
+      };
+      if (editForm.password) {
+        payload.password = editForm.password;
+      }
+  
+      const response = await axios.patch(
+        `${apiBaseUrl}/admin/customer`,
+        payload,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
             "Content-Type": "application/json",
           },
           withCredentials: true,
-        },
-        {
-        ...editForm,
-        role: "CUSTOMER",
-      });
-      alert(response.data.message);
-
-      // Update the local state
+        }
+      );
+  
+      toast.success("User updated successfully");
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
-          user._id === editingUser ? { ...user, ...editForm } : user
+          user._id === editingUser ? { ...user, ...payload } : user
         )
       );
       setEditingUser(null);
     } catch (err) {
+      const errorMessage = err.response?.data?.error || "Failed to update user";
+      toast.error(errorMessage);
       console.error(err);
-      alert("Failed to update customer");
     }
   };
+  
 
   // Handle Delete
   const handleDelete = async (email) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
+  
     try {
-      const response = await axios.delete(`${apiBaseUrl}/admin/customer`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        },
-        {
+      const response = await axios.delete(`${apiBaseUrl}/admin/customer`, {
         data: { email },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
       });
-      alert(response.data.message);
-
-      // Remove deleted user from the state
+  
+      toast.success("User deleted successfully");
       setUsers((prevUsers) => prevUsers.filter((user) => user.email !== email));
     } catch (err) {
+      const errorMessage = err.response?.data?.error || "Failed to delete user";
+      toast.error(errorMessage);
       console.error(err);
-      alert("Failed to delete customer");
     }
   };
+  
 
   return (
     <div

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Button, Table, Alert, Spinner, Form } from "react-bootstrap";
+import { toast, Toaster } from "react-hot-toast";
 
 const darkModeColors = {
   background: "#111d2e",
@@ -62,6 +63,7 @@ const Location = ({ darkMode, apiBaseUrl }) => {
         ...prevLocations,
         { name: name || email, latitude, longitude },
       ]);
+      toast.success(`${name} location added successfully!`);
     }
   };
 
@@ -84,8 +86,10 @@ const Location = ({ darkMode, apiBaseUrl }) => {
         }
       );
       setRouteResult(response.data);
+      toast.success("Optimal route calculated successfully!");
     } catch (err) {
       setError("Failed to calculate the optimal route. Please try again.");
+      toast.error("Failed to calculate the optimal route. Please try again.");
       console.error(err);
     } finally {
       setLoading(false);

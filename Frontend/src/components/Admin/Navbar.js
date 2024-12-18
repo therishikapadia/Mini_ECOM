@@ -38,7 +38,7 @@ function NavbarComponent({ darkMode, toggleTheme, title }) {
           localStorage.removeItem("authToken"); // Remove
           localStorage.removeItem("role"); // Remove
           localStorage.removeItem("Email"); // Remove
-          // window.location.href = "/";  // Redirect to login page
+          window.location.href = "/";  // Redirect to login page
         }, 1000);
       } else {
         console.error("Logout failed");

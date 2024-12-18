@@ -5076,3 +5076,115 @@
 1734521572742:::1 PATCH: /customer/order
 
 1734521597371:::1 PATCH: /customer/order
+
+1734521695346:::1 PATCH: /customer/order
+
+1734522791090:::1 GET: /admin/inventory
+
+1734522791087:::1 GET: /admin/orders
+
+1734522791090:::1 GET: /admin/customer
+
+1734522811022:::1 GET: /stats/monthly
+
+1734522811039:::1 GET: /stats/monthly
+
+1734522815920:::1 GET: /user/logout
+
+1734523224688:::1 POST: /user/login
+
+1734523226441:::1 GET: /stats/monthly
+
+1734523226452:::1 GET: /stats/monthly
+
+1734523228065:::1 GET: /user/logout
+
+1734523235948:::1 POST: /user/login
+
+1734523237616:::1 GET: /stats/monthly
+
+1734523237632:::1 GET: /stats/monthly
+
+1734523374228:::1 PATCH: /customer/order
+
+1734523395875:::1 PATCH: /customer/order
+
+1734523543308:::1 PATCH: /customer/order
+
+1734524382061:::1 PATCH: /customer/order
+
+1734524433251:::1 GET: /customer/order
+
+1734524433252:::1 GET: /admin/inventory
+
+1734524433252:::1 GET: /admin/customer
+
+1734524442582:::1 PATCH: /customer/order
+
+1734524558537:::1 PATCH: /customer/order
+
+1734525820456:::1 GET: /admin/customer
+
+1734525821136:::1 GET: /admin/orders
+
+1734525821137:::1 GET: /admin/inventory
+
+1734525821138:::1 GET: /admin/customer
+
+1734525822233:::1 GET: /customer/order
+
+1734525822234:::1 GET: /admin/customer
+
+1734525822237:::1 GET: /admin/inventory
+
+1734525926105:::1 GET: /stats/monthly
+
+1734525926123:::1 GET: /stats/monthly
+
+1734526006554:::1 GET: /admin/customer
+
+1734526097731:::1 GET: /user/logout
+
+1734526108692:::1 POST: /user/login
+
+1734526110078:::1 GET: /stats/monthly
+
+1734526110093:::1 GET: /stats/monthly
+
+1734526115150:::1 GET: /admin/customer
+
+1734526392508:::1 PATCH: /admin/customer
+
+1734526413025:::1 PATCH: /admin/customer
+
+1734526445761:::1 PATCH: /admin/customer
+
+1734526478501:::1 DELETE: /admin/customer
+
+1734526530130:::1 PATCH: /admin/customer
+
+1734526570822:::1 PATCH: /admin/customer
+
+1734526684854:::1 DELETE: /admin/customer
+
+1734526968199:::1 DELETE: /admin/customer
+
+1734527091365:::1 DELETE: /admin/customer
+
+1734527102421:::1 DELETE: /admin/customer
+
+1734527109621:::1 DELETE: /admin/customer
+
+1734527163788:::1 GET: /admin/customer
+
+1734527390789:::1 GET: /admin/customer
+
+1734527393226:::1 GET: /admin/customer
+
+1734527399901:::1 DELETE: /admin/customer
+
+1734527479804:::1 PATCH: /admin/customer
+
+1734527515001:::1 GET: /admin/customer
+
+1734527522877:::1 PATCH: /admin/customer
