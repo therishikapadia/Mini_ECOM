@@ -57,6 +57,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -66,24 +67,64 @@
 
 /* Global Dark Mode Styles */
 .dark-mode {
-  background-color: #121212; /* Dark gray background for the whole panel */
-  color: #e0e0e0; /* Light text for readability */
+  background-color: #121212;
+  /* Dark gray background for the whole panel */
+  color: #e0e0e0;
+  /* Light text for readability */
 }
 
 /* Sidebar in Dark Mode */
 .sidebar-open {
-  background-color: #131c2f; /* Dark blue tint for sidebar when open */
+  background-color: #131c2f;
+  /* Dark blue tint for sidebar when open */
 }
 
 .sidebar-closed {
-  background-color: #1e1e2e; /* Dark blue tint when sidebar is closed */
+  background-color: #1e1e2e;
+  /* Dark blue tint when sidebar is closed */
 }
 
 hr {
-  border-color: #2c2c2c; /* Dark border for horizontal rule in dark mode */
+  border-color: #2c2c2c;
+  /* Dark border for horizontal rule in dark mode */
 }
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif; /* Recommended for Material Design */
+  font-family: 'Roboto', sans-serif;
+  /* Recommended for Material Design */
+}
+
+
+
+
+
+
+/* applied Fonts */
+
+*{
+  transition: all ease-in-out 0.1s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+th,
+strong {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+p,
+li,
+td,
+span,
+label {
+  font-family: "Lato", "Helvetica Ne" !important;
+  font-weight: 400 !important;
 }

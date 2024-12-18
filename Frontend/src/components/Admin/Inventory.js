@@ -132,16 +132,16 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
     // Form submission handler
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         try {
             const payload = {
                 category,
                 attributeId: selectedAttributeId, // Send only the selected attribute ID
                 quantity,
             };
-    
+
             console.log('Payload:', payload); // Log to verify the structure
-    
+
             if (productId) {
                 // For updating an existing product
                 await axios.post(
@@ -173,7 +173,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                 setMessage("Product added successfully!");
                 toast.success("Product added successfully!");
             }
-    
+
             resetForm(); // Clear the form
             fetchProducts(); // Refresh the product list
             setShowModal(false); // Close the modal after saving
@@ -183,7 +183,7 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
             toast.error("Error saving product.");
         }
     };
-    
+
 
 
 
@@ -331,9 +331,9 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                                                         {Object.entries(productAttributes)
                                                             .filter(([key]) => key !== "_id") // Exclude _id
                                                             .map(([key, value]) => (
-                                                                <div key={key}>
+                                                                <p key={key}>
                                                                     {key}: {value}{" "}
-                                                                </div>
+                                                                </p>
                                                             ))}
                                                     </div>
                                                 ) : (
@@ -342,25 +342,28 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                                             </div>
 
                                             {/* Edit and Delete buttons */}
-                                            <Button
-                                                variant="warning"
-                                                onClick={() => {
-                                                    setProductId(product._id);
-                                                    setCategory(product.category);
-                                                    setAttributes(product.attributes || [{}]);
-                                                    setQuantity(product.quantity);
-                                                    setShowModal(true);
-                                                }}
-                                            >
-                                                Edit
-                                            </Button>
-                                            <Button
-                                                variant="danger"
-                                                onClick={() => handleDeleteProduct(product._id)}
-                                                className="ml-2"
-                                            >
-                                                Delete
-                                            </Button>
+                                            <div className="d-flex justify-content-between">
+
+                                                <Button
+                                                    variant="warning"
+                                                    onClick={() => {
+                                                        setProductId(product._id);
+                                                        setCategory(product.category);
+                                                        setAttributes(product.attributes || [{}]);
+                                                        setQuantity(product.quantity);
+                                                        setShowModal(true);
+                                                    }}
+                                                >
+                                                    Edit
+                                                </Button>
+                                                <Button
+                                                    variant="danger"
+                                                    onClick={() => handleDeleteProduct(product._id)}
+                                                    className="ml-2"
+                                                >
+                                                    Delete
+                                                </Button>
+                                            </div>
                                         </Card.Body>
                                     </Card>
                                 </Col>

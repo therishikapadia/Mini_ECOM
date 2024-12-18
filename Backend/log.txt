@@ -5188,3 +5188,383 @@
 1734527515001:::1 GET: /admin/customer
 
 1734527522877:::1 PATCH: /admin/customer
+
+1734528711958:::1 GET: /user/logout
+
+1734528721048:::1 POST: /user/login
+
+1734528722402:::1 GET: /admin/customer
+
+1734529138533:::1 GET: /admin/customer
+
+1734529455039:::1 GET: /admin/customer
+
+1734529472437:::1 GET: /customer/order
+
+1734529472438:::1 GET: /admin/inventory
+
+1734529496603:::1 GET: /admin/customer
+
+1734529499151:::1 GET: /admin/customer
+
+1734529499151:::1 GET: /customer/order
+
+1734529499152:::1 GET: /admin/inventory
+
+1734529503265:::1 GET: /customer/order
+
+1734529503266:::1 GET: /admin/inventory
+
+1734529503269:::1 GET: /admin/customer
+
+1734529987284:::1 GET: /admin/customer
+
+1734530485365:::1 GET: /admin/customer
+
+1734530589543:::1 GET: /admin/customer
+
+1734530640540:::1 GET: /admin/customer
+
+1734530904433:::1 GET: /user/logout
+
+1734530917057:::1 POST: /user/login
+
+1734530918338:::1 GET: /stats/monthly
+
+1734530918354:::1 GET: /stats/monthly
+
+1734530920718:::1 GET: /admin/categories
+
+1734530921748:::1 GET: /admin/customer
+
+1734531116097:::1 GET: /stats/monthly
+
+1734531116107:::1 GET: /stats/monthly
+
+1734531118277:::1 GET: /admin/categories
+
+1734531222444:::1 GET: /admin/categories
+
+1734531229825:::1 GET: /admin/customer
+
+1734531232649:::1 GET: /admin/customer
+
+1734531232649:::1 GET: /admin/orders
+
+1734531232651:::1 GET: /admin/inventory
+
+1734531256953:::1 GET: /admin/customer
+
+1734531281662:::1 GET: /user/logout
+
+1734531304374:::1 POST: /user/login
+
+1734531306063:::1 GET: /admin/customer
+
+1734531382612:::1 GET: /customer/order
+
+1734531382613:::1 GET: /admin/inventory
+
+1734531508745:::1 GET: /user/logout
+
+1734531524316:::1 POST: /user/login
+
+1734531525650:::1 GET: /stats/monthly
+
+1734531525660:::1 GET: /stats/monthly
+
+1734531531970:::1 GET: /admin/categories
+
+1734531532725:::1 GET: /admin/orders
+
+1734531532729:::1 GET: /admin/customer
+
+1734531532729:::1 GET: /admin/inventory
+
+1734531534320:::1 GET: /admin/categories
+
+1734531534321:::1 GET: /admin/inventory
+
+1734531534829:::1 GET: /admin/customer
+
+1734531535442:::1 GET: /admin/categories
+
+1734531535452:::1 GET: /admin/inventory
+
+1734531538781:::1 GET: /admin/orders
+
+1734531538782:::1 GET: /admin/inventory
+
+1734531538783:::1 GET: /admin/customer
+
+1734531539146:::1 GET: /admin/customer
+
+1734531539552:::1 GET: /admin/categories
+
+1734531539945:::1 GET: /admin/inventory
+
+1734531539944:::1 GET: /admin/orders
+
+1734531539946:::1 GET: /admin/customer
+
+1734531540326:::1 GET: /admin/categories
+
+1734531540327:::1 GET: /admin/inventory
+
+1734531540706:::1 GET: /admin/customer
+
+1734531541072:::1 GET: /admin/categories
+
+1734531541073:::1 GET: /admin/inventory
+
+1734531661584:::1 GET: /admin/categories
+
+1734531661585:::1 GET: /admin/inventory
+
+1734531672972:::1 GET: /admin/customer
+
+1734531673552:::1 GET: /admin/categories
+
+1734531673557:::1 GET: /admin/inventory
+
+1734531674315:::1 GET: /admin/customer
+
+1734531738547:::1 GET: /admin/categories
+
+1734531739046:::1 GET: /admin/orders
+
+1734531739050:::1 GET: /admin/inventory
+
+1734531739050:::1 GET: /admin/customer
+
+1734531758537:::1 GET: /admin/customer
+
+1734531759068:::1 GET: /admin/categories
+
+1734531759072:::1 GET: /admin/inventory
+
+1734531822159:::1 GET: /stats/monthly
+
+1734531822166:::1 GET: /stats/monthly
+
+1734531824031:::1 GET: /admin/categories
+
+1734531825662:::1 GET: /admin/customer
+
+1734531827313:::1 GET: /admin/customer
+
+1734531827314:::1 GET: /admin/orders
+
+1734531827317:::1 GET: /admin/inventory
+
+1734532258622:::1 GET: /user/logout
+
+1734532269815:::1 POST: /user/login
+
+1734532271164:::1 GET: /admin/customer
+
+1734532357048:::1 GET: /user/logout
+
+1734532377530:::1 POST: /user/login
+
+1734532378869:::1 GET: /stats/monthly
+
+1734532378881:::1 GET: /stats/monthly
+
+1734532382741:::1 GET: /admin/categories
+
+1734532522663:::1 GET: /stats/monthly
+
+1734532522672:::1 GET: /stats/monthly
+
+1734532524740:::1 GET: /admin/categories
+
+1734532530376:::1 GET: /stats/monthly
+
+1734532530389:::1 GET: /stats/monthly
+
+1734532661105:::1 GET: /admin/categories
+
+1734532663784:::1 GET: /admin/orders
+
+1734532663788:::1 GET: /admin/customer
+
+1734532663788:::1 GET: /admin/inventory
+
+1734532665110:::1 GET: /admin/categories
+
+1734532667718:::1 GET: /admin/customer
+
+1734532669340:::1 GET: /admin/orders
+
+1734532669343:::1 GET: /admin/inventory
+
+1734532669343:::1 GET: /admin/customer
+
+1734532819062:::1 GET: /admin/orders
+
+1734532819063:::1 GET: /admin/customer
+
+1734532819063:::1 GET: /admin/inventory
+
+1734532825988:::1 GET: /admin/orders
+
+1734532825989:::1 GET: /admin/inventory
+
+1734532825990:::1 GET: /admin/customer
+
+1734532892231:::1 GET: /admin/categories
+
+1734532892231:::1 GET: /admin/inventory
+
+1734532935823:::1 GET: /admin/categories
+
+1734532935823:::1 GET: /admin/inventory
+
+1734532938910:::1 GET: /admin/customer
+
+1734532941036:::1 GET: /admin/categories
+
+1734532941039:::1 GET: /admin/inventory
+
+1734533715616:::1 GET: /admin/categories
+
+1734533788005:::1 GET: /admin/orders
+
+1734533788007:::1 GET: /admin/inventory
+
+1734533788007:::1 GET: /admin/customer
+
+1734533788457:::1 GET: /admin/customer
+
+1734533788809:::1 GET: /admin/orders
+
+1734533788815:::1 GET: /admin/inventory
+
+1734533788815:::1 GET: /admin/customer
+
+1734533789639:::1 GET: /admin/customer
+
+1734533790498:::1 GET: /admin/categories
+
+1734533790951:::1 GET: /admin/customer
+
+1734533792277:::1 GET: /admin/orders
+
+1734533792278:::1 GET: /admin/inventory
+
+1734533792278:::1 GET: /admin/customer
+
+1734533821040:::1 GET: /admin/categories
+
+1734533821041:::1 GET: /admin/inventory
+
+1734533821754:::1 GET: /admin/orders
+
+1734533821760:::1 GET: /admin/inventory
+
+1734533821765:::1 GET: /admin/customer
+
+1734533822247:::1 GET: /admin/customer
+
+1734533822873:::1 GET: /admin/orders
+
+1734533822873:::1 GET: /admin/inventory
+
+1734533822883:::1 GET: /admin/customer
+
+1734533823335:::1 GET: /admin/categories
+
+1734533823340:::1 GET: /admin/inventory
+
+1734533832847:::1 GET: /admin/orders
+
+1734533832851:::1 GET: /admin/inventory
+
+1734533832852:::1 GET: /admin/customer
+
+1734533940176:::1 GET: /admin/categories
+
+1734533941226:::1 GET: /admin/customer
+
+1734533941784:::1 GET: /admin/customer
+
+1734533941786:::1 GET: /admin/orders
+
+1734533941803:::1 GET: /admin/inventory
+
+1734533965162:::1 GET: /admin/orders
+
+1734533965162:::1 GET: /admin/inventory
+
+1734533965163:::1 GET: /admin/customer
+
+1734533966364:::1 GET: /admin/categories
+
+1734533972219:::1 GET: /admin/customer
+
+1734533972737:::1 GET: /admin/categories
+
+1734533973671:::1 GET: /admin/customer
+
+1734533973672:::1 GET: /admin/orders
+
+1734533973676:::1 GET: /admin/inventory
+
+1734533974963:::1 GET: /admin/customer
+
+1734533976260:::1 GET: /admin/categories
+
+1734533976693:::1 GET: /stats/monthly
+
+1734533976707:::1 GET: /stats/monthly
+
+1734533977329:::1 GET: /admin/customer
+
+1734533978475:::1 GET: /admin/orders
+
+1734533978476:::1 GET: /admin/inventory
+
+1734533978476:::1 GET: /admin/customer
+
+1734533979270:::1 GET: /admin/categories
+
+1734533979270:::1 GET: /admin/inventory
+
+1734534079796:::1 GET: /admin/orders
+
+1734534079797:::1 GET: /admin/inventory
+
+1734534079798:::1 GET: /admin/customer
+
+1734534088131:::1 GET: /admin/categories
+
+1734534094622:::1 GET: /stats/monthly
+
+1734534094630:::1 GET: /stats/monthly
+
+1734534101288:::1 GET: /admin/categories
+
+1734534102040:::1 GET: /admin/orders
+
+1734534102044:::1 GET: /admin/inventory
+
+1734534102044:::1 GET: /admin/customer
+
+1734534107915:::1 GET: /user/logout
+
+1734534115696:::1 POST: /user/login
+
+1734534117020:::1 GET: /admin/customer
+
+1734534493337:::1 GET: /admin/customer
+
+1734534635450:::1 GET: /admin/customer
+
+1734534714098:::1 GET: /admin/customer
+
+1734534718917:::1 GET: /admin/customer
+
+1734534765120:::1 GET: /admin/customer
+
+1734534828472:::1 GET: /user/logout

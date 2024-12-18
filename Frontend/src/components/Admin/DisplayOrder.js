@@ -228,7 +228,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
             }}
         >
             <div className="d-flex justify-content-between">
-                <h1 className="text mb-4">Orders</h1>
+                <h2 className="text mb-4">Orders</h2>
                 <Button className="mb-4" onClick={() => setShowAddOrderModal(true)}>Add New Order</Button>
             </div>
 
@@ -312,24 +312,27 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                                             </Card.Text>
 
                                             {/* Update Order Button */}
-                                            <Button
-                                                variant="primary"
-                                                onClick={() => {
-                                                    setSelectedOrder(order);
-                                                    setNewQuantity(order.quantity);  // Pre-fill current quantity
-                                                    setNewOrderStatus(order.orderStatus);  // Pre-fill current status
-                                                    setShowModal(true);  // Show modal
-                                                }}
-                                            >
-                                                Update Order
-                                            </Button>
-                                            {/* Delete Order Button */}
-                                            <Button
-                                                variant="danger"
-                                                onClick={() => handleDeleteOrder(order._id)}
-                                            >
-                                                Delete Order
-                                            </Button>
+                                            <div className="d-flex justify-content-between">
+
+                                                <Button
+                                                    variant="primary"
+                                                    onClick={() => {
+                                                        setSelectedOrder(order);
+                                                        setNewQuantity(order.quantity);  // Pre-fill current quantity
+                                                        setNewOrderStatus(order.orderStatus);  // Pre-fill current status
+                                                        setShowModal(true);  // Show modal
+                                                    }}
+                                                >
+                                                    Update Order
+                                                </Button>
+                                                {/* Delete Order Button */}
+                                                <Button
+                                                    variant="danger"
+                                                    onClick={() => handleDeleteOrder(order._id)}
+                                                >
+                                                    Delete Order
+                                                </Button>
+                                            </div>
                                         </Card.Body>
                                     </Card>
                                 </Col>

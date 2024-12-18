@@ -80,7 +80,7 @@ const HomePage = ({ darkMode }) => {
               className="shadow-sm"
             >
               <Card.Body>
-                <Card.Title className="fw-bold">Wide Range of Products</Card.Title>
+                <Card.Title className="fw-bold"><h5>Wide Range of Products</h5></Card.Title>
                 <Card.Text>
                   Explore a variety of high-quality plastic materials for all
                   your needs, from industrial plastics to recyclables.
@@ -98,7 +98,7 @@ const HomePage = ({ darkMode }) => {
               className="shadow-sm"
             >
               <Card.Body>
-                <Card.Title className="fw-bold">Eco-Friendly Solutions</Card.Title>
+                <Card.Title className="fw-bold"><h5>Eco-Friendly Solutions</h5></Card.Title>
                 <Card.Text>
                   Promote sustainability with our plastic recycling services,
                   reducing waste and saving the environment.
@@ -116,7 +116,7 @@ const HomePage = ({ darkMode }) => {
               className="shadow-sm"
             >
               <Card.Body>
-                <Card.Title className="fw-bold">Trusted by Businesses</Card.Title>
+                <Card.Title className="fw-bold"><h5>Trusted by Businesses</h5></Card.Title>
                 <Card.Text>
                   Join hundreds of businesses who trust us for their plastic
                   sourcing and trading needs.
@@ -140,7 +140,8 @@ const HomePage = ({ darkMode }) => {
             <Button
               variant="light"
               style={{ color: "#333" }}
-              href="/about-us"
+              href="https://www.omtraders.org/"
+              target="_blank"
             >
               Learn More
             </Button>
@@ -162,7 +163,7 @@ const HomePage = ({ darkMode }) => {
         <Button
           variant="success"
           style={{ backgroundColor: currentColors.button, border: "none" }}
-          href="/signup"
+          href="/customer/orders"
         >
           Get Started
         </Button>

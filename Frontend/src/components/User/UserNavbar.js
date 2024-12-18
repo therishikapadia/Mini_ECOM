@@ -54,7 +54,7 @@ const UserNavbar = ({ darkMode, toggleTheme }) => {
   const currentColors = darkMode ? darkModeColors : lightModeColors;
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: currentColors.background, borderBottom: "px solid", borderBottomColor: currentColors.text, color: currentColors.text }} className="shadow-sm px-3">
+    <Navbar expand="lg" style={{ position: "sticky", top: 0, zIndex: 3, backgroundColor: currentColors.background, borderBottom: "px solid", borderBottomColor: currentColors.text, color: currentColors.text }} className="shadow-sm px-3">
       <Container fluid style={{ color: currentColors.text }}>
         {/* Navbar Brand */}
         <Navbar.Brand as={Link} style={{ color: currentColors.text }} to="/customer">
@@ -71,14 +71,14 @@ const UserNavbar = ({ darkMode, toggleTheme }) => {
         <Navbar.Toggle aria-controls="user-navbar" />
         <Navbar.Collapse id="user-navbar">
           <Nav className="mx-auto"> {/* Center the links */}
-            <Nav.Link as={Link} style={{ color: currentColors.text }} to="/customer">
+            <Nav.Link as={Link} style={{ color: currentColors.text,fontSize:"18px" }} to="/customer">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} style={{ color: currentColors.text }} to="/customer/orders">
+            <Nav.Link as={Link} style={{ color: currentColors.text,fontSize:"18px" }} to="/customer/orders">
               Orders
             </Nav.Link>
           </Nav>
-          <Nav className="ms-auto">
+          <Nav className="">
             <Button
               onClick={toggleTheme}
               className="me-3"

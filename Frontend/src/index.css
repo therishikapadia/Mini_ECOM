@@ -95,7 +95,7 @@ img[role="button"]:hover {
   border: 1px solid #495057;
 }
 
-hr{
+hr {
   margin: 0;
 }
 
@@ -126,17 +126,21 @@ hr{
 
 /* Navbar Dark Mode */
 .navbar-dark-mode {
-  background-color: #18283e; /* Set dark mode navbar color to #1b2533 */
-  color: #e0e0e0; /* Light text for the navbar */
+  background-color: #18283e;
+  /* Set dark mode navbar color to #1b2533 */
+  color: #e0e0e0;
+  /* Light text for the navbar */
 }
 
 /* Navbar Dark Mode Links */
 .navbar-dark-mode .nav-link {
-  color: #e0e0e0; /* Set navbar link color to light */
+  color: #e0e0e0;
+  /* Set navbar link color to light */
 }
 
 .navbar-dark-mode .nav-link:hover {
-  color: #f1c40f; /* Hover color for navbar links */
+  color: #f1c40f;
+  /* Hover color for navbar links */
 }
 
 
@@ -145,7 +149,7 @@ hr{
 
 
 /* new cssss */
-body{
+body {
   background-color: #111d2e;
 }
 
@@ -153,3 +157,6 @@ body{
 
 /* mainBackgroundColor:#111d2e */
 /* slidebarBackgroundColor:18283e */
+
+
+

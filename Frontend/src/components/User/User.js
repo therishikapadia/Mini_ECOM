@@ -37,7 +37,7 @@ function User({ apiBaseUrl }) {
             setForceSettings(true); // Force the settings route
           } else {
             setForceSettings(false);
-            console.log("No customers with zero latitude and longitude.");
+            // console.log("No customers with zero latitude and longitude.");
           }
         }
       } catch (err) {

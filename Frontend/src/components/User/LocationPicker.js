@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { GoogleMap, Marker } from '@react-google-maps/api';
 import PlacesAutocomplete, { geocodeByPlaceId } from 'react-google-places-autocomplete';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const darkModeColors = {
   background: "#18283e",
@@ -32,7 +33,6 @@ const LocationPicker = ({ darkMode, onLocationSelect, apiBaseUrl }) => {
 
   // Handle place selection from the autocomplete input
   const handlePlaceSelect = async (place) => {
-    console.log('Selected place:', place); // Check the structure of the place object for debugging
     setSelectedPlace(place);
 
     try {
@@ -59,8 +59,6 @@ const LocationPicker = ({ darkMode, onLocationSelect, apiBaseUrl }) => {
       delivery_address: selectedPlace?.label || '', // Use the selected address or an empty string
     };
 
-    console.log("Data to send:", locationData);
-
     try {
       const response = await axios.patch(
         `${apiBaseUrl}/user/longlat`,
@@ -75,7 +73,7 @@ const LocationPicker = ({ darkMode, onLocationSelect, apiBaseUrl }) => {
       );
 
       if (response.status === 200) {
-        console.log("Location updated successfully:", response.data);
+        toast.success("Location updated successfully:");
         // Optional: Perform additional actions after successful update
         if (onLocationSelect) onLocationSelect(locationData);
       } else {

@@ -324,7 +324,7 @@ const Category = ({ apiBaseUrl,darkMode }) => {
               </Button>
 
               <Card.Body>
-                <Card.Title>{item.name}</Card.Title>
+                <Card.Title><h5>{item.name}</h5></Card.Title>
                 <p><strong>Type:</strong> {item.categoryType}</p>
                 {/* {console.log(item.attributes)} Logs the entire attributes array */}
 
