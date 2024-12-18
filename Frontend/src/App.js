@@ -8,6 +8,7 @@ import User from "./components/User/User";
 import ForgetPassword from "./components/Admin/ForgetPassword";
 import ResetPassword from "./components/Admin/ResetPassword";
 import SignupConfirm from "./components/Admin/SignupConfirm";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // For administration
@@ -135,6 +136,10 @@ function App() {
           }
         />
       </Routes>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
     </div>
   );
 }

@@ -310,7 +310,6 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                                         style={{
                                             backgroundColor: currentCardColors.background,
                                             color: currentCardColors.text,
-                                            border: "1px solid #ccc",
                                         }}
                                     >
                                         <Card.Body>

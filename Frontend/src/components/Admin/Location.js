@@ -178,7 +178,7 @@ const Location = ({ darkMode, apiBaseUrl }) => {
             </tbody>
           </Table>
 
-          <Alert variant="success" className="text-center">
+          <Alert variant="success" className="text-center m-0">
             Total Distance: <strong>{routeResult.totalDistance.toFixed(2)} km</strong>
           </Alert>
         </>

@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Dropdown, Nav, Navbar, Container, Button } from "react-bootstrap";
 import { FaSun, FaMoon } from "react-icons/fa";
-
+import Logo from "../Admin/images/Logo.png"
+import Image from '../Admin/images/admin.png';
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const darkModeColors = {
   background: "#18283e",
@@ -20,14 +23,48 @@ const lightModeColors = {
 
 
 const UserNavbar = ({ darkMode, toggleTheme }) => {
+  const handleLogout = async () => {
+    try {
+      // Send a GET request to the logout endpoint with `withCredentials: true`
+      const response = await axios.get("http://localhost:8000/user/logout", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      },);
+      if (response.status === 200) {
+        // If the logout is successful, show a toast notification and redirect to the login page
+        toast.success("Logout successful!");
+        localStorage.removeItem("Users"); // Remove user info from localStorage
+        localStorage.removeItem("authToken"); // Remove
+        localStorage.removeItem("role"); // Remove
+        localStorage.removeItem("Email"); // Remove
+        setTimeout(() => {
+          window.location.href = "/";  // Redirect to login page
+        }, 2000);
+      } else {
+        console.error("Logout failed");
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+      toast.error("An error occurred during logout.");
+    }
+  };
   const currentColors = darkMode ? darkModeColors : lightModeColors;
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: currentColors.background,borderBottom:"px solid",borderBottomColor:currentColors.text, color: currentColors.text }} className="shadow-sm px-3">
+    <Navbar expand="lg" style={{ backgroundColor: currentColors.background, borderBottom: "px solid", borderBottomColor: currentColors.text, color: currentColors.text }} className="shadow-sm px-3">
       <Container fluid style={{ color: currentColors.text }}>
         {/* Navbar Brand */}
         <Navbar.Brand as={Link} style={{ color: currentColors.text }} to="/customer">
-          User Dashboard
+          <img
+            src={Logo}
+            style={{
+              height: "70px",
+              width: "120px"
+            }}
+          />
         </Navbar.Brand>
 
         {/* Toggle for responsiveness */}
@@ -62,13 +99,13 @@ const UserNavbar = ({ darkMode, toggleTheme }) => {
             {/* User Dropdown */}
             <Dropdown align="end">
               <Dropdown.Toggle
-                variant="light" 
+                variant="light"
                 id="user-dropdown"
                 className="border-0 shadow-none"
-                style={{backgroundColor:currentColors.background,color:currentColors.text}}
+                style={{ backgroundColor: currentColors.background, color: currentColors.text }}
               >
                 <img
-                  src="https://via.placeholder.com/40"
+                  src={Image}
                   alt="User Avatar"
                   className="rounded-circle"
                   style={{ width: "40px", height: "40px", objectFit: "cover" }}
@@ -80,13 +117,7 @@ const UserNavbar = ({ darkMode, toggleTheme }) => {
                   Settings
                 </Dropdown.Item>
                 <Dropdown.Item
-                  onClick={() => {
-                    // Logout logic here
-                    localStorage.removeItem("authToken");
-                    localStorage.removeItem("role");
-                    window.location.reload();
-                  }}
-                >
+                  onClick={handleLogout}>
                   Logout
                 </Dropdown.Item>
               </Dropdown.Menu>

@@ -63,7 +63,6 @@ function Charts({ darkMode,apiBaseUrl }) {
           },
         ); // Update with your API endpoint
         const { categoryDistribution } = response.data;
-        console.log(categoryDistribution)
         // Prepare the data for the Pie chart
         setCategories(Object.keys(categoryDistribution));
         setCategoryDistribution(Object.values(categoryDistribution));

@@ -30,9 +30,11 @@ const LoginPage = ({ apiBaseUrl }) => {
       // Check login response
       if (res.data.success) {
         toast.success("Login successful!");
+        console.log(res.data.data)
 
         // Save user info and token in localStorage
         localStorage.setItem("Users", JSON.stringify(res.data.data.user.name));
+        localStorage.setItem("Email",res.data.data.user.email);
         localStorage.setItem("authToken", res.data.token); // Save token
         localStorage.setItem("role", res.data.data.user.role); // Save user role
 
@@ -73,13 +75,6 @@ const LoginPage = ({ apiBaseUrl }) => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
       {/* Toast Notifications */}
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-        toastOptions={{
-          duration: 10000,
-        }}
-      />
       <div className="card p-4 shadow-sm" style={{ width: "100%", maxWidth: "400px" }}>
         <h3 className="text-center mb-4">Login</h3>
         <form onSubmit={handleSubmit(onSubmit)}>

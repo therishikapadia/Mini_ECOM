@@ -352,6 +352,8 @@ const handleGetCustomerOrders = async (req, res) => {
   
 const handleUpdateCustomerOrder = async (req, res) => {
     const { orderId, quantity,notes } = req.body;
+    console.log(orderId, quantity, notes);
+    
   
     // Validate input
     if (!orderId || !quantity || quantity < 1) {
@@ -366,6 +368,7 @@ const handleUpdateCustomerOrder = async (req, res) => {
   
       // Find the order by ID and ensure it belongs to the customer
       const order = await Order.findOne({ _id: orderId, customer: req.user._id,isDeleted:false,notes}).populate('product');
+      console.log(req.user._id)
       if (!order) {
         return res.status(404).json({ error: 'Order not found or does not belong to the user.' });
       }

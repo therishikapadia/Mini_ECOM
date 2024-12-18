@@ -67,7 +67,8 @@ async function handleUserSignup(req, res) {
             resetPasswordToken: confirmationToken, // Assign the token to the schema field
             isConfirmed: false, // Set confirmation status to false
             longitude,
-            latitude
+            latitude,
+            delivery_address:"OM"
         });
 
         console.log('User created:', user);
@@ -224,4 +225,32 @@ async function handleUserLogout(req, res) {
     }
 }
 
-module.exports = { handleUserSignup, handleUserLogin, handleForgotPassword, handleResetPassword, handleUserLogout, handleconfirmSignUp };
+async function handleUpdateLocUser(req,res) {
+    const { email, latitude, longitude,delivery_address } = req.body;
+    // console.log(email, latitude, longitude, delivery_address);
+console.log(email)  
+    try {
+      // Validate the input
+      if (!email || latitude === undefined || longitude === undefined) {
+        return res.status(400).json({ error: "Email, latitude, and longitude are required." });
+      }
+  
+      // Find the user by email and update their location
+      const updatedUser = await User.findOneAndUpdate(
+        { email },
+        { latitude, longitude ,delivery_address},
+        { new: true, runValidators: true } // Return the updated user and validate input
+      );
+  
+      if (!updatedUser) {
+        return res.status(404).json({ error: "User not founddddddd." });
+      }
+  
+      res.status(200).json({ message: "Location updated successfully.", user: updatedUser });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred while updating the location." });
+    }
+};
+
+module.exports = { handleUserSignup, handleUserLogin, handleForgotPassword, handleUpdateLocUser,handleResetPassword, handleUserLogout, handleconfirmSignUp };

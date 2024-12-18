@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GoogleMap, Marker } from '@react-google-maps/api';
 import PlacesAutocomplete, { geocodeByPlaceId } from 'react-google-places-autocomplete';
+import axios from 'axios';
 
 const darkModeColors = {
   background: "#18283e",
@@ -17,7 +18,7 @@ const lightModeColors = {
 };
 
 
-const LocationPicker = ({darkMode, onLocationSelect }) => {
+const LocationPicker = ({ darkMode, onLocationSelect, apiBaseUrl }) => {
   const apiKey = 'AIzaSyATwAQvAmj3kqExYa5-SVUAnkIEZlHxR-c';  // You can also pass this as a prop if needed
   const mapStyles = { height: '80vh', width: '100%' };
   const currentColors = darkMode ? lightModeColors : lightModeColors;
@@ -50,18 +51,46 @@ const LocationPicker = ({darkMode, onLocationSelect }) => {
   };
 
   // Handle "Done" button click
-  const handleDoneClick = () => {
-    if (onLocationSelect) {
-      onLocationSelect({
-        lat: markerPosition.lat,
-        lng: markerPosition.lng,
-        address: selectedPlace?.label || '', // If no address is selected, send an empty string
-      });
+  const handleDoneClick = async () => {
+    const locationData = {
+      email: localStorage.getItem("Email"), // Replace this with dynamic email retrieval if needed
+      latitude: markerPosition.lat,
+      longitude: markerPosition.lng,
+      delivery_address: selectedPlace?.label || '', // Use the selected address or an empty string
+    };
+
+    console.log("Data to send:", locationData);
+
+    try {
+      const response = await axios.patch(
+        `${apiBaseUrl}/user/longlat`,
+        locationData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
+      );
+
+      if (response.status === 200) {
+        console.log("Location updated successfully:", response.data);
+        // Optional: Perform additional actions after successful update
+        if (onLocationSelect) onLocationSelect(locationData);
+      } else {
+        console.error("Failed to update location.");
+      }
+    } catch (error) {
+      console.error("Error updating location:", error);
+      setError("Failed to update location.");
     }
   };
 
+
+
   return (
-    <div className="w-full h-screen flex flex-col" style={{backgroundColor:currentColors.background,color:currentColors.text}}>
+    <div className="w-full h-screen flex flex-col" style={{ backgroundColor: currentColors.background, color: currentColors.text }}>
       {/* Address Input */}
       <div className="p-4 bg-white shadow-md flex items-center justify-center">
         <div className="flex items-center w-full max-w-lg relative">
@@ -86,7 +115,7 @@ const LocationPicker = ({darkMode, onLocationSelect }) => {
           onClick={(e) =>
             setMarkerPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() })
           }
-          // onLoad={(map) => console.log('Map loaded:', map)} // This ensures that the map is loaded
+        // onLoad={(map) => console.log('Map loaded:', map)} // This ensures that the map is loaded
         >
           <Marker
             position={markerPosition}

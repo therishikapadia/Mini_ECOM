@@ -3,7 +3,7 @@ import { Button, Dropdown, Image } from "react-bootstrap";
 import { FaSun, FaMoon } from "react-icons/fa";
 import axios from "axios"; // Import axios
 import toast from "react-hot-toast"; // Import react-hot-toast
-import image from "../Admin/images/admin.png"; 
+import image from "../Admin/images/admin.png";
 
 const darkModeColors = {
   background: "#18283e",
@@ -33,10 +33,13 @@ function NavbarComponent({ darkMode, toggleTheme, title }) {
       if (response.status === 200) {
         // If the logout is successful, show a toast notification and redirect to the login page
         toast.success("Logout successful!");
-        localStorage.removeItem("Users"); // Remove user info from localStorage
-        localStorage.removeItem("authToken"); // Remove
-        localStorage.removeItem("role"); // Remove
-        window.location.href = "/";  // Redirect to login page
+        setTimeout(() => {
+          localStorage.removeItem("Users"); // Remove user info from localStorage
+          localStorage.removeItem("authToken"); // Remove
+          localStorage.removeItem("role"); // Remove
+          localStorage.removeItem("Email"); // Remove
+          // window.location.href = "/";  // Redirect to login page
+        }, 1000);
       } else {
         console.error("Logout failed");
       }
@@ -72,7 +75,7 @@ function NavbarComponent({ darkMode, toggleTheme, title }) {
               backgroundColor: "transparent",
               fontSize: "20px",
               cursor: "pointer",
-              border:"none"
+              border: "none"
             }}
           >
             {darkMode ? (

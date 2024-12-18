@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Modal, Button, Form } from "react-bootstrap";
+import { toast } from "react-hot-toast";
+
 
 const darkModeColors = {
     background: "#18283e",
@@ -42,9 +44,12 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                 withCredentials: true,
             });
             setOrders(response.data.orders);
+            toast.success("Orders fetched successfully!");
             setError("");
         } catch (err) {
-            setError(err.response?.data?.error || "Failed to fetch orders");
+            const errorMessage = err.response?.data?.error || "Failed to fetch orders";
+            toast.error(errorMessage);
+            setError(errorMessage);
         } finally {
             setLoading(false);
         }
@@ -67,7 +72,9 @@ const Order = ({ apiBaseUrl, darkMode }) => {
 
     const addOrder = async () => {
         if (!newOrder.product || !newOrder.quantity) {
-            setError("Product and quantity are required");
+            const errorMessage = "Product and quantity are required";
+            toast.error(errorMessage);
+            setError(errorMessage);
             return;
         }
         setLoading(true);
@@ -85,10 +92,13 @@ const Order = ({ apiBaseUrl, darkMode }) => {
             );
             setOrders([response.data.order, ...orders]);
             setNewOrder({ product: "", quantity: "", notes: "" });
+            toast.success("Order added successfully!");
             setError("");
             setShowAddModal(false);
         } catch (err) {
-            setError(err.response?.data?.error || "Failed to add order");
+            const errorMessage = err.response?.data?.error || "Failed to add order";
+            toast.error(errorMessage);
+            setError(errorMessage);
         } finally {
             setLoading(false);
         }
@@ -96,7 +106,9 @@ const Order = ({ apiBaseUrl, darkMode }) => {
 
     const updateOrder = async () => {
         if (!selectedOrder || !selectedOrder._id || !selectedOrder.quantity) {
-            setError("Order ID and a valid quantity are required.");
+            const errorMessage = "Order ID and a valid quantity are required.";
+            toast.error(errorMessage);
+            setError(errorMessage);
             return;
         }
         setLoading(true);
@@ -105,7 +117,8 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                 `${apiBaseUrl}/customer/order`,
                 {
                     orderId: selectedOrder._id,
-                    quantity: selectedOrder.quantity
+                    quantity: selectedOrder.quantity,
+                    notes: selectedOrder.notes
                 }, // Only pass orderId and quantity
                 {
                     headers: {
@@ -121,11 +134,14 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                     order._id === selectedOrder._id ? response.data.order : order
                 )
             );
+            toast.success("Order updated successfully!");
             setSelectedOrder(null);
             setShowEditModal(false);
             setError("");
         } catch (err) {
-            setError(err.response?.data?.error || "Failed to update order");
+            const errorMessage = err.response?.data?.error || "Failed to update order";
+            toast.error(errorMessage);
+            setError(errorMessage);
         } finally {
             setLoading(false);
         }

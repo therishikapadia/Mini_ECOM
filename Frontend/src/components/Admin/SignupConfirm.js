@@ -24,7 +24,7 @@ const SignupConfirm = ({ apiBaseUrl }) => {
     return (
         <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
             <div className="card shadow-lg p-4" style={{ maxWidth: '400px', borderRadius: '20px' }}>
-                <h3 className="text-center mb-4">Verify Your Email</h3>
+                <h3 className="text-center mb-4">Verified Your Email</h3>
                 <p className="text-center">A verification is completed now click button</p>
                 <button onClick={completeSignup} className="btn btn-success w-100">
                     Verify Email

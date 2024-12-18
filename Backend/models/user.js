@@ -41,6 +41,7 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false, // Default value set to false
     },
+    delivery_address: {type: String, required: true,default:"OM"}
   },
   { timestamps: true }
 );
