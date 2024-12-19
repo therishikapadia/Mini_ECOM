@@ -5,7 +5,7 @@ const { restrictTo } = require('../middlewares/auth');
 const {
     handleGetAllOrders,
     handleUpdateOrder,
-    handleDeleteOrder,handleAdminAddOrder
+    handleDeleteOrder, handleAdminAddOrder
 } = require('../controllers/order');
 
 const {
@@ -19,13 +19,13 @@ const {
     handleAddNewProduct,
     handleDeleteNewProduct,
     handleUpdateNewProduct,
-    handleGetNewProduct,handleDeleteAttribute
+    handleGetNewProduct, handleDeleteAttribute
 } = require('../controllers/admin/categoryController');
 
 const {
     handleAddInventory,
     handleDeleteInventory,
-    handleGetInventory,
+    handleGetInventory,handleSearchInventory,
 } = require('../controllers/admin/inventoryController');
 
 const {
@@ -45,6 +45,8 @@ router.route('/inventory')
     .get(handleGetInventory)
     .delete(handleDeleteInventory);
 
+router.get('/inventory/search',handleSearchInventory);
+
 // Categories routes
 router.route('/categories')
     .post(handleAddNewProduct)
@@ -52,7 +54,7 @@ router.route('/categories')
     .patch(handleUpdateNewProduct)
     .get(handleGetNewProduct);
 
-router.delete('/categories/attribute',handleDeleteAttribute)
+router.delete('/categories/attribute', handleDeleteAttribute)
 
 // Customer routes
 router.route('/customer')
@@ -87,8 +89,8 @@ router.get('/orders', restrictTo(["ADMIN"]), async (req, res) => {
         return res.render("home", { order: allOrders });
     } catch (error) {
         console.error('Error fetching all orders:', error);
-        return res.status(500).render("error", { 
-            message: "Failed to load orders. Please try again later." 
+        return res.status(500).render("error", {
+            message: "Failed to load orders. Please try again later."
         });
     }
 });

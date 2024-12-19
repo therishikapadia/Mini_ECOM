@@ -33,6 +33,41 @@ const Order = ({ apiBaseUrl, darkMode }) => {
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
 
+    const [searchTerm, setSearchTerm] = useState(""); // User's typed input
+    const [searchResults, setSearchResults] = useState([]); // Matching products
+
+    const handleSearchChange = async (e) => {
+        const value = e.target.value;
+        setSearchTerm(value);
+
+        if (value.trim() === "") {
+            setSearchResults([]); // Clear results if input is empty
+            return;
+        }
+
+        try {
+            const response = await axios.get(`${apiBaseUrl}/admin/inventory/search`, {
+                params: { query: value }, // Pass the search term as a query parameter
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            });
+
+            setSearchResults(response.data.products || []); // Update the search results
+        } catch (err) {
+            console.error("Failed to fetch products:", err);
+            setSearchResults([]); // Clear results on error
+        }
+    };
+
+    const handleProductSelect = (product) => {
+        setNewOrder({ ...newOrder, product: product._id }); // Set product ID
+        setSearchTerm(product.category); // Set category name in input for display
+        setSearchResults([]); // Clear the dropdown
+    };
+
     const fetchOrders = async () => {
         setLoading(true);
         try {
@@ -233,25 +268,37 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                         <Modal.Title>Add Order</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form.Select
-                            value={newOrder.product}
-                            onChange={(e) => setNewOrder({ ...newOrder, product: e.target.value })}
-                            className="mb-3"
-                        >
-                            <option value="">Select Product</option>
-                            {inventory.map((item) => (
-                                <option key={item._id} value={item._id}>
-                                    {item.category}
-                                    {item.attributes &&
-                                        " (" +
-                                        Object.entries(item.attributes)
-                                            .filter(([key]) => key !== "_id")
-                                            .map(([key, value]) => `${key}: ${value}`)
-                                            .join(", ") +
-                                        ")"}
-                                </option>
-                            ))}
-                        </Form.Select>
+                        <Form.Group>
+                            <Form.Control
+                                type="text"
+                                placeholder="Search for a product"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                className="mb-2"
+                            />
+                            {searchResults.length > 0 && (
+                                <ul className="list-group">
+                                    {searchResults.map((item) => (
+                                        <li
+                                            key={item._id}
+                                            className="list-group-item"
+                                            onClick={() => handleProductSelect(item)}
+                                            style={{ cursor: "pointer" }}
+                                        >
+                                            {item.category}
+                                            {item.attributes &&
+                                                " (" +
+                                                Object.entries(item.attributes)
+                                                    .filter(([key]) => key !== "_id")
+                                                    .map(([key, value]) => `${key}: ${value}`)
+                                                    .join(", ") +
+                                                ")"}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </Form.Group>
+
                         <Form.Control
                             type="number"
                             placeholder="Quantity"

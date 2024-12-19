@@ -58,16 +58,13 @@ function Charts({ darkMode, apiBaseUrl }) {
           },
           withCredentials: true,
         });
-
+        console.log("API Response:", response.data);
+  
         const { yearlyOrdersChart, categoryDistribution } = response.data;
-
-        // Set yearly orders chart data
-        setYearlyOrdersChart(yearlyOrdersChart);
-
-        // Prepare the data for the Pie chart
-        setCategories(Object.keys(categoryDistribution));
-        setCategoryDistribution(Object.values(categoryDistribution));
-
+  
+        setYearlyOrdersChart(yearlyOrdersChart || []);
+        setCategories(Object.keys(categoryDistribution || {}));
+        setCategoryDistribution(Object.values(categoryDistribution || {}));
         setLoading(false);
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -75,16 +72,16 @@ function Charts({ darkMode, apiBaseUrl }) {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, [apiBaseUrl]);
 
   const lineData = {
-    labels: yearlyOrdersChart.map((monthData) => monthData.month),
+    labels: yearlyOrdersChart.length > 0 ? yearlyOrdersChart.map((monthData) => monthData.month || "Unknown") : ["No Data"],
     datasets: [
       {
         label: "Orders",
-        data: yearlyOrdersChart.map((monthData) => monthData.orders),
+        data: yearlyOrdersChart.length > 0 ? yearlyOrdersChart.map((monthData) => monthData.orders || 0) : [0],
         fill: false,
         borderColor: currentColors.borderColor,
         tension: 0.1,
@@ -167,7 +164,7 @@ function Charts({ darkMode, apiBaseUrl }) {
             backgroundColor: currentColors.chartBackground,
             color: currentColors.text,
           }}
-        >
+          >
           <h5>Category Distribution</h5>
           <Pie
             data={pieData}
