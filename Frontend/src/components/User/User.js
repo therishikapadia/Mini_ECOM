@@ -27,17 +27,28 @@ function User({ apiBaseUrl }) {
 
         if (response.data && response.data.customers) {
           const customers = response.data.customers;
-
-          // Check if any customer has latitude and longitude equal to 0
-          const hasZeroLocation = customers.some(
-            (customer) => customer.latitude === 0 && customer.longitude === 0
+    
+    
+          // Retrieve the email from localStorage
+          const storedEmail = localStorage.getItem("Email");
+    
+          // Find the specific user with the stored email
+          const specificCustomer = customers.find(
+            (customer) => customer.email === storedEmail
           );
-
-          if (hasZeroLocation) {
-            setForceSettings(true); // Force the settings route
+    
+          if (specificCustomer) {
+            // Check if the specific customer has latitude and longitude equal to 0
+            const hasZeroLocation =
+              specificCustomer.latitude === 0 && specificCustomer.longitude === 0;
+    
+            if (hasZeroLocation) {
+              setForceSettings(true); // Force the settings route
+            } else {
+              setForceSettings(false);
+            }
           } else {
-            setForceSettings(false);
-            // console.log("No customers with zero latitude and longitude.");
+            console.warn("No customer found with the stored email.");
           }
         }
       } catch (err) {
@@ -46,6 +57,7 @@ function User({ apiBaseUrl }) {
         alert("Failed to update customer");
       }
     };
+    
 
     fetchUsers();
   }, [apiBaseUrl]);

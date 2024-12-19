@@ -46,9 +46,6 @@ app.use(logReqRes("log.txt"))
 app.use(checkForAuthentication)
 app.use(express.static('public'));
 
-//views
-app.set('view engine','ejs')
-app.set('views',path.resolve('./views'))
 
 //routes
 const viewsRouter = require('./routes/viewsRouter');

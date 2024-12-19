@@ -5,13 +5,15 @@ class TravelingSalesmanSolver {
         this.startPoint = {
             name: 'Start Point',
             latitude: 23.03965552350363,
-            longitude: 72.59696188230406
+            longitude: 72.59696188230406,
+            delivery_address: 'Distribution Center'
         };
 
         this.locations = [this.startPoint, ...locations];
         this.distanceMatrix = this.createDistanceMatrix();
     }
 
+    // Rest of the TravelingSalesmanSolver class methods remain unchanged
     createDistanceMatrix() {
         return this.locations.map((loc1, i) => 
             this.locations.map((loc2, j) => 
@@ -118,9 +120,6 @@ class TravelingSalesmanSolver {
     }
 }
 
-
-
-
 const processNearbyUsers = (req, res) => {
     try {
         const locations = req.body.locations;
@@ -129,14 +128,26 @@ const processNearbyUsers = (req, res) => {
             return res.status(400).json({ error: 'Invalid locations array.' });
         }
 
+        // Validate that each location has required fields
+        const isValidLocation = locations.every(loc => 
+            loc.latitude && 
+            loc.longitude && 
+            loc.delivery_address
+        );
+
+        if (!isValidLocation) {
+            return res.status(400).json({ 
+                error: 'Each location must have latitude, longitude, and delivery_address.' 
+            });
+        }
+
         const solver = new TravelingSalesmanSolver(locations);
         const solution = solver.solve();
 
         res.json({
             optimalRoute: solution.route.map(loc => ({
                 name: loc.name || loc.email || 'Unnamed Location',
-                latitude: loc.latitude,
-                longitude: loc.longitude
+                delivery_address: loc.delivery_address
             })),
             totalDistance: solution.distance
         });
@@ -145,6 +156,5 @@ const processNearbyUsers = (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
-  
 
 module.exports = { processNearbyUsers };

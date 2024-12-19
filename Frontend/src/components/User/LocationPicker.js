@@ -19,7 +19,7 @@ const lightModeColors = {
 };
 
 
-const LocationPicker = ({ darkMode, onLocationSelect, apiBaseUrl }) => {
+const LocationPicker = ({ darkMode, apiBaseUrl }) => {
   const apiKey = 'AIzaSyATwAQvAmj3kqExYa5-SVUAnkIEZlHxR-c';  // You can also pass this as a prop if needed
   const mapStyles = { height: '80vh', width: '100%' };
   const currentColors = darkMode ? lightModeColors : lightModeColors;
@@ -52,13 +52,18 @@ const LocationPicker = ({ darkMode, onLocationSelect, apiBaseUrl }) => {
 
   // Handle "Done" button click
   const handleDoneClick = async () => {
+    if (!selectedPlace || !selectedPlace.label) {
+      toast.error("Please enter a location in the input.");
+      return;
+    }
+  
     const locationData = {
       email: localStorage.getItem("Email"), // Replace this with dynamic email retrieval if needed
       latitude: markerPosition.lat,
       longitude: markerPosition.lng,
-      delivery_address: selectedPlace?.label || '', // Use the selected address or an empty string
+      delivery_address: selectedPlace.label, // Use the selected address
     };
-
+  
     try {
       const response = await axios.patch(
         `${apiBaseUrl}/user/longlat`,
@@ -71,19 +76,19 @@ const LocationPicker = ({ darkMode, onLocationSelect, apiBaseUrl }) => {
           withCredentials: true,
         },
       );
-
+  
       if (response.status === 200) {
         toast.success("Location updated successfully:");
-        // Optional: Perform additional actions after successful update
-        if (onLocationSelect) onLocationSelect(locationData);
       } else {
         console.error("Failed to update location.");
+        setError("Failed to update location.");
       }
     } catch (error) {
       console.error("Error updating location:", error);
       setError("Failed to update location.");
     }
   };
+  
 
 
 

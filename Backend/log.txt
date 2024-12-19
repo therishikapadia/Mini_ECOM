@@ -5568,3 +5568,217 @@
 1734534765120:::1 GET: /admin/customer
 
 1734534828472:::1 GET: /user/logout
+
+1734603683291:::1 POST: /user/login
+
+1734603684830:::1 GET: /admin/customer
+
+1734603748795:::1 GET: /admin/customer
+
+1734604156653:::1 GET: /admin/customer
+
+1734604525970:::1 GET: /admin/customer
+
+1734604531480:::1 GET: /admin/customer
+
+1734604589541:::1 GET: /admin/customer
+
+1734604592595:::1 GET: /admin/customer
+
+1734604685495:::1 GET: /user/logout
+
+1734604695248:::1 POST: /user/login
+
+1734604697444:::1 GET: /stats/monthly
+
+1734604697514:::1 GET: /stats/monthly
+
+1734604703935:::1 GET: /admin/customer
+
+1734604834506:::1 POST: /add-geo/geoData
+
+1734604944775:::1 GET: /admin/customer
+
+1734604980458:::1 POST: /add-geo/geoData
+
+1734604998307:::1 POST: /add-geo/geoData
+
+1734605476793:::1 GET: /admin/customer
+
+1734605619420:::1 GET: /admin/customer
+
+1734605649299:::1 GET: /admin/customer
+
+1734605672471:::1 GET: /admin/customer
+
+1734605732436:::1 GET: /admin/customer
+
+1734605754841:::1 GET: /admin/customer
+
+1734605761947:::1 GET: /admin/categories
+
+1734605766658:::1 GET: /admin/customer
+
+1734605859613:::1 GET: /admin/customer
+
+1734605859660:::1 GET: /admin/customer
+
+1734605886024:::1 GET: /admin/customer
+
+1734605958315:::1 POST: /add-geo/geoData
+
+1734605997017:::1 GET: /admin/customer
+
+1734605998894:::1 GET: /admin/customer
+
+1734606030345:::1 POST: /add-geo/geoData
+
+1734606102243:::1 POST: /add-geo/geoData
+
+1734606176175:::1 GET: /user/logout
+
+1734606184722:::1 POST: /user/login
+
+1734606186766:::1 GET: /admin/customer
+
+1734606191519:::1 GET: /customer/order
+
+1734606191524:::1 GET: /admin/inventory
+
+1734606199673:::1 GET: /user/logout
+
+1734606208114:::1 POST: /user/login
+
+1734606209695:::1 GET: /admin/customer
+
+1734607007368:::1 GET: /user/logout
+
+1734607022065:::1 POST: /user/login
+
+1734607024741:::1 GET: /admin/customer
+
+1734607043907:::1 GET: /customer/order
+
+1734607043908:::1 GET: /admin/inventory
+
+1734607187692:::1 GET: /user/logout
+
+1734607199291:::1 POST: /user/login
+
+1734607201188:::1 GET: /stats/monthly
+
+1734607201213:::1 GET: /stats/monthly
+
+1734607202812:::1 GET: /admin/categories
+
+1734607202812:::1 GET: /admin/inventory
+
+1734607204986:::1 GET: /admin/customer
+
+1734607227819:::1 POST: /add-geo/geoData
+
+1734607324694:::1 GET: /stats/monthly
+
+1734607324717:::1 GET: /stats/monthly
+
+1734607392470:::1 GET: /admin/categories
+
+1734607392471:::1 GET: /admin/inventory
+
+1734607393093:::1 GET: /admin/inventory
+
+1734607393094:::1 GET: /admin/orders
+
+1734607393095:::1 GET: /admin/customer
+
+1734607417489:::1 GET: /admin/customer
+
+1734607418012:::1 GET: /admin/customer
+
+1734607418013:::1 GET: /admin/orders
+
+1734607418016:::1 GET: /admin/inventory
+
+1734607419318:::1 GET: /admin/customer
+
+1734607421022:::1 GET: /admin/categories
+
+1734607424088:::1 GET: /admin/categories
+
+1734607424093:::1 GET: /admin/inventory
+
+1734607430747:::1 GET: /stats/monthly
+
+1734607430768:::1 GET: /stats/monthly
+
+1734607435321:::1 GET: /admin/customer
+
+1734607435703:::1 GET: /admin/categories
+
+1734607435707:::1 GET: /admin/inventory
+
+1734607436055:::1 GET: /admin/inventory
+
+1734607436056:::1 GET: /admin/customer
+
+1734607436057:::1 GET: /admin/orders
+
+1734607438002:::1 GET: /admin/customer
+
+1734607453681:::1 POST: /add-geo/geoData
+
+1734607531021:::1 GET: /stats/monthly
+
+1734607531035:::1 GET: /stats/monthly
+
+1734607536046:::1 GET: /user/logout
+
+1734607548796:::1 POST: /user/login
+
+1734607550605:::1 GET: /admin/customer
+
+1734607561408:::1 GET: /user/logout
+
+1734607576155:::1 POST: /user/login
+
+1734607577900:::1 GET: /admin/customer
+
+1734607579646:::1 GET: /customer/order
+
+1734607579651:::1 GET: /admin/inventory
+
+1734607583182:::1 GET: /user/logout
+
+1734607591622:::1 POST: /user/login
+
+1734607593364:::1 GET: /admin/customer
+
+1734607633569:::1 PATCH: /user/longlat
+
+1734607868333:::1 GET: /admin/customer
+
+1734607907650:::1 GET: /admin/customer
+
+1734607925153:::1 PATCH: /user/longlat
+
+1734608078991:::1 GET: /admin/customer
+
+1734608083538:::1 GET: /customer/order
+
+1734608083542:::1 GET: /admin/inventory
+
+1734608258933:::1 GET: /customer/order
+
+1734608258939:::1 GET: /admin/customer
+
+1734608258940:::1 GET: /admin/inventory
+
+1734608378528:::1 GET: /admin/customer
+
+1734608420174:::1 GET: /admin/customer
+
+1734608420608:::1 GET: /admin/customer
+
+1734608420608:::1 GET: /customer/order
+
+1734608420647:::1 GET: /admin/inventory

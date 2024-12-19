@@ -21,7 +21,7 @@ const lightModeColors = {
 const Location = ({ darkMode, apiBaseUrl }) => {
   const currentColors = darkMode ? darkModeColors : lightModeColors;
 
-  
+
   const [customers, setCustomers] = useState([]); // To store fetched customers
   const [selectedCustomer, setSelectedCustomer] = useState(null); // Selected customer ID
   const [locations, setLocations] = useState([]); // Locations state
@@ -56,16 +56,22 @@ const Location = ({ darkMode, apiBaseUrl }) => {
     const customer = customers.find((cust) => cust._id === selectedId);
 
     if (customer) {
-      const { name, email, latitude, longitude } = customer;
+        const { name, email, latitude, longitude ,delivery_address} = customer;
 
-      // Update locations array with selected user's data
-      setLocations((prevLocations) => [
-        ...prevLocations,
-        { name: name || email, latitude, longitude },
-      ]);
-      toast.success(`${name} location added successfully!`);
+        // Update locations array with selected user's data
+        setLocations((prevLocations) => [
+            ...prevLocations,
+            {
+                name: name || email,
+                latitude,
+                longitude,
+                delivery_address,
+            },
+        ]);
+        toast.success(`${name} location added successfully!`);
     }
-  };
+};
+
 
   // Handle route calculation
   const handleCalculateRoute = async () => {
@@ -98,8 +104,8 @@ const Location = ({ darkMode, apiBaseUrl }) => {
 
   return (
     <Container fluid
-    style={{backgroundColor:currentColors.background,color:currentColors.text,minHeight:"100%"}}
->
+      style={{ backgroundColor: currentColors.background, color: currentColors.text, minHeight: "100%" }}
+    >
       <h2 className="py-4 text-center">Optimal Route Calculator</h2>
 
       {/* Dropdown to Select Customer */}
@@ -124,8 +130,7 @@ const Location = ({ darkMode, apiBaseUrl }) => {
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
+            <th>Delivery Address</th>
           </tr>
         </thead>
         <tbody>
@@ -133,12 +138,12 @@ const Location = ({ darkMode, apiBaseUrl }) => {
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{loc.name}</td>
-              <td>{loc.latitude}</td>
-              <td>{loc.longitude}</td>
+              <td>{loc.delivery_address || "Address not available"}</td>
             </tr>
           ))}
         </tbody>
       </Table>
+
 
       {/* Button to Calculate Route */}
       <div className="text-center mb-4">
@@ -166,8 +171,7 @@ const Location = ({ darkMode, apiBaseUrl }) => {
               <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                <th>Delivery Address</th>
               </tr>
             </thead>
             <tbody>
@@ -175,8 +179,7 @@ const Location = ({ darkMode, apiBaseUrl }) => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{loc.name}</td>
-                  <td>{loc.latitude}</td>
-                  <td>{loc.longitude}</td>
+                  <td>{loc.delivery_address || "Address not available"}</td>
                 </tr>
               ))}
             </tbody>

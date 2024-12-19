@@ -20,14 +20,6 @@ const lightModeColors = {
 
 const SettingsPage = ({ apiBaseUrl, darkMode }) => {
   const currentColors = darkMode ? darkModeColors : lightModeColors;
-
-  const [selectedLocation, setSelectedLocation] = useState(null);
-  
-  const handleLocationSelect = (location) => {
-    setSelectedLocation(location);
-    console.log("Location updated:", location);
-  };
-
   return (
     <div className="p-4" style={{ backgroundColor: currentColors.background, color: currentColors.text }}>
       <h2>Settings</h2>
@@ -35,18 +27,9 @@ const SettingsPage = ({ apiBaseUrl, darkMode }) => {
       <div>
         {/* LoadScript is only included here now */}
         <LoadScript googleMapsApiKey={apiKey} libraries={['places']}>
-          <LocationPicker onLocationSelect={handleLocationSelect} darkMode={darkMode} apiBaseUrl={apiBaseUrl} />
+          <LocationPicker darkMode={darkMode} apiBaseUrl={apiBaseUrl} />
         </LoadScript>
       </div>
-
-      {selectedLocation && (
-        <div className="bg-gray-100 p-4 rounded-md">
-          <h2 className="text-lg font-medium">Selected Location:</h2>
-          <p>Address: {selectedLocation.address}</p>
-          <p>Latitude: {selectedLocation.lat}</p>
-          <p>Longitude: {selectedLocation.lng}</p>
-        </div>
-      )}
     </div>
   );
 };

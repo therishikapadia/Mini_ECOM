@@ -25,7 +25,7 @@ ChartJS.register(
   ArcElement
 );
 
-function Charts({ darkMode,apiBaseUrl }) {
+function Charts({ darkMode, apiBaseUrl }) {
   const darkModeColors = {
     text: "#e0e0e0",
     chartBackground: "#18283e",
@@ -42,27 +42,28 @@ function Charts({ darkMode,apiBaseUrl }) {
 
   const currentColors = darkMode ? darkModeColors : lightModeColors;
 
-  // States for dynamic data
-  const [salesData, setSalesData] = useState([3000, 5000, 4000, 7000, 6000, 8000]); // Example sales data
+  const [yearlyOrdersChart, setYearlyOrdersChart] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoryDistribution, setCategoryDistribution] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch stats from the API
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${apiBaseUrl}/stats/monthly`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
+        const response = await axios.get(`${apiBaseUrl}/stats/monthly`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
           },
-        ); // Update with your API endpoint
-        const { categoryDistribution } = response.data;
+          withCredentials: true,
+        });
+
+        const { yearlyOrdersChart, categoryDistribution } = response.data;
+
+        // Set yearly orders chart data
+        setYearlyOrdersChart(yearlyOrdersChart);
+
         // Prepare the data for the Pie chart
         setCategories(Object.keys(categoryDistribution));
         setCategoryDistribution(Object.values(categoryDistribution));
@@ -76,14 +77,14 @@ function Charts({ darkMode,apiBaseUrl }) {
     };
 
     fetchData();
-  }, []);
+  }, [apiBaseUrl]);
 
   const lineData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"], // Example labels
+    labels: yearlyOrdersChart.map((monthData) => monthData.month),
     datasets: [
       {
-        label: "Sales",
-        data: salesData,
+        label: "Orders",
+        data: yearlyOrdersChart.map((monthData) => monthData.orders),
         fill: false,
         borderColor: currentColors.borderColor,
         tension: 0.1,
@@ -106,7 +107,6 @@ function Charts({ darkMode,apiBaseUrl }) {
     ],
   };
 
-  // Loading and error states
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -122,7 +122,7 @@ function Charts({ darkMode,apiBaseUrl }) {
           className={`p-3`}
           style={{ backgroundColor: currentColors.chartBackground, color: currentColors.text }}
         >
-          <h5>Sales Overview</h5>
+          <h5>Orders Overview</h5>
           <Line
             style={{ color: currentColors.text }}
             data={lineData}
@@ -140,7 +140,6 @@ function Charts({ darkMode,apiBaseUrl }) {
                   grid: {
                     color: currentColors.axisColor,
                     borderDash: [5, 5],
-                    borderDashOffset: 5,
                   },
                   ticks: {
                     color: currentColors.axisColor,
@@ -150,7 +149,6 @@ function Charts({ darkMode,apiBaseUrl }) {
                   grid: {
                     color: currentColors.axisColor,
                     borderDash: [5, 5],
-                    borderDashOffset: 5,
                   },
                   ticks: {
                     color: currentColors.axisColor,
