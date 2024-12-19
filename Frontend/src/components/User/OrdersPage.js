@@ -69,6 +69,7 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                     },
                     withCredentials: true,
                 });
+
                 setSearchResults(response.data.products || []);
             } catch (err) {
                 console.error("Failed to fetch inventory:", err);

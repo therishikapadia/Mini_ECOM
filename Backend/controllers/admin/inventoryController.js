@@ -54,6 +54,7 @@ const handleAddInventory = async (req, res) => {
 
 const handleSearchInventory = async (req, res) => {
   const query = req.query.query;
+  const limit = parseInt(req.query.limit) || 10; // Allow dynamic limit with a default of 10
 
   if (!query) {
       return res.status(400).json({ error: "Query parameter is required" });
@@ -61,15 +62,27 @@ const handleSearchInventory = async (req, res) => {
 
   try {
       const matchingProducts = await Inventory.find({
-          category: { $regex: query, $options: "i" }, // Case-insensitive search
-      }).limit(10); // Limit results for performance
+          $or: [
+              { category: { $regex: query, $options: "i" } }, // Case-insensitive category search
+              { name: { $regex: query, $options: "i" } }, // Search by name (if applicable)
+              { "attributes.color": { $regex: query, $options: "i" } }, // Example attribute search
+              { "attributes.size": { $regex: query, $options: "i" } } // Example attribute search
+          ]
+      }).limit(limit); // Limit results for performance
 
-      res.json({ products: matchingProducts ,});
+      return res.json({
+          success: true,
+          products: matchingProducts,
+      });
   } catch (err) {
       console.error("Error fetching products:", err);
-      res.status(500).json({ error: "Failed to fetch products" });
+      return res.status(500).json({
+          success: false,
+          error: "Failed to fetch products",
+      });
   }
 };
+
 
 const handleGetInventory = async (req, res) => {
   const { category, attributeId } = req.query;
