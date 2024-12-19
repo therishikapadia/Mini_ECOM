@@ -58,7 +58,7 @@ function Charts({ darkMode, apiBaseUrl }) {
           },
           withCredentials: true,
         });
-        console.log("API Response:", response.data);
+        
   
         const { yearlyOrdersChart, categoryDistribution } = response.data;
   

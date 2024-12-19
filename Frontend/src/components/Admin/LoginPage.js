@@ -30,7 +30,6 @@ const LoginPage = ({ apiBaseUrl }) => {
       // Check login response
       if (res.data.success) {
         toast.success("Login successful!");
-        console.log(res.data.data)
 
         // Save user info and token in localStorage
         localStorage.setItem("Users", JSON.stringify(res.data.data.user.name));

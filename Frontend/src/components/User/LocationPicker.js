@@ -118,7 +118,6 @@ const LocationPicker = ({ darkMode, apiBaseUrl }) => {
           onClick={(e) =>
             setMarkerPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() })
           }
-        // onLoad={(map) => console.log('Map loaded:', map)} // This ensures that the map is loaded
         >
           <Marker
             position={markerPosition}

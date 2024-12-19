@@ -6,10 +6,9 @@ async function hashPassword(plaintextPassword) {
     }
     try {
         const hash = await argon2.hash(plaintextPassword);
-        console.log('Hashed password:', hash);
+
         return hash;
     } catch (err) {
-        console.error('Error hashing password:', err);
         throw err;
     }
 }

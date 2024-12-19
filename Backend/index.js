@@ -49,10 +49,6 @@ app.use(express.static('public'));
 //views
 app.set('view engine', 'ejs');
 
-//routes
-// const viewsRouter = require('./routes/viewsRouter');
-
-// app.use('/', viewsRouter)  // Mount views router at root
 app.use('/user', userRoute)
 app.use('/customer',restrictTo(['CUSTOMER']),customerRoute)
 app.use('/admin',restrictTo(['ADMIN','CUSTOMER']),adminRoute)

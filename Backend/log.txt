@@ -6118,3 +6118,7 @@
 1734616940941:::1 GET: /admin/inventory
 
 1734616940941:::1 GET: /admin/customer
+
+1734617747972:::1 GET: /admin/categories
+
+1734617747973:::1 GET: /admin/inventory

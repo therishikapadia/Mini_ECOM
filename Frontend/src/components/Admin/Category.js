@@ -182,12 +182,6 @@ const Category = ({ apiBaseUrl,darkMode }) => {
         data: categoryData,
       });
 
-      console.log(
-        editIndex !== null
-          ? "Category updated successfully:"
-          : "Category added successfully:",
-        response.data
-      );
       setShowModal(false); // Close modal on success
       fetchCategories();   // Refresh categories
       toast.success(editIndex !== null ? "Category updated successfully!" : "Category added successfully!");
@@ -228,7 +222,6 @@ const Category = ({ apiBaseUrl,darkMode }) => {
 
 
   const handleRemoveCategory = async (index) => {
-    console.log(categories[index].name);
     try {
       await axios.delete(`${apiBaseUrl}/admin/categories`,
         {
@@ -249,7 +242,6 @@ const Category = ({ apiBaseUrl,darkMode }) => {
   };
 
   const handleRemoveSpecificAttribute = async (categoryId, attributeId) => {
-    console.log(categoryId, attributeId);
     try {
       await axios.delete(`${apiBaseUrl}/admin/categories/attribute`,
         {
@@ -326,7 +318,6 @@ const Category = ({ apiBaseUrl,darkMode }) => {
               <Card.Body>
                 <Card.Title><h5>{item.name}</h5></Card.Title>
                 <p><strong>Type:</strong> {item.categoryType}</p>
-                {/* {console.log(item.attributes)} Logs the entire attributes array */}
 
                 {item.attributes.map((attr, attrIndex) => (
                   <Card

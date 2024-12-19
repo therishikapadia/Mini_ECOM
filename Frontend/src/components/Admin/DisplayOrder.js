@@ -71,7 +71,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                 },
                 withCredentials: true,
             });
-            console.log(data);
+          
             setUsers(data.customers || []);
         } catch (error) {
             console.error("Error fetching users:", error);
@@ -112,7 +112,7 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                 },
                 withCredentials: true,
             });
-            console.log(data);
+            
             setProducts(data.products || []); // Assuming the API returns a "products" array
         } catch (error) {
             console.error("Error fetching products:", error);
@@ -404,7 +404,6 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                                         ))}
                                     </Form.Control>
                                 </Form.Group>
-                                {console.log(products)}
                                 <Form.Group controlId="formProduct">
                                     <Form.Label>Product</Form.Label>
                                     <Form.Control

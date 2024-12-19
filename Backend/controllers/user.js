@@ -9,11 +9,6 @@ const { validatePassword, comparePasswords } = require('../utils/passwordValidat
 async function verifyPassword(plaintextPassword, hashedPassword) {
     try {
         const isMatch = await argon2.verify(hashedPassword, plaintextPassword);
-        if (isMatch) {
-            console.log('Password matches!');
-        } else {
-            console.log('Password does not match.');
-        }
         return isMatch;
     } catch (err) {
         console.error('Error verifying password:', err);
@@ -23,7 +18,6 @@ async function verifyPassword(plaintextPassword, hashedPassword) {
 
 async function handleUserSignup(req, res) {
     const { name, email, password, confirmPassword,longitude,latitude } = req.body;
-    console.log(name, email, password, confirmPassword,longitude,latitude);
     
     // Check if email already exists
     const existingUser = await User.findOne({ email });
@@ -57,8 +51,6 @@ async function handleUserSignup(req, res) {
         // Generate a reset password token
         const confirmationToken = crypto.randomBytes(32).toString('hex');
 
-        console.log('Generated token:', confirmationToken);
-
         // Store the user data temporarily (pending confirmation)
         const user =await User.create({
             name: name,
@@ -70,8 +62,6 @@ async function handleUserSignup(req, res) {
             latitude,
             delivery_address:"OM"
         });
-
-        console.log('User created:', user);
 
         // Send the welcome email with the reset password token
         await sendWelcomeEmail(email, name, confirmationToken);
@@ -86,7 +76,6 @@ async function handleUserSignup(req, res) {
 
 async function handleUserLogin(req, res) {
     const { email, password } = req.body;
-    // console.log(email, password);
 
     if (!email || !password) {
         return res.status(500).json({ err: "Email and password are required" });
@@ -116,7 +105,7 @@ async function handleUserLogin(req, res) {
             sameSite: 'strict',
             maxAge: 24 * 60 * 60 * 1000 // 24 hours
         });
-        // console.log(user);
+     
         return res.status(200).json({ success: true, data: { user }, token: token });
     } catch (error) {
         console.error('Login error:', error);
@@ -158,7 +147,6 @@ async function handleForgotPassword(req, res) {
 async function handleResetPassword(req, res) {
     const { token } = req.params;
     const { password } = req.body;
-    console.log(token, password);
 
     try {
         if (!password || password.length < 8) {
@@ -228,8 +216,7 @@ async function handleUserLogout(req, res) {
 
 async function handleUpdateLocUser(req,res) {
     const { email, latitude, longitude,delivery_address } = req.body;
-    // console.log(email, latitude, longitude, delivery_address);
-console.log(email)  
+
     try {
       // Validate the input
       if (!email || latitude === undefined || longitude === undefined) {

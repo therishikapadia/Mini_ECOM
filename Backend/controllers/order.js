@@ -110,10 +110,6 @@ const handleUpdateOrder = async (req, res) => {
 const handleAdminAddOrder = async (req, res) => {
   const { product, quantity, notes, customer } = req.body;
 
-  // const customer = req.user?._id; // Retrieve the authenticated user ID
-  //   console.log("Authenticated user:", req.user);
-  //   console.log("Authorization header:", req.headers.authorization);
-
   if (!product || !quantity) {
     return res.status(400).json({ error: "Product and quantity are required" });
   }
@@ -286,8 +282,6 @@ const handleAddOrder = async (req, res) => {
   const { product, quantity, notes } = req.body;
 
   const customer = req.user?._id; // Retrieve the authenticated user ID
-  //   console.log("Authenticated user:", req.user);
-  //   console.log("Authorization header:", req.headers.authorization);
 
   if (!product || !quantity) {
     return res.status(400).json({ error: "Product and quantity are required" });
@@ -326,8 +320,6 @@ const handleGetCustomerOrders = async (req, res) => {
     // Ensure the user is authenticated
     if (!req.user) {
 
-      console.log('User not authenticated:', req.user);
-
       return res.status(401).json({ error: 'Unauthorized. Please log in.' });
     }
     // const customerId=req.params.id
@@ -342,7 +334,6 @@ const handleGetCustomerOrders = async (req, res) => {
     if (!orders.length) {
       return res.status(404).json({ message: 'No orders found for this customer.' });
     }
-    // console.log(orders)
     res.status(200).json({ orders });
   } catch (error) {
     console.error(error);

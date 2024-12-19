@@ -140,8 +140,6 @@ const Inventory = ({ apiBaseUrl, darkMode }) => {
                 quantity,
             };
 
-            console.log('Payload:', payload); // Log to verify the structure
-
             if (productId) {
                 // For updating an existing product
                 await axios.post(

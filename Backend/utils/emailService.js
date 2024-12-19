@@ -121,7 +121,6 @@ async function sendPasswordResetNotificationEmail(userEmail) {
               <p>Thank you!</p>
           `
       });
-      console.log(`Password reset notification sent to ${userEmail}`);
   } catch (error) {
       console.error('Error sending password reset notification:', error);
       throw new Error('Could not send password reset notification');

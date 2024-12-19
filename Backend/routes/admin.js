@@ -30,13 +30,6 @@ const {
 } = require('../controllers/admin/inventoryController');
 
 const {
-    handleAddDeliveryAgent,
-    handleDeleteDeliveryAgent,
-    handleGetAllDeliveryAgents,
-    handleUpdateDeliveryAgent
-} = require('../controllers/admin/deliveryController');
-
-const {
     handleAssignDeliveryAgent
 } = require('../controllers/admin/orderAssignmentController');
 
@@ -63,12 +56,6 @@ router.route('/customer')
     .delete(handleDeleteCustomer)
     .get(handleGetAllCustomers);
 
-// Delivery Agent routes
-router.route('/delivery-agent')
-    .post(handleAddDeliveryAgent)
-    .patch(handleUpdateDeliveryAgent)
-    .delete(handleDeleteDeliveryAgent)
-    .get(handleGetAllDeliveryAgents);
 
 // Orders routes
 router.route('/orders')
