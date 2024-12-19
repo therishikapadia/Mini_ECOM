@@ -46,7 +46,6 @@ router.route('/inventory')
     .get(handleGetInventory)
     .delete(handleDeleteInventory);
 
-router.get('/inventory/search',handleSearchInventory);
 
 // Categories routes
 router.route('/categories')
