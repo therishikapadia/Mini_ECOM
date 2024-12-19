@@ -51,6 +51,26 @@ const handleAddInventory = async (req, res) => {
   }
 };
 
+
+const handleSearchInventory = async (req, res) => {
+  const query = req.query.query;
+
+  if (!query) {
+      return res.status(400).json({ error: "Query parameter is required" });
+  }
+
+  try {
+      const matchingProducts = await Inventory.find({
+          category: { $regex: query, $options: "i" }, // Case-insensitive search
+      }).limit(10); // Limit results for performance
+
+      res.json({ products: matchingProducts ,});
+  } catch (err) {
+      console.error("Error fetching products:", err);
+      res.status(500).json({ error: "Failed to fetch products" });
+  }
+};
+
 const handleGetInventory = async (req, res) => {
   const { category, attributeId } = req.query;
 
@@ -199,4 +219,5 @@ module.exports = {
   handleAddInventory,
   handleDeleteInventory,
   handleGetInventory,
+  handleSearchInventory
 };

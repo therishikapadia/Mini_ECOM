@@ -55,13 +55,29 @@ const Order = ({ apiBaseUrl, darkMode }) => {
         const value = e.target.value;
         setSearchTerm(value);
         setShowDropdown(true);
-
+    
+        // Log the search value to debug
+        console.log("Search value:", value);
+    
         if (value.trim() === "") {
             // Show all inventory items when input is empty
-            setSearchResults(inventory);
+            try {
+                const response = await axios.get(`${apiBaseUrl}/admin/inventory`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true,
+                });
+                setSearchResults(response.data.products || []);
+            } catch (err) {
+                console.error("Failed to fetch inventory:", err);
+                setSearchResults([]);
+            }
             return;
         }
-
+    
+        // Search functionality
         try {
             const response = await axios.get(`${apiBaseUrl}/admin/inventory/search`, {
                 params: { query: value },
@@ -71,9 +87,10 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                 },
                 withCredentials: true,
             });
+            console.log("Search results:", response.data);
             setSearchResults(response.data.products || []);
         } catch (err) {
-            console.error("Failed to fetch products:", err);
+            console.error("Failed to search products:", err);
             setSearchResults([]);
         }
     };
