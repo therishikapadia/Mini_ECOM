@@ -89,14 +89,15 @@ async function handleUserLogin(req, res) {
     // console.log(email, password);
 
     if (!email || !password) {
-        return res.render('login', { err: "Email and password are required" });
+        return res.status(500).json({ err: "Email and password are required" });
+        
     }
 
     try {
         // Find the user by email
         const user = await User.findOne({ email });
         if (!user) {
-            return res.render('login', { err: "Invalid username or password" });
+            return res.staus(404).json({"error":"user is not set!!"});
         }
 
         // Verify the password
@@ -104,7 +105,7 @@ async function handleUserLogin(req, res) {
 
         // If the password doesn't match
         if (!isMatch) {
-            return res.render('login', { err: "Invalid username or password" });
+            return res.staus(404).json({"error":"password does not match!!"});
         }
 
         // Password matches, generate a token and send it in a cookie
@@ -119,7 +120,7 @@ async function handleUserLogin(req, res) {
         return res.status(200).json({ success: true, data: { user }, token: token });
     } catch (error) {
         console.error('Login error:', error);
-        return res.render('login', { err: "An error occurred during login" });
+        return res.staus(404).json({ err: "An error occurred during login" });
     }
 }
 

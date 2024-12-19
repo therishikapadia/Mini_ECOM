@@ -19,13 +19,14 @@ const {
     handleAddNewProduct,
     handleDeleteNewProduct,
     handleUpdateNewProduct,
-    handleGetNewProduct, handleDeleteAttribute
+    handleGetNewProduct,
+     handleDeleteAttribute
 } = require('../controllers/admin/categoryController');
 
 const {
     handleAddInventory,
     handleDeleteInventory,
-    handleGetInventory,handleSearchInventory,
+    handleGetInventory
 } = require('../controllers/admin/inventoryController');
 
 const {
@@ -86,17 +87,17 @@ router.get('/orders', restrictTo(["ADMIN"]), async (req, res) => {
         const allOrders = await Order.find({})
             .populate('customer', 'name email')
             .sort({ createdAt: -1 });
-        return res.render("home", { order: allOrders });
+        return res.status(200).json({ orders: allOrders });
     } catch (error) {
         console.error('Error fetching all orders:', error);
-        return res.status(500).render("error", {
+        return res.status(500).json({
             message: "Failed to load orders. Please try again later."
         });
     }
 });
 
 router.get('/categories/new', restrictTo(["ADMIN"]), (req, res) => {
-    return res.render('add-category');
+    return res.status(200).json({ message: "Add category page" });
 });
 
 

@@ -3,7 +3,6 @@ import axios from "axios";
 import { Modal, Button, Form } from "react-bootstrap";
 import { toast } from "react-hot-toast";
 
-
 const darkModeColors = {
     background: "#18283e",
     text: "#e0e0e0",
@@ -28,44 +27,69 @@ const Order = ({ apiBaseUrl, darkMode }) => {
     const [filterStatus, setFilterStatus] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-
-    // Modals
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [showDropdown, setShowDropdown] = useState(false);
 
-    const [searchTerm, setSearchTerm] = useState(""); // User's typed input
-    const [searchResults, setSearchResults] = useState([]); // Matching products
-
-    const handleSearchChange = async (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-
-        if (value.trim() === "") {
-            setSearchResults([]); // Clear results if input is empty
-            return;
-        }
-
+    const fetchInventory = async () => {
         try {
-            const response = await axios.get(`${apiBaseUrl}/admin/inventory/search`, {
-                params: { query: value }, // Pass the search term as a query parameter
+            const response = await axios.get(`${apiBaseUrl}/admin/inventory`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                     "Content-Type": "application/json",
                 },
                 withCredentials: true,
             });
+            setInventory(response.data.products);
+            // Initially set search results to all products
+            setSearchResults(response.data.products);
+        } catch (err) {
+            console.error("Failed to fetch inventory:", err);
+            setError("Failed to fetch inventory.");
+        }
+    };
 
-            setSearchResults(response.data.products || []); // Update the search results
+    const handleSearchChange = async (e) => {
+        const value = e.target.value;
+        setSearchTerm(value);
+        setShowDropdown(true);
+
+        if (value.trim() === "") {
+            // Show all inventory items when input is empty
+            setSearchResults(inventory);
+            return;
+        }
+
+        try {
+            const response = await axios.get(`${apiBaseUrl}/admin/inventory/search`, {
+                params: { query: value },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            });
+            setSearchResults(response.data.products || []);
         } catch (err) {
             console.error("Failed to fetch products:", err);
-            setSearchResults([]); // Clear results on error
+            setSearchResults([]);
         }
     };
 
     const handleProductSelect = (product) => {
-        setNewOrder({ ...newOrder, product: product._id }); // Set product ID
-        setSearchTerm(product.category); // Set category name in input for display
-        setSearchResults([]); // Clear the dropdown
+        setNewOrder({ ...newOrder, product: product._id });
+        setSearchTerm(product.category);
+        setShowDropdown(false);
+    };
+
+    const handleInputFocus = () => {
+        setShowDropdown(true);
+        if (!searchTerm.trim()) {
+            // Use the existing inventory state instead of making a new API call
+            setSearchResults(inventory);
+        }
     };
 
     const fetchOrders = async () => {
@@ -87,21 +111,6 @@ const Order = ({ apiBaseUrl, darkMode }) => {
             setError(errorMessage);
         } finally {
             setLoading(false);
-        }
-    };
-
-    const fetchInventory = async () => {
-        try {
-            const response = await axios.get(`${apiBaseUrl}/admin/inventory`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true,
-            });
-            setInventory(response.data.products);
-        } catch (err) {
-            setError("Failed to fetch inventory.");
         }
     };
 
@@ -127,6 +136,7 @@ const Order = ({ apiBaseUrl, darkMode }) => {
             );
             setOrders([response.data.order, ...orders]);
             setNewOrder({ product: "", quantity: "", notes: "" });
+            setSearchTerm(""); // Clear the search input
             toast.success("Order added successfully!");
             setError("");
             setShowAddModal(false);
@@ -154,7 +164,7 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                     orderId: selectedOrder._id,
                     quantity: selectedOrder.quantity,
                     notes: selectedOrder.notes
-                }, // Only pass orderId and quantity
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -182,7 +192,6 @@ const Order = ({ apiBaseUrl, darkMode }) => {
         }
     };
 
-
     useEffect(() => {
         fetchOrders();
         fetchInventory();
@@ -196,7 +205,6 @@ const Order = ({ apiBaseUrl, darkMode }) => {
         <>
             <div className="container-fluid p-5" style={{ backgroundColor: currentColors.background, color: currentColors.text }}>
                 <div className="d-flex justify-content-between">
-
                     <h2>Orders:</h2>
                     {error && <div className="alert alert-danger">{error}</div>}
 
@@ -232,11 +240,10 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                     {filteredOrders.map((order) => (
                         <div
                             key={order._id}
-                            className="col-12 col-sm-6 col-lg-4 mb-3" // Adjust grid sizes for responsiveness
+                            className="col-12 col-sm-6 col-lg-4 mb-3"
                         >
                             <div className="card h-100">
                                 <div className="card-body">
-                                    {/* Conditionally render the product category */}
                                     <h5 className="card-title">
                                         {order.product ? order.product.category : "No Category"}
                                     </h5>
@@ -258,9 +265,7 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                             </div>
                         </div>
                     ))}
-
                 </div>
-
 
                 {/* Add Order Modal */}
                 <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
@@ -268,20 +273,28 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                         <Modal.Title>Add Order</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form.Group>
+                        <Form.Group className="mb-3 position-relative">
                             <Form.Control
                                 type="text"
                                 placeholder="Search for a product"
                                 value={searchTerm}
                                 onChange={handleSearchChange}
+                                onFocus={handleInputFocus}
                                 className="mb-2"
                             />
-                            {searchResults.length > 0 && (
-                                <ul className="list-group">
+                            {showDropdown && searchResults.length > 0 && (
+                                <div className="position-absolute w-100 shadow-sm" style={{ 
+                                    maxHeight: '200px', 
+                                    overflowY: 'auto', 
+                                    zIndex: 1000,
+                                    backgroundColor: '#fff',
+                                    border: '1px solid #ddd',
+                                    borderRadius: '4px'
+                                }}>
                                     {searchResults.map((item) => (
-                                        <li
+                                        <div
                                             key={item._id}
-                                            className="list-group-item"
+                                            className="p-2 hover-bg-light"
                                             onClick={() => handleProductSelect(item)}
                                             style={{ cursor: "pointer" }}
                                         >
@@ -293,9 +306,9 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                                                     .map(([key, value]) => `${key}: ${value}`)
                                                     .join(", ") +
                                                 ")"}
-                                        </li>
+                                        </div>
                                     ))}
-                                </ul>
+                                </div>
                             )}
                         </Form.Group>
 
@@ -335,8 +348,8 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Category"
-                                    value={selectedOrder.product.category} // Display category name
-                                    readOnly // Prevent user modification
+                                    value={selectedOrder.product.category}
+                                    readOnly
                                     className="mb-3"
                                 />
                                 <Form.Control
@@ -359,7 +372,6 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                                 />
                             </>
                         )}
-
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => setShowEditModal(false)}>

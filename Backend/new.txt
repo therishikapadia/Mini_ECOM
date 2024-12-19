@@ -1,72 +1,126 @@
-const haversineDistance = (lat1, lon1, lat2, lon2) => {
-    // Earth's radius in kilometers
-    const R = 6371;
-  
-    // Convert latitude and longitude to radians
-    const toRadians = (degree) => degree * (Math.PI / 180);
-    
-    const dLat = toRadians(lat2 - lat1);
-    const dLon = toRadians(lon2 - lon1);
-    
-    const a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2);
-    
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    
-    // Distance in kilometers
-    return R * c;
+import React, { useState, useEffect } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/use-toast';
+
+const ProductOrderForm = () => {
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [newOrder, setNewOrder] = useState({
+    product: "",
+    quantity: "",
+    notes: ""
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Fetch products on component mount
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(`${apiBaseUrl}/products`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        }
+      });
+      setProducts(response.data.products);
+      setFilteredProducts(response.data.products);
+    } catch (err) {
+      toast.error("Failed to fetch products");
+    }
   };
 
-const processNearbyUsers = (users, adminLocation) => {
-    return users.map(user => {
-      // Ensure full email is used
-      const email = user.email || user;
-      
-      // Check if user has valid coordinates
-      if (!user.latitude || !user.longitude) {
-        return {
-          email,
-          distance: null,
-          error: 'Invalid coordinates'
-        };
-      }
-  
-      // Calculate distance from admin location
-      const distance = haversineDistance(
-        adminLocation.latitude, 
-        adminLocation.longitude, 
-        user.latitude, 
-        user.longitude
+  const handleProductSearch = (e) => {
+    const searchTerm = e.target.value;
+    setNewOrder(prev => ({ ...prev, product: searchTerm }));
+    setShowDropdown(true);
+
+    if (searchTerm.trim() === "") {
+      // Show all products when input is empty
+      setFilteredProducts(products);
+    } else {
+      // Filter products based on search term
+      const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
-  
-      return {
-        email,
-        distance: Number(distance.toFixed(2)), // Round to 2 decimal places
-        coordinates: {
-          latitude: user.latitude,
-          longitude: user.longitude
+      setFilteredProducts(filtered);
+    }
+  };
+
+  const selectProduct = (product) => {
+    setNewOrder(prev => ({ ...prev, product: product.name }));
+    setShowDropdown(false);
+  };
+
+  const addOrder = async () => {
+    if (!newOrder.product || !newOrder.quantity) {
+      const errorMessage = "Product and quantity are required";
+      toast.error(errorMessage);
+      setError(errorMessage);
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${apiBaseUrl}/customer/order`,
+        { ...newOrder },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
         }
-      };
-    });
+      );
+      setOrders([response.data.order, ...orders]);
+      setNewOrder({ product: "", quantity: "", notes: "" });
+      toast.success("Order added successfully!");
+      setError("");
+      setShowAddModal(false);
+    } catch (err) {
+      const errorMessage = err.response?.data?.error || "Failed to add order";
+      toast.error(errorMessage);
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
-  
-  // Example usage
-  const adminLocation = { 
-    longitude: 72.59696188230406, 
-    latitude: 23.03965552350363 
-  };
-  
-  const users = [
-    { email: 'rishi@gmail.com', longitude: 72.1004, latitude: 23.232 },
-    { email: 'devansh@gmail.com', longitude: 72.1, latitude: 23.32 },
-    { email: 'example@gmail.com', longitude: 72.45, latitude: 23.1 }
-  ];
-  
-  const nearbyUsers = processNearbyUsers(users, adminLocation);
-  
-  console.log(JSON.stringify({
-    message: "Nearby users fetched successfully",
-    data: nearbyUsers
-  }, null, 2));
+
+  return (
+    <div className="relative">
+      <Input
+        type="text"
+        value={newOrder.product}
+        onChange={handleProductSearch}
+        onFocus={() => setShowDropdown(true)}
+        placeholder="Search for a product"
+        className="w-full"
+      />
+      
+      {showDropdown && (
+        <div className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg max-h-60 overflow-auto">
+          {filteredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              onClick={() => selectProduct(product)}
+            >
+              {product.name}
+            </div>
+          ))}
+          {filteredProducts.length === 0 && (
+            <div className="px-4 py-2 text-gray-500">No products found</div>
+          )}
+        </div>
+      )}
+      
+      {/* Rest of your form components */}
+    </div>
+  );
+};
+
+export default ProductOrderForm;
