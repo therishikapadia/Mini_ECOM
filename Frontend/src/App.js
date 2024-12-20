@@ -15,6 +15,8 @@ function App() {
   const [isAuthenticatedUser, setIsAuthenticatedUser] = useState(false); // For user
   const [loading, setLoading] = useState(true); // Loading state
 
+
+  // please eneter in env file path for apiBaseUrl
   const apiBaseUrl = "http://localhost:8000"
 
   useEffect(() => {
