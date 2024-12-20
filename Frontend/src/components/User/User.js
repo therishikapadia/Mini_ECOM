@@ -64,7 +64,7 @@ function User({ apiBaseUrl }) {
 
   return (
     <>
-      <UserNavbar darkMode={darkMode} toggleTheme={toggleTheme} />
+      <UserNavbar darkMode={darkMode} apiBaseUrl={apiBaseUrl} toggleTheme={toggleTheme} />
       {forceSettings ? (
         // Force redirect to SettingsPage
         <Routes>

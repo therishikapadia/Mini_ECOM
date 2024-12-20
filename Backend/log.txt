@@ -6572,3 +6572,433 @@
 1734623805553:::1 GET: /admin/inventory
 
 1734623815895:::1 POST: /customer/order
+
+1734624197519:::1 GET: /customer/order
+
+1734624197523:::1 GET: /admin/inventory
+
+1734624197522:::1 GET: /admin/customer
+
+1734672118001:::1 GET: /admin/customer
+
+1734672125969:::1 GET: /customer/order
+
+1734672125970:::1 GET: /admin/inventory
+
+1734672454096:::ffff:192.168.119.55 POST: /user/login
+
+1734672456031:::ffff:192.168.119.36 POST: /user/login
+
+1734672456061:::ffff:192.168.119.55 GET: /admin/customer
+
+1734672458362:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734672458417:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734672466293:::ffff:192.168.119.36 GET: /admin/categories
+
+1734672472281:::ffff:192.168.119.36 DELETE: /admin/categories
+
+1734672472600:::ffff:192.168.119.36 GET: /admin/categories
+
+1734672482131:::ffff:192.168.119.36 GET: /admin/customer
+
+1734672485974:::ffff:192.168.119.36 DELETE: /admin/customer
+
+1734672489356:::ffff:192.168.119.36 DELETE: /admin/customer
+
+1734672496089:::ffff:192.168.119.36 PATCH: /admin/customer
+
+1734672498243:::ffff:192.168.119.36 GET: /admin/customer
+
+1734672498264:::ffff:192.168.119.36 GET: /admin/orders
+
+1734672498273:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734672520077:::ffff:192.168.119.36 POST: /admin/orders
+
+1734672520137:::ffff:192.168.119.36 GET: /admin/orders
+
+1734672541919:::ffff:192.168.119.36 GET: /admin/orders
+
+1734672541923:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734672541927:::ffff:192.168.119.36 GET: /admin/customer
+
+1734672545118:::1 GET: /user/logout
+
+1734672554037:::ffff:192.168.119.55 POST: /user/login
+
+1734672555585:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734672555603:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734672557795:::ffff:192.168.119.55 GET: /admin/orders
+
+1734672557796:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734672557805:::ffff:192.168.119.55 GET: /admin/customer
+
+1734672558280:::ffff:192.168.119.36 POST: /admin/orders
+
+1734672558314:::ffff:192.168.119.36 GET: /admin/orders
+
+1734672598490:::ffff:192.168.119.36 GET: /admin/orders
+
+1734672598497:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734672598498:::ffff:192.168.119.36 GET: /admin/customer
+
+1734672640845:::ffff:192.168.119.55 GET: /admin/orders
+
+1734672640846:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734672640846:::ffff:192.168.119.55 GET: /admin/customer
+
+1734672641629:::ffff:192.168.119.36 GET: /admin/orders
+
+1734672641632:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734672641638:::ffff:192.168.119.36 GET: /admin/customer
+
+1734672685226:::ffff:192.168.119.36 GET: /admin/customer
+
+1734672699051:::ffff:192.168.119.36 PATCH: /admin/customer
+
+1734672720553:::ffff:192.168.119.36 PATCH: /admin/customer
+
+1734672769435:::ffff:192.168.119.36 PATCH: /admin/customer
+
+1734672797825:::ffff:192.168.119.55 GET: /admin/customer
+
+1734672808574:::ffff:192.168.119.55 PATCH: /admin/customer
+
+1734672881495:::ffff:192.168.119.55 PATCH: /admin/customer
+
+1734672932608:::ffff:192.168.119.36 GET: /admin/customer
+
+1734672960580:::ffff:192.168.119.212 POST: /user/login
+
+1734672961455:::ffff:192.168.119.36 GET: /admin/customer
+
+1734672962951:::ffff:192.168.119.212 GET: /admin/customer
+
+1734673056167:::ffff:192.168.119.212 GET: /admin/inventory
+
+1734673056164:::ffff:192.168.119.212 GET: /customer/order
+
+1734673113128:::ffff:192.168.119.36 GET: /admin/customer
+
+1734673154368:::ffff:192.168.119.36 GET: /admin/customer
+
+1734673224074:::ffff:192.168.119.36 GET: /admin/customer
+
+1734673355668:::ffff:192.168.119.36 GET: /admin/customer
+
+1734673444424:::ffff:192.168.119.36 GET: /admin/customer
+
+1734673445675:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673445724:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673451187:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673451209:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673466590:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673466625:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673472714:::ffff:192.168.119.36 GET: /admin/categories
+
+1734673481662:::ffff:192.168.119.36 GET: /admin/orders
+
+1734673481664:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734673481665:::ffff:192.168.119.36 GET: /admin/customer
+
+1734673482521:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734673482532:::ffff:192.168.119.36 GET: /admin/categories
+
+1734673485881:::ffff:192.168.119.36 GET: /admin/customer
+
+1734673490399:::ffff:192.168.119.36 POST: /add-geo/geoData
+
+1734673502225:::ffff:192.168.119.36 POST: /add-geo/geoData
+
+1734673507435:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673507449:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673510682:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673510725:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673623810:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673623828:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673696636:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673696649:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673698590:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673698604:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673703185:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673703205:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673719188:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673719205:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673751512:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673751525:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673754940:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673754960:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673811171:::ffff:192.168.119.55 GET: /user/logout
+
+1734673885287:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673885325:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673885522:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673885549:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673885673:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673885708:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673885896:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673885930:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673886175:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673886207:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673886652:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673886771:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673889374:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673889401:::ffff:192.168.119.36 GET: /stats/monthly
+
+1734673890392:::ffff:192.168.119.55 POST: /user/login
+
+1734673891895:::ffff:192.168.119.36 GET: /user/logout
+
+1734673892498:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673892511:::ffff:192.168.119.55 GET: /stats/monthly
+
+1734673913528:::ffff:192.168.119.36 POST: /user/login
+
+1734673915116:::ffff:192.168.119.36 GET: /admin/customer
+
+1734673919874:::ffff:192.168.119.36 GET: /customer/order
+
+1734673919893:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734673934629:::ffff:192.168.119.55 GET: /user/logout
+
+1734673942445:::ffff:192.168.119.55 POST: /user/login
+
+1734673944104:::ffff:192.168.119.55 GET: /admin/customer
+
+1734673946182:::ffff:192.168.119.55 GET: /customer/order
+
+1734673946191:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734673972793:::ffff:192.168.119.55 GET: /customer/order
+
+1734673972797:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734673973210:::ffff:192.168.119.36 GET: /customer/order
+
+1734673973209:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734673996162:::ffff:192.168.119.55 GET: /customer/order
+
+1734673996163:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734674016823:::ffff:192.168.119.55 GET: /customer/order
+
+1734674016823:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734674026184:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674026316:::ffff:192.168.119.36 GET: /customer/order
+
+1734674026325:::ffff:192.168.119.36 GET: /admin/customer
+
+1734674026394:::ffff:192.168.119.36 GET: /customer/order
+
+1734674026395:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674026547:::ffff:192.168.119.36 GET: /customer/order
+
+1734674026548:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674027248:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674027249:::ffff:192.168.119.36 GET: /customer/order
+
+1734674040074:::ffff:192.168.119.55 GET: /customer/order
+
+1734674040076:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734674040197:::ffff:192.168.119.36 GET: /customer/order
+
+1734674040199:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674101937:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674101940:::ffff:192.168.119.36 GET: /customer/order
+
+1734674101942:::ffff:192.168.119.36 GET: /admin/customer
+
+1734674102113:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674102114:::ffff:192.168.119.36 GET: /customer/order
+
+1734674102183:::ffff:192.168.119.36 GET: /customer/order
+
+1734674102184:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674102408:::ffff:192.168.119.36 GET: /customer/order
+
+1734674102410:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674102558:::ffff:192.168.119.36 GET: /customer/order
+
+1734674102558:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674133858:::ffff:192.168.119.55 GET: /customer/order
+
+1734674133869:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734674133942:::ffff:192.168.119.36 GET: /customer/order
+
+1734674133945:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674141315:::ffff:192.168.119.55 GET: /customer/order
+
+1734674141323:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734674141325:::ffff:192.168.119.55 GET: /admin/customer
+
+1734674176880:::ffff:192.168.119.36 GET: /customer/order
+
+1734674176880:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674177170:::ffff:192.168.119.55 GET: /customer/order
+
+1734674177174:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734674185120:::ffff:192.168.119.36 GET: /customer/order
+
+1734674185121:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674185174:::ffff:192.168.119.55 GET: /customer/order
+
+1734674185175:::ffff:192.168.119.55 GET: /admin/inventory
+
+1734674199645:::ffff:192.168.119.36 GET: /admin/customer
+
+1734674199647:::ffff:192.168.119.36 GET: /customer/order
+
+1734674199663:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674199783:::ffff:192.168.119.36 GET: /customer/order
+
+1734674199796:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674199913:::ffff:192.168.119.36 GET: /customer/order
+
+1734674199914:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674200006:::ffff:192.168.119.36 GET: /customer/order
+
+1734674200007:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674200305:::ffff:192.168.119.36 GET: /customer/order
+
+1734674200305:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674200535:::ffff:192.168.119.36 GET: /customer/order
+
+1734674200624:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674200753:::ffff:192.168.119.36 GET: /customer/order
+
+1734674200755:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674202065:::ffff:192.168.119.36 GET: /customer/order
+
+1734674202065:::ffff:192.168.119.36 GET: /admin/inventory
+
+1734674275828:::ffff:192.168.119.55 GET: /admin/customer
+
+1734674277642:::ffff:192.168.119.55 GET: /user/logout
+
+1734686302345:::1 POST: /user/login
+
+1734686304262:::1 GET: /admin/customer
+
+1734686318635:::1 GET: /customer/order
+
+1734686318637:::1 GET: /admin/inventory
+
+1734686378692:::1 GET: /customer/order
+
+1734686378698:::1 GET: /admin/inventory
+
+1734686600011:::1 GET: /customer/order
+
+1734686600015:::1 GET: /admin/inventory
+
+1734686632367:::1 GET: /customer/order
+
+1734686632368:::1 GET: /admin/inventory
+
+1734686638016:::1 GET: /customer/order
+
+1734686638023:::1 GET: /admin/inventory
+
+1734686638025:::1 GET: /admin/customer
+
+1734686660672:::1 GET: /customer/order
+
+1734686660675:::1 GET: /admin/inventory
+
+1734686867139:::1 GET: /customer/order
+
+1734686867142:::1 GET: /admin/inventory
+
+1734686898738:::1 GET: /customer/order
+
+1734686898741:::1 GET: /admin/inventory
+
+1734687103782:::1 GET: /customer/order
+
+1734687103783:::1 GET: /admin/inventory
+
+1734687108610:::1 GET: /customer/order
+
+1734687108610:::1 GET: /admin/inventory
+
+1734687108619:::1 GET: /admin/customer
+
+1734687152564:::1 GET: /customer/order
+
+1734687152565:::1 GET: /admin/inventory

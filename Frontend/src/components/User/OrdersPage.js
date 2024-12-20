@@ -67,6 +67,7 @@ const Order = ({ apiBaseUrl, darkMode }) => {
         withCredentials: true,
       });
       setInventory(response.data.products);
+      console.log(response.data.products);
     } catch (err) {
       setError("Failed to fetch inventory.");
     }
@@ -174,9 +175,9 @@ const Order = ({ apiBaseUrl, darkMode }) => {
     // Exclude _id from the display attributes but include it in the data
     const attributesString = product.attributes
       ? Object.entries(product.attributes)
-          .filter(([key]) => key !== "_id") // Exclude _id from display
-          .map(([key, value]) => `${key}: ${value}`)
-          .join(", ")
+        .filter(([key]) => key !== "_id") // Exclude _id from display
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(", ")
       : ""; // Convert attributes to string format
 
     // Set the product data, including _id for submission
@@ -247,8 +248,20 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                   <p className="card-text">
                     <strong>Status:</strong> {order.orderStatus} <br />
                     <strong>Notes:</strong> {order.notes || "N/A"} <br />
-                    <strong>Quantity:</strong> {order.quantity}
+                    <strong>Quantity:</strong> {order.quantity}<br />
                   </p>
+
+                  {/* Render attributes */}
+                  {order.product && order.product.attributes && (
+                    <p className="card-text">
+                      <strong>Attributes:</strong>{" "}
+                      {Object.entries(order.product.attributes)
+                        .filter(([key]) => key !== "_id") // Exclude _id if needed
+                        .map(([key, value]) => `${key}: ${value}`)
+                        .join(", ")}
+                    </p>
+                  )}
+
                   <Button
                     variant="warning"
                     onClick={() => {
@@ -262,6 +275,7 @@ const Order = ({ apiBaseUrl, darkMode }) => {
               </div>
             </div>
           ))}
+
         </div>
 
         {/* Add Order Modal */}
@@ -292,10 +306,10 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                     {item.category}
                     {item.attributes &&
                       " (" +
-                        Object.entries(item.attributes)
-                          .filter(([key]) => key !== "_id") // Exclude _id from attributes
-                          .map(([key, value]) => `${key}: ${value}`)
-                          .join(", ") +
+                      Object.entries(item.attributes)
+                        .filter(([key]) => key !== "_id") // Exclude _id from attributes
+                        .map(([key, value]) => `${key}: ${value}`)
+                        .join(", ") +
                       ")"}
                   </div>
                 ))}

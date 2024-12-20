@@ -22,11 +22,11 @@ const lightModeColors = {
 };
 
 
-const UserNavbar = ({ darkMode, toggleTheme }) => {
+const UserNavbar = ({ darkMode, toggleTheme,apiBaseUrl }) => {
   const handleLogout = async () => {
     try {
       // Send a GET request to the logout endpoint with `withCredentials: true`
-      const response = await axios.get("http://localhost:8000/user/logout", {
+      const response = await axios.get(`${apiBaseUrl}/user/logout`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           "Content-Type": "application/json",

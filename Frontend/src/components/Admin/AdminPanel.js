@@ -35,6 +35,7 @@ const AdminPanel = ({ apiBaseUrl }) => {
           overflowY: "auto",
         }}
       >
+        {console.log(apiBaseUrl)}
         {/* Navbar with Dynamic Title */}
         <NavbarWithDynamicTitle darkMode={darkMode} apiBaseUrl={apiBaseUrl} toggleTheme={toggleTheme} />
 
@@ -56,7 +57,7 @@ const AdminPanel = ({ apiBaseUrl }) => {
 }
 
 // Navbar Component with Dynamic Title
-const NavbarWithDynamicTitle = ({ darkMode, toggleTheme }) => {
+const NavbarWithDynamicTitle = ({ darkMode, toggleTheme,apiBaseUrl }) => {
   const location = useLocation();
 
   // Dynamically Map Routes to Titles
@@ -84,6 +85,7 @@ const NavbarWithDynamicTitle = ({ darkMode, toggleTheme }) => {
       darkMode={darkMode}
       toggleTheme={toggleTheme}
       title={getTitle()}
+      apiBaseUrl={apiBaseUrl}
     />
   );
 };

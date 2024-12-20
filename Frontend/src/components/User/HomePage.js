@@ -17,7 +17,7 @@ const lightModeColors = {
   button: "#28a745",
 };
 
-const HomePage = ({ darkMode }) => {
+const HomePage = ({ darkMode,apiBaseUrl }) => {
   const currentColors = darkMode ? darkModeColors : lightModeColors;
 
   // Ref for the Typed.js effect

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({apiBaseUrl}) => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
@@ -12,7 +12,7 @@ const ForgotPassword = () => {
     const handleForgotPassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8000/user/forgot-password', { email });
+            const response = await axios.post(`${apiBaseUrl}/user/forgot-password`, { email });
             setMessage(response.data.message);
             setError('');
             toast.success(response.data.message); // Show success toast

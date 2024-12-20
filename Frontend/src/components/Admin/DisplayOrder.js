@@ -293,6 +293,9 @@ const DisplayOrder = ({ apiBaseUrl, darkMode }) => {
                                             <Card.Text>
                                                 <strong>Order Status:</strong> {order.orderStatus}
                                             </Card.Text>
+                                            <Card.Text>
+                                                <strong>Notes:</strong> {order.notes}
+                                            </Card.Text>
                                             <div>
                                                 <strong>Attributes:</strong>
                                                 <ul>

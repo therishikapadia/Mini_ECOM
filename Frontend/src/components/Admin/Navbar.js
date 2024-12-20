@@ -19,14 +19,15 @@ const lightModeColors = {
   icon: "#000",
 };
 
-function NavbarComponent({ darkMode, toggleTheme, title }) {
+function NavbarComponent({ darkMode, toggleTheme, title,apiBaseUrl }) {
   const currentColors = darkMode ? darkModeColors : lightModeColors;
 
   // Function to handle logout
   const handleLogout = async () => {
     try {
+      console.log(apiBaseUrl)
       // Send a GET request to the logout endpoint with `withCredentials: true`
-      const response = await axios.get("http://localhost:8000/user/logout", {
+      const response = await axios.get(`${apiBaseUrl}/user/logout`, {
         withCredentials: true, // Ensures cookies are sent with the request
       });
 

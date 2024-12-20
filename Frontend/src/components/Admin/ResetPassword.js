@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast'; // Import react-hot-toast
 
-function ResetPassword() {
+function ResetPassword({apiBaseUrl}) {
     const { token } = useParams(); // Use `useParams` to extract the token from the URL
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -37,7 +37,7 @@ function ResetPassword() {
         }
 
         try {
-            const response = await axios.post(`http://localhost:8000/user/reset-password/${token}`, { password });
+            const response = await axios.post(`${apiBaseUrl}/user/reset-password/${token}`, { password });
             setError('');
             toast.success(response.data.message); // Show success toast
             setTimeout(() => {
