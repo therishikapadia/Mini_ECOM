@@ -324,12 +324,94 @@ const handleGetCustomerOrders = async (req, res) => {
     }
     // const customerId=req.params.id
 
-    const customerId = req.user._id; // Get the customer's ID from the authenticated user
-
+    const customerId = new mongoose.Types.ObjectId(req.user._id); // Use Types.ObjectId directly
+    // Get the customer's ID from the authenticated user
     // Find all orders for the authenticated customer
-    const orders = await Order.find({ customer: customerId, isDeleted: false })
-      .populate('product') // Populate product details
-      .sort({ createdAt: -1 }); // Sort orders by the latest first
+    const orders = await Order.aggregate([
+      {
+        $match: {
+          customer:customerId,
+          isDeleted: false, // Only fetch non-deleted orders
+        },
+      },
+      {
+        $lookup: {
+          from: "inventories", // Collection name for Inventory
+          localField: "product",
+          foreignField: "_id",
+          as: "productDetails",
+        },
+      },
+      {
+        $unwind: "$productDetails", // Unwind the productDetails array
+      },
+      {
+        $lookup: {
+          from: "categories", // Collection name for Category
+          localField: "productDetails.attributeId",
+          foreignField: "attributes._id",
+          as: "categoryDetails",
+        },
+      },
+      {
+        $unwind: "$categoryDetails", // Unwind categoryDetails array
+      },
+      {
+        $addFields: {
+          productAttributes: {
+            $arrayElemAt: [
+              {
+                $filter: {
+                  input: "$categoryDetails.attributes",
+                  as: "attr",
+                  cond: {
+                    $eq: ["$$attr._id", "$productDetails.attributeId"],
+                  },
+                },
+              },
+              0,
+            ],
+          },
+        },
+      },
+      // Lookup for customer details
+      {
+        $lookup: {
+          from: "users", // Collection name for Users (customers)
+          localField: "customer", // Join field from orders
+          foreignField: "_id", // Join field from users
+          as: "customerDetails", // The alias for customer data
+        },
+      },
+      {
+        $unwind: "$customerDetails", // Unwind the customerDetails array
+      },
+      {
+        $project: {
+          _id: 1,
+          customer: 1,
+          customerDetails: {
+            _id: 1,
+            name: 1,
+            email: 1,
+            delivery_address: 1,
+            createdAt: 1,
+          },
+          quantity: 1,
+          orderStatus: 1,
+          notes: 1,
+          createdAt: 1,
+          updatedAt: 1,
+          product: {
+            _id: "$productDetails._id",
+            category: "$productDetails.category",
+            quantity: "$productDetails.quantity",
+            attributes: "$productAttributes",
+          },
+        },
+      },
+    ]);
+      
 
     if (!orders.length) {
       return res.status(404).json({ message: 'No orders found for this customer.' });

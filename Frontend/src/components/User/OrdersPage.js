@@ -45,7 +45,34 @@ const Order = ({ apiBaseUrl, darkMode }) => {
         },
         withCredentials: true,
       });
-      setOrders(response.data.orders);
+
+      // Fetch inventory to perform the match
+      const inventoryResponse = await axios.get(`${apiBaseUrl}/admin/inventory`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+
+      const inventoryData = inventoryResponse.data.products;
+
+      // Update orders with matched inventory details
+      const updatedOrders = response.data.orders.map((order) => {
+        const matchedInventory = inventoryData.find(
+          (item) => item._id === order.product.attributeId
+        );
+
+        return {
+          ...order,
+          product: {
+            ...order.product,
+            ...matchedInventory, // Merge matched inventory details
+          },
+        };
+      });
+
+      setOrders(updatedOrders);
       toast.success("Orders fetched successfully!");
       setError("");
     } catch (err) {
@@ -56,6 +83,7 @@ const Order = ({ apiBaseUrl, darkMode }) => {
       setLoading(false);
     }
   };
+
 
   const fetchInventory = async () => {
     try {
@@ -251,13 +279,13 @@ const Order = ({ apiBaseUrl, darkMode }) => {
 
                     {/* Render attributes */}
                     {order.product && order.product.attributes && Object.keys(order.product.attributes).length > 0 ? (
-                      <strong className="card-text">
-                        <strong>Attributes:</strong>{" "}
+                      <p className="card-text">
+                        <strong>Details:</strong>{" "}
                         {Object.entries(order.product.attributes)
                           .filter(([key]) => key !== "_id")
                           .map(([key, value]) => `${key}: ${value}`)
                           .join(", ")}
-                      </strong>
+                      </p>
                     ) : (
                       <p className="card-text">
                         <strong>Attributes:</strong> None
