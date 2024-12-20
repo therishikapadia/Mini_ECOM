@@ -67,7 +67,6 @@ const Order = ({ apiBaseUrl, darkMode }) => {
         withCredentials: true,
       });
       setInventory(response.data.products);
-      console.log(response.data.products);
     } catch (err) {
       setError("Failed to fetch inventory.");
     }
@@ -245,23 +244,26 @@ const Order = ({ apiBaseUrl, darkMode }) => {
                   <h5 className="card-title">
                     {order.product ? order.product.category : "No Category"}
                   </h5>
-                  <p className="card-text">
+                  <div className="card-text">
                     <strong>Status:</strong> {order.orderStatus} <br />
                     <strong>Notes:</strong> {order.notes || "N/A"} <br />
                     <strong>Quantity:</strong> {order.quantity}<br />
-                  </p>
 
-                  {/* Render attributes */}
-                  {order.product && order.product.attributes && (
-                    <p className="card-text">
-                      <strong>Attributes:</strong>{" "}
-                      {Object.entries(order.product.attributes)
-                        .filter(([key]) => key !== "_id") // Exclude _id if needed
-                        .map(([key, value]) => `${key}: ${value}`)
-                        .join(", ")}
-                    </p>
-                  )}
-
+                    {/* Render attributes */}
+                    {order.product && order.product.attributes && Object.keys(order.product.attributes).length > 0 ? (
+                      <strong className="card-text">
+                        <strong>Attributes:</strong>{" "}
+                        {Object.entries(order.product.attributes)
+                          .filter(([key]) => key !== "_id")
+                          .map(([key, value]) => `${key}: ${value}`)
+                          .join(", ")}
+                      </strong>
+                    ) : (
+                      <p className="card-text">
+                        <strong>Attributes:</strong> None
+                      </p>
+                    )}
+                  </div>
                   <Button
                     variant="warning"
                     onClick={() => {
